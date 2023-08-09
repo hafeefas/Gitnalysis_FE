@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import ChartLayout from './layouts/ChartLayout';
+import ToolbarLayout from './layouts/ToolbarLayout';
 
 function App() {
   return (
