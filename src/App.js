@@ -27,11 +27,13 @@ function App() {
           </div>
 
           <div className={activeMenu ? "md:ml-72 w-full" : "w-full flex-2"}>
-            <div className='fixed md:static bg-main-bg navbar w-full bg-white'>
-              Navbar
+            <div className='fixed md:static bg-main-bg navbar w-full bg-white text-left border-b border-gray-300 pt-5 pb-5 pl-3'>
+              Repository Statistics
             </div>
+            <ChartLayout/> 
           </div>
         </div>
+
 
         <Routes>
           {/* Dashboard */}
@@ -39,6 +41,7 @@ function App() {
 
           {/* components */}
           <Route path="toolbarlayout" element={<ToolbarLayout />} />
+          {/* <Route path="chartlayout" element={<ChartLayout/>}/> */}
         </Routes>
       </Router>
 
