@@ -26,7 +26,6 @@ const ChartLayout = () => {
       </div>
     </>
 
-    //make a css grid or layou
   )
 }
 
