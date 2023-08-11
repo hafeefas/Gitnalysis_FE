@@ -1,17 +1,16 @@
 import logo from './logo.svg';
-import './App.css';
 import ChartLayout from './layouts/ChartLayout';
 import ToolbarLayout from './layouts/ToolbarLayout';
 import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Home from './pages/Home';
+// import Home from './pages/Home';
 
 function App() {
   // will put this somewhere else later
   const activeMenu = false;
 
   return (
-    <div className="App">
+    <div className="bg-gray-500">
       <Router>
         <div className='flex relative dark: bg-main-dark-bg'>
           <div className='fixed right-4 top-4 hover: drop-shadow-xl' style={{ zIndex: "1000" }}>
@@ -26,18 +25,18 @@ function App() {
             <ToolbarLayout />
           </div>
 
-          <div className={activeMenu ? "md:ml-72 w-full" : "w-full flex-2"}>
-            <div className='fixed md:static bg-main-bg navbar w-full bg-white text-left border-b border-gray-300 pt-5 pb-5 pl-3'>
+          <div className={activeMenu ? "h-full md:ml-72 w-full" : "h-full w-full flex-2 "}>
+            <div className='fixed md:static bg-main-bg navbar w-full bg-white text-left border-b border-gray-300 pt-5 pb-5 pl-3 bg-black'>
               Repository Statistics
             </div>
-            <ChartLayout/> 
+            <ChartLayout />
           </div>
         </div>
 
 
         <Routes>
           {/* Dashboard */}
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
 
           {/* components */}
           <Route path="toolbarlayout" element={<ToolbarLayout />} />

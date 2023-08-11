@@ -5,15 +5,26 @@ const ChartLayout = () => {
     //gonna have all chart component
     //going to have all the graphs, etc
     //will have all dropdowns and buttons
-    <div className=''>
-      ChartLayout
-      <div className="border col-span-2 p-4 bg-blue-300 flex items-start">01</div>
-        <div className="border col-span-2 p-4 bg-green-300 flex items-center">09</div>
-        <div className="border col-span-2 p-4 bg-red-300 flex items-end">33</div>
-        {/* <div className="border grid-cols-3" >33</div>
-        <div className="border col-span-2">f</div>
-        <div className="border col-span-2">hello</div> */}
+    <>
+      <div class='h-full grid gap-y-12 p-10'>
+        <div class="grid grid-cols-3 gap-x-4 text-center">
+          <div class="bg-slate-300 p-4">Col</div>
+          <div class="bg-slate-300 p-4">Col</div>
+          <div class="bg-slate-300 p-4">Col</div>
+        </div>
+
+        <div class="grid grid-cols-12 gap-x-4 text-center">
+          <div class="bg-slate-400 p-6 col-span-8">Col</div>
+          <div class="bg-slate-400 p-6 col-span-4">Col</div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-x-4 text-center">
+          <div class="bg-slate-300 p-4">Col</div>
+          <div class="bg-slate-300 p-4">Col</div>
+          <div class="bg-slate-300 p-4">Col</div>
+        </div>
       </div>
+    </>
 
     //make a css grid or layou
   )
