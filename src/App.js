@@ -1,10 +1,8 @@
 import logo from './logo.svg';
-import './App.css';
 import ChartLayout from './layouts/ChartLayout';
 import ToolbarLayout from './layouts/ToolbarLayout';
 import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Home from './pages/Home';
 import Login from './pages/Login';
 
 
@@ -13,7 +11,7 @@ function App() {
   const activeMenu = false;
 
   return (
-    <div className="App">
+    <div className="bg-gray-500">
       <Router>
         <div className='flex relative dark:bg-main-dark-bg'>
           <div className='fixed right-4 top-4 hover:drop-shadow-xl' style={{ zIndex: "1000" }}>
@@ -33,8 +31,6 @@ function App() {
               </div>
               <div className="flex-grow">
                 <Routes>
-                  {/* Dashboard */}
-                  <Route path="/" element={<Home />} />
 
                   {/* Login Page */}
                   <Route path="/login" element={<Login />} />
