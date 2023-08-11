@@ -5,6 +5,8 @@ import ToolbarLayout from './layouts/ToolbarLayout';
 import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Home from './pages/Home';
+import Login from './pages/Login';
+
 
 function App() {
   // will put this somewhere else later
@@ -36,6 +38,9 @@ function App() {
         <Routes>
           {/* Dashboard */}
           <Route path="/" element={<Home />} />
+
+          {/* Login Page */}
+          <Route path="/login" element={<Login />} />
 
           {/* components */}
           <Route path="toolbarlayout" element={<ToolbarLayout />} />
