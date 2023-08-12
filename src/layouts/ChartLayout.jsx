@@ -23,6 +23,7 @@ const ChartLayout = () => {
           <div class="bg-slate-300 p-4">Col</div>
           <div class="bg-slate-300 p-4">Col</div>
         </div>
+
       </div>
     </>
 
