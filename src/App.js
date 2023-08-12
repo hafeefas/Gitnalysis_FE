@@ -24,21 +24,23 @@ function App() {
             <ToolbarLayout />
           </div>
 
-          <div className={activeMenu ? "md:ml-72 w-full" : "w-full"}>
-            <div className='flex'> 
-              <div className='fixed md:static bg-white'>
-                Navbar
+          <div className={activeMenu ? "h-full md:ml-72 w-full" : "h-screen w-full flex-2 "}>
+            <div className='flex'>
+              <div className='fixed md:static bg-main-bg navbar w-full bg-white text-left border-b border-gray-300 pt-5 pb-5 pl-3 bg-black'>
+                repository statistics
               </div>
-              <div className="flex-grow">
-                <Routes>
+            </div>
+            <div className="flex-grow">
+              <ChartLayout />
 
-                  {/* Login Page */}
-                  <Route path="/login" element={<Login />} />
+           
+              <Routes>
+                {/* Login Page */}
+                <Route path="/login" element={<Login />} />
 
-                  {/* components */}
-                  <Route path="toolbarlayout" element={<ToolbarLayout />} />
-                </Routes>
-              </div>
+                {/* components */}
+                <Route path="toolbarlayout" element={<ToolbarLayout />} />
+              </Routes>
             </div>
           </div>
         </div>
