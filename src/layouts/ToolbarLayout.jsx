@@ -5,7 +5,7 @@ function ToolbarLayout() {
   const activeMenu = true;
 
   return (
-    <div className='ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 h-full border-pink-80' >
+    <div className='ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 border-pink-80' >
       {activeMenu && (
         <div className='flex justify-between items-center'>
           <div class="grid grid-rows-3 gap-4">

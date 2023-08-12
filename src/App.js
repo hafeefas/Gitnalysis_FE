@@ -21,11 +21,11 @@ function App() {
           </div>
 
           {/* 58 */}
-          <div className=' border-pink-50 h-screen' style={{ border: "solid pink 4px" }}>
+          <div className=' border-pink-50' style={{ border: "solid pink 4px" }}>
             <ToolbarLayout />
           </div>
 
-          <div className={activeMenu ? "h-full md:ml-72 w-full" : "h-full w-full flex-2 "}>
+          <div className={activeMenu ? "h-full md:ml-72 w-full" : "h-screen w-full flex-2 "}>
             <div className='fixed md:static bg-main-bg navbar w-full bg-white text-left border-b border-gray-300 pt-5 pb-5 pl-3 bg-black'>
               Repository Statistics
             </div>
