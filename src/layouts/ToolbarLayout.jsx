@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MdMenuOpen } from "react-icons/md";
-
-// MdMenuOpen
+import FolderIcon from '@mui/icons-material/Folder';
+import EmailIcon from '@mui/icons-material/Email';
+import SettingsIcon from '@mui/icons-material/Settings';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 
 function ToolbarLayout() {
 
@@ -10,29 +11,27 @@ function ToolbarLayout() {
   const activeMenu = true;
 
   return (
-      <div className="flex">
-      {/* Arrow to open and close side bar */}
-      <div
-        className={`bg-slate-700 h-auto p-5 pt-8 ${
-          open ? "w-72" : "w-20"
-        }  relative duration-300`}
-      >
-        <MdMenuOpen className={`bg-white text-dark-green text-3xl rounded-full absolute -right-3 top-9 border border-white cursor-pointer ${
-            !open && "rotate-180"
-          }`}
-          onClick={() => setOpen(!open)}/>
-          <div className="inline-flex">
-
-            <h1 className={`text-white origin-left font-medium text-2xl duration-300 ${
-              !open && "scale-0"
-            }`}>
-              GITNALYSIS
-            </h1>
+    <div className='bg-black text-white border-r border-black-300 ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10' >
+      {activeMenu && (
+        <div className='flex justify-between items-center'>
+          <div className="grid grid-rows-3 gap-4">
+            <Link to="/" onClick={() => { }} className="item-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-right border-black ">
+              <FolderIcon />            </Link>
 
 
+            <Link to="/login" onClick={() => { }} className=" gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-right ">
+              <EmailIcon />
+            </Link>
           </div>
+
+        </div>
+      )}
+      <div className='flex justify-center items-end p-4  bottom-4 left-0 '>
+        <SettingsIcon />
+        <p></p>
       </div>
-      </div>
+    </div>
+
   );
 }
 
