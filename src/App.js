@@ -1,13 +1,11 @@
-import logo from './logo.svg';
-import ChartLayout from './layouts/ChartLayout';
-import ToolbarLayout from './layouts/ToolbarLayout';
-import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Login from './pages/Login';
-
+import ChartLayout from './layouts/ChartLayout';
+import ToolbarLayout from './layouts/ToolbarLayout';
 
 function App() {
-  // will put this somewhere else later
   const activeMenu = false;
 
   return (
@@ -31,15 +29,25 @@ function App() {
               </div>
             </div>
             <div className="flex-grow">
-              <ChartLayout />
+              {/* Add navigation buttons for tabs */}
+              <nav>
+                <ul>
+                  <li>
+                    <Link to="/">Dashboard</Link>
+                  </li>
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                </ul>
+              </nav>
 
-           
+              {/* Set up routes */}
               <Routes>
+                {/* Dashboard */}
+                <Route path="/" element={<ChartLayout />} />
+
                 {/* Login Page */}
                 <Route path="/login" element={<Login />} />
-
-                {/* components */}
-                <Route path="toolbarlayout" element={<ToolbarLayout />} />
               </Routes>
             </div>
           </div>
@@ -50,4 +58,3 @@ function App() {
 }
 
 export default App;
-
