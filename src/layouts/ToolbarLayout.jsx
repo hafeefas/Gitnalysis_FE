@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { MdMenuOpen } from "react-icons/md";
+
+// MdMenuOpen
+
 function ToolbarLayout() {
 
+  const [open, setOpen] = useState(true);
   const activeMenu = true;
 
   return (
-    <div className='ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 h-full border-pink-80' >
-      {activeMenu && (
-        <div className='flex justify-between items-center'>
-            <div className="grid grid-rows-3 gap-4">
+      <div className="flex">
+      {/* Arrow to open and close side bar */}
+      <div
+        className={`bg-slate-700 h-auto p-5 pt-8 ${
+          open ? "w-72" : "w-20"
+        }  relative duration-300`}
+      >
+        <MdMenuOpen className={`bg-white text-dark-green text-3xl rounded-full absolute -right-3 top-9 border border-white cursor-pointer ${
+            !open && "rotate-180"
+          }`}
+          onClick={() => setOpen(!open)}/>
+          <div className="inline-flex">
 
-            <Link to="/" onClick={() => { }} className="item-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-right border-black ">
-              <span> shoppy </span>
-            </Link>
+            <h1 className={`text-white origin-left font-medium text-2xl duration-300 ${
+              !open && "scale-0"
+            }`}>
+              GITNALYSIS
+            </h1>
 
-            <Link to="/" onClick={() => { }} className=" gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-right ">
-              <span> stats </span>
-            </Link>
+
           </div>
-        </div>
-      )}
-    </div>
+      </div>
+      </div>
   );
 }
 

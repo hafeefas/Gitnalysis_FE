@@ -1,0 +1,4 @@
+.dashboard {
+    display: flex;
+    min-height: 100vh; /* Set the minimum height of the dashboard to the full viewport height */
+  }
