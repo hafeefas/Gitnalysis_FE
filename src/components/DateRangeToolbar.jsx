@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Toolbar, FormControl, InputLabel, Select, MenuItem, TextField, makeStyles } from '@material-ui/core';
-import axios from 'axios'
+import axios from 'axios';
 
 const useStyles = makeStyles({
   toolbar: {
@@ -42,6 +42,10 @@ function DateRangeToolbar({ owner, repo }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  // minimum and maximum dates based on repo time
+  const [minDate, setMinDate] = useState(new Date());
+  const [maxDate, setMaxDate] = useState(new Date());
+
   useEffect(() => {
     async function fetchAvailableDates() {
       try {
@@ -52,6 +56,8 @@ function DateRangeToolbar({ owner, repo }) {
         if (dates.length) {
           setStartDate(dates[0]);
           setEndDate(dates[dates.length - 1]);
+          setMinDate(dates[0]);
+          setMaxDate(dates[dates.length - 1]);
         }
       } catch (error) {
         console.error("Error fetching available dates:", error);
@@ -59,6 +65,7 @@ function DateRangeToolbar({ owner, repo }) {
     }
 
     fetchAvailableDates();
+    // re run if owner, repo, or timeRange changes
   }, [owner, repo, timeRange]);
 
   return (
@@ -89,6 +96,10 @@ function DateRangeToolbar({ owner, repo }) {
           shrink: true,
           className: classes.label,
         }}
+        inputProps={{
+          max: endDate.toISOString().split('T')[0],
+          min: minDate.toISOString().split('T')[0]
+        }}
       />
       <TextField
         className={classes.datePicker}
@@ -100,6 +111,10 @@ function DateRangeToolbar({ owner, repo }) {
         InputLabelProps={{
           shrink: true,
           className: classes.label,
+        }}
+        inputProps={{
+          min: startDate.toISOString().split('T')[0],
+          max: maxDate.toISOString().split('T')[0]
         }}
       />
     </Toolbar>
