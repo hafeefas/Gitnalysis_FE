@@ -36,46 +36,30 @@ const useStyles = makeStyles({
   },
 });
 
-function DateRangeToolbar({owner, repo}) {
+function DateRangeToolbar({ owner, repo }) {
   const classes = useStyles();
   const [timeRange, setTimeRange] = useState('daily');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [availableDates, setAvailableDates] = useState([]);
 
   useEffect(() => {
-    const today = new Date();
-    switch (timeRange) {
-      case 'daily':
-        setStartDate(today);
-        setEndDate(today);
-        break;
-      case 'weekly':
-        const startOfWeek = new Date(today);
-        startOfWeek.setDate(today.getDate() - today.getDay());
-        setStartDate(startOfWeek);
-        setEndDate(today);
-        break;
-      case 'monthly':
-        setStartDate(new Date(today.getFullYear(), today.getMonth(), 1));
-        setEndDate(new Date(today.getFullYear(), today.getMonth() + 1, 0));
-        break;
-      case 'yearly':
-        setStartDate(new Date(today.getFullYear(), 0, 1));
-        setEndDate(new Date(today.getFullYear(), 11, 31));
-        break;
-      default:
-        break;
-    }
-  }, [timeRange]);
-
-  useEffect(() => {
-    async function fetchData() {
+    async function fetchAvailableDates() {
       try {
+        const response = await axios.get(`http://localhost:8080/api/repositories/${owner}/${repo}/getActivity/${timeRange}`);
+        const dates = response.data.repoActivityArray.map(activity => new Date(activity.activityTime));
+        dates.sort((a, b) => a - b); 
 
+        if (dates.length) {
+          setStartDate(dates[0]);
+          setEndDate(dates[dates.length - 1]);
+        }
+      } catch (error) {
+        console.error("Error fetching available dates:", error);
       }
     }
-  });
+
+    fetchAvailableDates();
+  }, [owner, repo, timeRange]);
 
   return (
     <Toolbar className={classes.toolbar}>
