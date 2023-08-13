@@ -31,6 +31,7 @@ function ToolbarLayout() {
             !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}/>
+          
           <div className="inline-flex mb-4">
             <BsGithub className={` rounded cursor-pointer block text-3xl float-left mr-2 duration-300 ${
               open && "rotate-[360deg]"
