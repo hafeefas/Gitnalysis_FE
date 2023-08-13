@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Toolbar, FormControl, InputLabel, Select, MenuItem, TextField, makeStyles } from '@material-ui/core';
+import axios from 'axios'
 
 const useStyles = makeStyles({
   toolbar: {
@@ -35,11 +36,12 @@ const useStyles = makeStyles({
   },
 });
 
-function DateRangeToolbar() {
+function DateRangeToolbar({owner, repo}) {
   const classes = useStyles();
   const [timeRange, setTimeRange] = useState('daily');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [availableDates, setAvailableDates] = useState([]);
 
   useEffect(() => {
     const today = new Date();
@@ -66,6 +68,14 @@ function DateRangeToolbar() {
         break;
     }
   }, [timeRange]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+
+      }
+    }
+  });
 
   return (
     <Toolbar className={classes.toolbar}>
