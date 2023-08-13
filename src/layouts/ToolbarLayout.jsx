@@ -20,14 +20,14 @@ function ToolbarLayout() {
   const activeMenu = true;
 
   return (
-    <div className='flex  text-white border-r border-black-300 ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10' >
+    <div className='flex  text-white border-r pb-10' >
       
       <div
         className={`bg-slate-800 h-screen p-5 pt-8 ${
           open ? "w-64" : "w-20"
         }  relative duration-300`}
       >
-        <MdOutlineMenuOpen className={`hover:text-white  text-black text-3xl rounded-md absolute -right-0.5 top-8 border-black cursor-pointer ${
+        <MdOutlineMenuOpen className={`hover:text-violet-300 overflow-visible  bg-white text-black text-3xl rounded-md absolute -right-3 bottom-1/2  border-black border cursor-pointer ${
             !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}/>
@@ -43,22 +43,25 @@ function ToolbarLayout() {
           <div className={`flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
           }`}>
-            <BsFolder className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-            <Link to="/repos" onClick={() => { }} className={` font-medium font-serif text-2xl ${
+            <Link to="/repos" className='flex items-center'>
+              <BsFolder className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
+              <h1 className={` font-medium font-serif text-2xl ${
               !open && "hidden"
-            }`}>
-              Repository
+            }`}>Repository</h1>
+              
             </Link>
           </div>
 
           <div className={`flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
           }`}>
-            <ImStatsBars className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-            <Link to="" onClick={() => { }} className={` font-medium font-serif text-2xl ${
+            <Link to="/"  className='flex items-center'>
+              <ImStatsBars className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
+
+              <h1 className={` font-medium font-serif text-2xl ${
               !open && "hidden"
-            }`}>
-              Statistics
+            }`}>Statistics</h1>
+              
             </Link>
           </div>
 
@@ -66,7 +69,7 @@ function ToolbarLayout() {
             !open ? "px-1" : "px-4"
           }`}>
             <AiOutlineMail className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-            <Link to="" onClick={() => { }} className={` font-medium font-serif text-2xl ${
+            <Link to=""  className={` font-medium font-serif text-2xl ${
               !open && "hidden"
             }`}>
               Notifications
@@ -77,7 +80,7 @@ function ToolbarLayout() {
             !open ? "px-1" : "px-4"
           }`}>
             <AiOutlineFile className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-            <Link to="" onClick={() => { }} className={` font-medium font-serif text-2xl ${
+            <Link to=""  className={` font-medium font-serif text-2xl ${
               !open && "hidden"
             }`}>
               Files
