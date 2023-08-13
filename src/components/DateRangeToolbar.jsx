@@ -1,7 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { Toolbar, FormControl, InputLabel, Select, MenuItem, TextField } from '@material-ui/core';
+import { Toolbar, FormControl, InputLabel, Select, MenuItem, TextField, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles({
+  toolbar: {
+    backgroundColor: '#cbd5e0',
+    borderRadius: '0.5rem',    
+    padding: '1rem',        
+    width: '28rem',            
+    justifyContent: 'space-between',
+  },
+  select: {
+    '& .MuiSelect-select': {
+      color: '#9f7aea',      
+    },
+    '& .MuiSelect-icon': {
+      color: '#9f7aea',      
+    },
+  },
+  datePicker: {
+    '& .MuiInput-input': {
+      color: '#9f7aea',      
+    },
+    '& .MuiSvgIcon-root': {
+      color: '#9f7aea',   
+    },
+  },
+  formControl: {
+    minWidth: 120,
+  },
+  label: {
+    color: '#718096',       
+    fontSize: '0.875rem',    
+    fontWeight: 500,         
+  },
+});
 
 function DateRangeToolbar() {
+  const classes = useStyles();
   const [timeRange, setTimeRange] = useState('daily');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -31,12 +66,13 @@ function DateRangeToolbar() {
         break;
     }
   }, [timeRange]);
-    
-return (
-    <Toolbar>
-      <FormControl style={{ marginRight: '20px' }}>
-        <InputLabel id="time-range-label">Time Range</InputLabel>
+
+  return (
+    <Toolbar className={classes.toolbar}>
+      <FormControl className={classes.formControl}>
+        <InputLabel className={classes.label} shrink id="time-range-label">Time Range</InputLabel>
         <Select
+          className={classes.select}
           labelId="time-range-label"
           id="time-range-select"
           value={timeRange}
@@ -49,17 +85,19 @@ return (
         </Select>
       </FormControl>
       <TextField
+        className={classes.datePicker}
         id="start-date-picker"
         label="Start Date"
         type="date"
         value={startDate.toISOString().split('T')[0]}
         onChange={(e) => setStartDate(new Date(e.target.value))}
-        style={{ marginRight: '10px' }}
         InputLabelProps={{
           shrink: true,
+          className: classes.label,
         }}
       />
       <TextField
+        className={classes.datePicker}
         id="end-date-picker"
         label="End Date"
         type="date"
@@ -67,6 +105,7 @@ return (
         onChange={(e) => setEndDate(new Date(e.target.value))}
         InputLabelProps={{
           shrink: true,
+          className: classes.label,
         }}
       />
     </Toolbar>
