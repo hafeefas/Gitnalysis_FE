@@ -44,7 +44,7 @@ function ToolbarLayout() {
             !open ? "px-1" : "px-4"
           }`}>
             <BsFolder className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-            <Link to="" onClick={() => { }} className={` font-medium font-serif text-2xl ${
+            <Link to="/repos" onClick={() => { }} className={` font-medium font-serif text-2xl ${
               !open && "hidden"
             }`}>
               Repository
