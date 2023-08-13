@@ -14,7 +14,7 @@ function ToolbarLayout() {
       {activeMenu && (
         <div className='flex justify-between items-center'>
           <div className="grid grid-rows-3 gap-4">
-            <Link to="/" onClick={() => { }} className="item-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-right border-black ">
+            <Link to="/repos" className="item-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-right border-black ">
               <FolderIcon />            </Link>
 
 
