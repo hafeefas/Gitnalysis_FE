@@ -22,7 +22,6 @@ function App() {
 
     const userName = urlParams.get('username');
     const userId = urlParams.get('userId');
-
     console.log('Username:', userName);
     console.log('UserId:', userId);
     setUserName(userName);
