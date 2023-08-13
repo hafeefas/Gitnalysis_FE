@@ -23,7 +23,7 @@ const ChartLayout = ({username,currRepo}) => {
     //going to have all the graphs, etc
     //will have all dropdowns and buttons
     <>
-      <div class='h-auto grid gap-y-12 p-10 '>
+      <div class=' h-auto grid gap-y-12 p-10 '>
         <div class="grid grid-cols-3 gap-x-4 text-center" >
           <div class="bg-slate-300 p-4 ">Col</div>
           <div class="bg-slate-300 p-4">Col</div>
