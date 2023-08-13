@@ -8,7 +8,7 @@ function LoginForm() {
 
   const handleLoginWithGitHubClick = () => {
     console.log('handled')
-    window.open(`${REACT_APP_BACKEND_URL}/github/auth`,'_self')
+    window.open(`${process.env.REACT_APP_BACKEND_URL}/github/auth`,'_self')
   }
 
   return (

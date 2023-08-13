@@ -17,6 +17,7 @@ function App() {
   const [currRepo, setCurrRepo] = useState('')
 
    useEffect(() => {
+    console.log(process.env.REACT_APP_BACKEND_URL);
     const urlParams = new URLSearchParams(window.location.search);
 
     const userName = urlParams.get('username');
