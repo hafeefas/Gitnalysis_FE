@@ -5,10 +5,10 @@ import '../login.css';
 function LoginForm() {
   
   return (
-    <form className="space-y-4">
+    <div className="space-y-4">
       <h1 className="flex justify-center font-extrabold text-4xl font-serif mb-2" >Login</h1>
       <div className="mb-4 flex items-center justify-center">
-        {/* <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-600">GitHub Username</label> */}
+        {/* <h1 htmlFor="username" className="block mb-2 text-sm font-medium text-gray-600">GitHub Username</h1> */}
         <input
           type="text"
           id="username"
@@ -18,7 +18,7 @@ function LoginForm() {
         />
       </div>
 
-      <div className="mb-4 flex items-center justify-center">
+      <div className="mb-4 flex items-center justify-center p-2" >
         {/* <label htmlFor="repository" className="block mb-2 text-sm font-medium text-gray-600">Repository Name</label> */}
         <input
           type="text"
@@ -30,18 +30,18 @@ function LoginForm() {
       </div>
 
       <div className='flex justify-center items-center '>
-        <button className=" w-72 bg-violet-500 hover:bg-purple-600 text-white py-2 rounded focus:outline-none">
+        <button className=" mt-4 w-72 bg-violet-500 hover:bg-purple-600 text-white py-2 rounded focus:outline-none">
         Submit
       </button>
       </div>
       
       <div className='flex justify-center items-center'>
-        <button className="w-72 flex justify-center items-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded focus:outline-none">
+        <button className="mt-4 w-72 flex justify-center items-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded focus:outline-none">
         <img src={GitHubLogo} alt="GitHub Logo" className="h-5 w-5 mr-2" /> Login with GitHub
       </button>
       </div>
       
-    </form>
+    </div>
   );
 }
 
