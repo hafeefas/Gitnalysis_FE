@@ -1,5 +1,5 @@
 import axios from "axios"
-
+axios.defaults.withCredentials=true;
 export const getRepoMetrics = async (owner, currRepo) => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/lead_time/running_average/${owner}/${currRepo}`);
