@@ -4,9 +4,14 @@ import ChartLayout from '../layouts/ChartLayout';
 import LoginForm from './LoginForm';
 import App from '../App';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { logoutGitHubUser } from '../services/githubLogin';
 
 function Navbar() {
   const activeMenu = false;
+
+  const handleLogoutUser = () => {
+    logoutGitHubUser();
+  }
 
   return (
 
@@ -14,7 +19,8 @@ function Navbar() {
       <div className='flex relative dark:bg-main-dark-bg'>
         <div className='fixed right-4 top-4 hover:drop-shadow-xl' style={{ zIndex: "1000" }}>
           <Link to="/login">
-          <button type="button">
+          {/* <button type="button" onClick={handleLogoutUser}> */}
+           <button type="button" >
             <LogoutIcon className="text-3xl hover:drop-shadow-xl hover:bg-light-gray text-purple-700" />
           </button>
           </Link>
