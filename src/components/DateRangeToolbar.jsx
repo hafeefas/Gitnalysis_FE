@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Toolbar, FormControl, InputLabel, Select, MenuItem, TextField, styled } from '@mui/material';
-import axios from 'axios';
 
 const StyledToolbar = styled(Toolbar)({
   backgroundColor: '#cbd5e0',
@@ -42,32 +41,17 @@ function DateRangeToolbar({ currRepo }) {
   const [timeRange, setTimeRange] = useState('daily');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-
-  // minimum and maximum dates based on repo time
   const [minDate, setMinDate] = useState(new Date());
   const [maxDate, setMaxDate] = useState(new Date());
 
   useEffect(() => {
-    async function fetchAvailableDates() {
-      try {
-        const response = await axios.get(`http://localhost:8080/api/repositories/${owner}/${repo}/getActivity/${timeRange}`);
-        const dates = response.data.repoActivityArray.map(activity => new Date(activity.activityTime));
-        dates?.sort((a, b) => a - b); 
-
-        if (dates.length) {
-          setStartDate(dates[0]);
-          setEndDate(dates[dates.length - 1]);
-          setMinDate(dates[0]);
-          setMaxDate(dates[dates.length - 1]);
-        }
-      } catch (error) {
-        console.error("Error fetching available dates:", error);
-      }
+    if (currRepo && currRepo.data && currRepo.data.length) {
+      const firstDate = new Date(currRepo.data[0].merged_at);
+      setMinDate(firstDate);
+      setStartDate(firstDate);
+      setMaxDate(new Date()); 
     }
-
-    fetchAvailableDates();
-    // re run if owner, repo, or timeRange changes
-  }, [owner, repo, timeRange]);
+  }, [currRepo]);
 
   return (
     <StyledToolbar>
