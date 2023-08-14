@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { getRepoMetrics } from '../services/getRepoMetrics'
+import LeadTimeChart from '.././components/LeadTimeChart'
 
 const ChartLayout = ({username,currRepo}) => {
 
@@ -18,6 +19,10 @@ const ChartLayout = ({username,currRepo}) => {
     fetchRepoMetrics();
   }, [currRepo]);
 
+  const width = 500;
+  const height = 150;
+  const padding = 20;
+
   return (
     //gonna have all chart component
     //going to have all the graphs, etc
@@ -31,11 +36,7 @@ const ChartLayout = ({username,currRepo}) => {
         </div>
         <div class="grid grid-cols-12 gap-x-4 text-center">
         <div class="bg-slate-400 p-6 col-span-8">
-        {repoInfo?.data.map((data, index) => (
-            <li key={index} className="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600 whitespace-normal">
-              Merged At: {data.merged_at}, Average: {data.average}
-            </li>
-          ))}
+        <LeadTimeChart repoInfo={repoInfo}/>
           </div>
           <div class="bg-slate-400 p-6 col-span-4">Col</div>
         </div>
