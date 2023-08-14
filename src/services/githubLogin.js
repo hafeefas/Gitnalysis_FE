@@ -22,3 +22,13 @@ export const getUserRepos = async () => {
       console.error('Error fetching authenticated user:', error);
     }
   };
+
+export const logoutGitHubUser = async () => {
+  try {
+   const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/github/logout`);
+   console.log('Logout response:', response);
+   } catch (error){
+    console.error('Error logging out authenticated user:', error);
+   }
+   
+}
