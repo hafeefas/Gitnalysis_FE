@@ -41,7 +41,7 @@ function ToolbarLayout() {
             </h1>
           </div>
 
-          <div className={`flex justify-start p-4  ${
+          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
             !open ? "px-1" : "px-4"
           }`}>
             <Link to="/repos" className='flex items-center'>
@@ -53,7 +53,7 @@ function ToolbarLayout() {
             </Link>
           </div>
 
-          <div className={`flex justify-start p-4  ${
+          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
           }`}>
             <Link to="/"  className='flex items-center'>
@@ -66,25 +66,31 @@ function ToolbarLayout() {
             </Link>
           </div>
 
-          <div className={`flex justify-start p-4  ${
+          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
           }`}>
-            <AiOutlineMail className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-            <Link to=""  className={` font-medium font-serif text-2xl ${
+            <Link to=""  className={` flex items-center`}>
+              <AiOutlineMail className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
+              <h1 className={` font-medium font-serif text-2xl ${
               !open && "hidden"
             }`}>
               Notifications
+              </h1>
             </Link>
           </div>
 
-          <div className={`flex justify-start p-4  ${
+          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
           }`}>
-            <AiOutlineFile className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-            <Link to=""  className={` font-medium font-serif text-2xl ${
+            
+            <Link to=""  className={`flex items-center `}>
+              <AiOutlineFile className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
+              <h1 className={` font-medium font-serif text-2xl ${
               !open && "hidden"
             }`}>
-              Files
+                Files
+              </h1>
+              
             </Link>
           </div>
 
