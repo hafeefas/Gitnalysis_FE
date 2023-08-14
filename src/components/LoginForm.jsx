@@ -42,7 +42,7 @@ function LoginForm() {
       </div>
       
       <div className='flex justify-center items-center'>
-        <button className="mt-4 w-72 flex justify-center items-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded focus:outline-none">
+        <button className="mt-4 w-72 flex justify-center items-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded focus:outline-none" type='button' onClick={handleLoginWithGitHubClick}>
         <img src={GitHubLogo} alt="GitHub Logo" className="h-5 w-5 mr-2" /> Login with GitHub
       </button>
       </div>
