@@ -3,7 +3,13 @@ import GitHubLogo from '../icons/github-logo.png';
 import '../login.css';
 
 function LoginForm() {
-  
+
+  const handleLoginWithGitHubClick = () => {
+    console.log('handled')
+    window.open(`${process.env.REACT_APP_BACKEND_URL}/github/auth`, '_self')
+    // window.open(`http://localhost:8080/github/auth`,'_self')
+  }
+
   return (
     <div className="space-y-4">
       <h1 className="flex justify-center font-extrabold text-4xl font-serif mb-2" >Login</h1>
