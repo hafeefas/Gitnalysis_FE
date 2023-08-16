@@ -47,7 +47,7 @@ function App() {
   },[currRepo])
   
   return (
-    <div className="flex max-h-screen overflow-hidden" style={{backgroundColor:"#6e6e6e"}}>
+    <div className="flex max-h-screen overflow-hidden" style={{backgroundColor:"#111526ff"}}>
       <Router>
         {/* Sidebar */}
         <ToolbarLayout />

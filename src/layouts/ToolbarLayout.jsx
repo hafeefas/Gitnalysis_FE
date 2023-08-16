@@ -22,9 +22,9 @@ function ToolbarLayout() {
     <div className='flex h-full text-white border-r pb-10' >
       
       <div
-        className={`bg-slate-800 h-screen p-5 pt-8 ${
+        className={`h-screen p-5 pt-8 ${
           open ? "w-64" : "w-20"
-        }  relative duration-300`}
+        }  relative duration-300`} style={{backgroundColor:'#171C2Eff'}}
       >
         <MdOutlineMenuOpen className={`hover:text-violet-300 overflow-visible  bg-white text-black text-3xl rounded-md absolute -right-3 bottom-1/2  border-black border cursor-pointer ${
             !open && "rotate-180"
@@ -35,7 +35,7 @@ function ToolbarLayout() {
             <BsGithub className={` rounded cursor-pointer block text-3xl float-left mr-2 duration-300 ${
               open && "rotate-[360deg]"
             }`}/>
-            <h1 className={`text-white font-serif font-medium text-2xl duration-300 ${!open && "scale-0"}`}>
+            <h1 className={`text-white font-sans-serif font-medium text-2xl duration-300 ${!open && "scale-0"}`}>
               GITNALYSIS
             </h1>
           </div>
@@ -45,7 +45,7 @@ function ToolbarLayout() {
           }`}>
             <Link to="/repos" className='flex items-center'>
               <BsFolder className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-              <h1 className={` font-medium font-serif text-2xl ${
+              <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"
             }`}>Repository</h1>
               
@@ -58,7 +58,7 @@ function ToolbarLayout() {
             <Link to="/"  className='flex items-center'>
               <ImStatsBars className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
 
-              <h1 className={` font-medium font-serif text-2xl ${
+              <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"
             }`}>Statistics</h1>
               
@@ -70,7 +70,7 @@ function ToolbarLayout() {
           }`}>
             <Link to=""  className={` flex items-center`}>
               <AiOutlineMail className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-              <h1 className={` font-medium font-serif text-2xl ${
+              <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"
             }`}>
               Notifications
@@ -84,7 +84,7 @@ function ToolbarLayout() {
             
             <Link to=""  className={`flex items-center `}>
               <AiOutlineFile className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-              <h1 className={` font-medium font-serif text-2xl ${
+              <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"
             }`}>
                 Files
