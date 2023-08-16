@@ -22,8 +22,9 @@ export const getUserRepos = async () => {
       {withCredentials:true});
       // const response = await axios.get(`http://localhost:8080/api/users/me/repos`);
       console.log('Authenticated User Repos:', response.data);
-      const repoNames = response.data.map(repo => repo.name);
-      console.log(response);
+      //Creates an object of full_name name and repo.name
+      const repoNames = response.data.map(repo => {return {full_name:repo.full_name,name:repo.name}});
+      console.log(repoNames);
       return repoNames;
     } catch (error) {
       console.error('Error fetching authenticated user:', error);
