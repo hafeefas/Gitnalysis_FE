@@ -5,10 +5,12 @@ import Login from './pages/Login';
 import Repos from './pages/Repos';
 import ChartLayout from './layouts/ChartLayout';
 import NewChartLayout from './layouts/NewChartLayout';
+import MobileChartLayout from './layouts/MobileChartLayout';
 import ToolbarLayout from './layouts/ToolbarLayout';
 import Navbar from './components/navbar';
 import axios from 'axios';
 import { getAuthenticatedUser, getUserRepos } from './services/githubLogin';
+import { useMediaQuery } from '@mui/material';
 
 function App() {
 
@@ -16,6 +18,7 @@ function App() {
   const [userid,setUserId] = useState('')
   const [repos,setRepos] = useState()
   const [currRepo, setCurrRepo] = useState('')
+  const isSmallScreen = useMediaQuery('(max-width: 770px)');
 
    useEffect(() => {
     console.log(process.env.REACT_APP_BACKEND_URL);
@@ -60,7 +63,8 @@ function App() {
           <Routes>
             {/* Dashboard */}
             {/* <Route path="/" element={<ChartLayout username={username} currRepo={currRepo} />} /> */}
-            <Route path="/" element={<NewChartLayout username={username} currRepo={currRepo} />} />
+            {/* IF WE HAVE A SMALLER SCREEN INTO MOBILE, CHANGE TO A MOBILE READY LAYOUT */}
+            {isSmallScreen ? (<Route path="/" element={<MobileChartLayout username={username} currRepo={currRepo} />} />) : (<Route path="/" element={<NewChartLayout username={username} currRepo={currRepo} />} />)}
             {/* Login Page */}
             <Route path="/login" element={<Login />} />
             <Route path="/repos" element={<Repos repos={repos} setCurrRepo={setCurrRepo}/>} />

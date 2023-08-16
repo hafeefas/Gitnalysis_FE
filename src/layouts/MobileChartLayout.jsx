@@ -8,7 +8,7 @@ const MobileChartLayout = ({username,currRepo}) => {
   const [repoInfo,setRepoInfo] = useState(null)
 
   useEffect(() => {
-    async function fetchRepoMetrics() {
+    async function fetchRepoMetrics({username,currRepo}) {
       try {
         console.log(username, currRepo,'passsed into new chart')
         const metrics = await getRepoMetrics(username, currRepo);
