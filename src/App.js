@@ -4,6 +4,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Login from './pages/Login';
 import Repos from './pages/Repos';
 import ChartLayout from './layouts/ChartLayout';
+import NewChartLayout from './layouts/NewChartLayout';
 import ToolbarLayout from './layouts/ToolbarLayout';
 import Navbar from './components/navbar';
 import axios from 'axios';
@@ -58,7 +59,8 @@ function App() {
           {/* Set up routes */}
           <Routes>
             {/* Dashboard */}
-            <Route path="/" element={<ChartLayout username={username} currRepo={currRepo} />} />
+            {/* <Route path="/" element={<ChartLayout username={username} currRepo={currRepo} />} /> */}
+            <Route path="/" element={<NewChartLayout username={username} currRepo={currRepo} />} />
 
             {/* Login Page */}
             <Route path="/login" element={<Login />} />

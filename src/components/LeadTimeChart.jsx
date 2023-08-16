@@ -4,6 +4,8 @@ import * as d3 from 'd3'
 const LeadTimeChart = ({repoInfo}) => {
     //M50,50 = move 50 across, 50 down, L100,150 = draw line to 100 above, 150 down
 
+  console.log(repoInfo);
+   console.log("Rendering LeadTimeChart");
   const width = 500;
   const height = 150;
   const padding = 20;
@@ -33,7 +35,7 @@ const LeadTimeChart = ({repoInfo}) => {
   }
   
   useEffect(() => {
-
+    console.log(repoInfo);
     //set up functions for scales
     if (repoInfo && repoInfo.data && repoInfo.data.length > 0) {
       console.log('showing repo chart')
