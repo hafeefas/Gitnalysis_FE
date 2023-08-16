@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  --oxford-blue: #171C2Eff;
+  --robin-egg-blue: #22E0E3ff;
+  --rich-black: #111526ff;
+  --steel-pink: #DD15C9ff;
+  --heliotrope: #D171F1ff;
+}
 
 body {
   margin: 0;
