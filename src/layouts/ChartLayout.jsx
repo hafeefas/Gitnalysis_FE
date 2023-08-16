@@ -3,14 +3,14 @@ import { getRepoMetrics } from '../services/getRepoMetrics'
 import DateRangeToolbar from '../components/DateRangeToolbar'
 import LeadTimeChart from '.././components/LeadTimeChart'
 
-const ChartLayout = ({username,currRepo}) => {
+const ChartLayout = ({full_name}) => {
 
   const [repoInfo,setRepoInfo] = useState(null)
 
   useEffect(() => {
     async function fetchRepoMetrics() {
       try {
-        const metrics = await getRepoMetrics(username, currRepo);
+        const metrics = await getRepoMetrics(full_name);
         setRepoInfo(metrics);
       } catch (error) {
         console.error('Error fetching repository metrics:', error);
@@ -18,7 +18,7 @@ const ChartLayout = ({username,currRepo}) => {
     }
 
     fetchRepoMetrics();
-  }, [currRepo]);
+  }, [full_name]);
 
   const width = 500;
   const height = 150;
@@ -30,7 +30,7 @@ const ChartLayout = ({username,currRepo}) => {
     //will have all dropdowns and buttons
     <>
       <div class=' h-auto grid gap-y-12 p-10 '> 
-        <DateRangeToolbar currRepo={currRepo}/>
+        <DateRangeToolbar currRepo={full_name}/>
         <div class="grid grid-cols-3 gap-x-4 text-center" >
           <div class="bg-slate-300 p-4 ">Col</div>
           <div class="bg-slate-300 p-4">Col</div>

@@ -58,7 +58,7 @@ function App() {
           {/* Set up routes */}
           <Routes>
             {/* Dashboard */}
-            <Route path="/" element={<ChartLayout username={username} currRepo={currRepo} />} />
+            <Route path="/" element={<ChartLayout full_name={currRepo} />} />
 
             {/* Login Page */}
             <Route path="/login" element={<Login />} />
