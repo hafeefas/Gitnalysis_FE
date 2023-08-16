@@ -19,7 +19,7 @@ function ToolbarLayout() {
   const activeMenu = true;
 
   return (
-    <div className='flex  text-white border-r pb-10' >
+    <div className='flex h-full text-white border-r pb-10' >
       
       <div
         className={`bg-slate-800 h-screen p-5 pt-8 ${

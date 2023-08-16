@@ -1,5 +1,5 @@
 import axios from 'axios';
-// axios.defaults.withCredentials=true;
+axios.defaults.withCredentials=true;
 
 // Modify the authenticateWithGitHub function to accept an additional 'repo' parameter
 export const getAuthenticatedUser = async () => {
@@ -24,6 +24,7 @@ export const getUserRepos = async () => {
       console.log('Authenticated User Repos:', response.data);
       //Creates an object of full_name name and repo.name
       const repoNames = response.data.map(repo => {return {full_name:repo.full_name,name:repo.name}});
+      console.log(repoNames);
       return repoNames;
     } catch (error) {
       console.error('Error fetching authenticated user:', error);
