@@ -11,6 +11,7 @@ import Navbar from './components/navbar';
 import axios from 'axios';
 import { getAuthenticatedUser, getUserRepos } from './services/githubLogin';
 import { useMediaQuery } from '@mui/material';
+import MobileToolbarLayout from './layouts/MobileToolbarLayout';
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
   const [userid,setUserId] = useState('')
   const [repos,setRepos] = useState()
   const [currRepo, setCurrRepo] = useState('')
-  const isSmallScreen = useMediaQuery('(max-width: 770px)');
+  const isTabletScreen = useMediaQuery('(max-width: 770px)');
+  const isMobileScreen = useMediaQuery('(max-width: 420px)');
 
    useEffect(() => {
     console.log(process.env.REACT_APP_BACKEND_URL);
@@ -53,7 +55,7 @@ function App() {
     <div className="flex max-h-screen overflow-hidden" style={{backgroundColor:"#111526ff"}}>
       <Router>
         {/* Sidebar */}
-        <ToolbarLayout />
+        {isMobileScreen ? (<div className="z-10"><MobileToolbarLayout /></div>) : (<ToolbarLayout />)}
 
         <div className="flex-1">
           {/* Add navigation buttons for tabs */}
@@ -64,7 +66,7 @@ function App() {
             {/* Dashboard */}
             {/* <Route path="/" element={<ChartLayout username={username} currRepo={currRepo} />} /> */}
             {/* IF WE HAVE A SMALLER SCREEN INTO MOBILE, CHANGE TO A MOBILE READY pmLAYOUT */}
-            {isSmallScreen ? (<Route path="/" element={<TabletChartLayout username={username} currRepo={currRepo} />} />) : (<Route path="/" element={<NewChartLayout username={username} currRepo={currRepo} />} />)}
+            {isTabletScreen ? (<Route path="/" element={<TabletChartLayout username={username} currRepo={currRepo} />} />) : (<Route path="/" element={<NewChartLayout username={username} currRepo={currRepo} />} />)}
             {/* Login Page */}
             <Route path="/login" element={<Login />} />
             <Route path="/repos" element={<Repos repos={repos} setCurrRepo={setCurrRepo}/>} />
