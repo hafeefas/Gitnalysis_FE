@@ -70,7 +70,7 @@ const NewChartLayout = ({username,currRepo}) => {
           </div>
           <div className="pl-10 text-center items-center" style={{transform:'translateY(-150px)'}}>
               <div className="rounded-xl shadow-3xl text-white" style={{width: "66%", backgroundColor:'#171C2Eff'}} >
-              <div className="h-56 p-6 font-bold text-white"> Lead Time for Change<LeadTimeChart repoInfo={repoInfo}/></div>
+              <div className="h-56 p-4 font-bold text-white"> Lead Time for Change<LeadTimeChart repoInfo={repoInfo}/></div>
               </div>
           </div>
       </div><div className="flex">
