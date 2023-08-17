@@ -3,6 +3,9 @@ import { getRepoMetrics } from '../services/getRepoMetrics'
 import DateRangeToolbar from '../components/DateRangeToolbar'
 import LeadTimeChart from '../components/LeadTimeChart'
 import { useMediaQuery } from '@mui/material'
+import Collaborators from '../components/Collaborators'
+import Branches from '../components/Branches'
+import MergeSuccessRate from '../components/MergeSuccessRate'
 
 const TabletChartLayout = ({username,currRepo}) => {
 
@@ -34,7 +37,7 @@ const TabletChartLayout = ({username,currRepo}) => {
       <div className="grid gap-y-12">
         <div className="grid-rows-7 grid grid-cols-4 gap-4 mx-10 text-center text-white">
         <div className="col-span-2 bg-slate-300 p-4 rounded-xl shadow-3xl h-32 flex p-2 items-center justify-center " style={{ backgroundColor: '#171C2Eff' }}>Collaborators</div>
-        <div className="col-span-2 bg-slate-300 p-4 rounded-xl shadow-3xl h-32 flex p-2 items-center justify-center" style={{ backgroundColor: '#171C2Eff' }}>Branches</div>
+        <div className="col-span-2 bg-slate-300 p-4 rounded-xl shadow-3xl h-32 flex p-2 items-center justify-center" style={{ backgroundColor: '#171C2Eff' }}><Branches/></div>
         <div className="col-span-4 bg-slate-300 p-4 rounded-xl shadow-3xl flex p-2 items-center justify-center h-60 " style={{ backgroundColor: '#171C2Eff' }}>Issues</div>
         <div className="col-span-2 bg-slate-300 p-4 rounded-xl shadow-3xl flex h-28 p-2 items-center justify-center" style={{ backgroundColor: '#171C2Eff' }}>Open PRs</div>
         <div className="col-span-2 bg-slate-300 p-4 rounded-xl shadow-3xl flex h-28 p-2 items-center justify-center" style={{ backgroundColor: '#171C2Eff' }}>Merged PRs</div>
