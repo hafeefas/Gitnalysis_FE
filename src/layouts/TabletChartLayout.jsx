@@ -12,10 +12,13 @@ const TabletChartLayout = ({username,currRepo}) => {
   useEffect(() => {
     async function fetchRepoMetrics() {
       try {
-        console.log(username, currRepo,'passsed into new chart')
-        const metrics = await getRepoMetrics(username, currRepo);
+        const splitCurrRepo = currRepo.split("/");
+        // console.log(splitCurrRepo);
+        const username = splitCurrRepo[0];
+        const repo = splitCurrRepo[1];
+        const metrics = await getRepoMetrics(username, repo);
         setRepoInfo(metrics);
-        console.log(metrics);
+        // console.log(metrics);
       } catch (error) {
         console.error('Error fetching repository metrics:', error);
       }
@@ -24,7 +27,7 @@ const TabletChartLayout = ({username,currRepo}) => {
     fetchRepoMetrics();
   }, [currRepo]);
 
-  console.log("Rendering NewChartLayout");
+//   console.log("Rendering NewChartLayout");
 
   return (
     <div className={`w-full h-screen overflow-y-auto pt-28 ${isMobileScreen ? "ml-2" : "ml-8"}`}>
