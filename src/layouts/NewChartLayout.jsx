@@ -7,6 +7,7 @@ import Collaborators from '../components/Collaborators';
 import MergeSuccessRate from '../components/MergeSuccessRate';
 import BarChart from '../components/CommitsBarChart';
 import MergedPRCount from '../components/PullRequests/MergedPRs';
+import OpenPullRequests from '../components/PullRequests/OpenPRs';
 const NewChartLayout = ({username,currRepo}) => {
   
   const [repoInfo,setRepoInfo] = useState(null)
@@ -54,7 +55,7 @@ const NewChartLayout = ({username,currRepo}) => {
 </div>                          </div>
                           <div className="ml-1 w-4/5 rounded-xl shadow-3xl " style={{transform: "translateX(-50px)", backgroundColor:'#171C2Eff'}}>
                 
-                              <div className="flex h-28 p-2 items-center justify-center font-bold text-white">Open PRs</div>
+                              <div className="flex h-28 p-2 items-center justify-center font-bold text-white"><OpenPullRequests fullRepo={currRepo}> </OpenPullRequests></div>
                           </div>
                           <div className="ml-1 w-4/5 rounded-xl shadow-3xl " style={{backgroundColor:'#171C2Eff'}}>
         
