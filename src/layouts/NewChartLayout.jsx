@@ -59,9 +59,9 @@ const NewChartLayout = ({username,currRepo}) => {
                   </div>
               </div>
           </div>
-          <div className="pl-10 text-center" style={{transform:'translateY(-150px)'}}>
-              <div className="flex items-center justify-center rounded-xl shadow-3xl text-white" style={{width: "66%", backgroundColor:'#171C2Eff'}} >
-              <div className="flex h-56 p-2 items-center justify-center object-fill" style={{width: "206.5%"}}>lead time</div>
+          <div className="pl-10 text-center items-center" style={{transform:'translateY(-150px)'}}>
+              <div className="rounded-xl shadow-3xl text-white" style={{width: "66%", backgroundColor:'#171C2Eff'}} >
+              <div className="flex h-56 p-2" ><LeadTimeChart repoInfo={repoInfo}/></div>
               </div>
           </div>
       </div><div className="flex">

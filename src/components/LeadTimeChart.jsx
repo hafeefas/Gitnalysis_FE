@@ -6,8 +6,8 @@ const LeadTimeChart = ({repoInfo}) => {
 
   console.log(repoInfo);
    console.log("Rendering LeadTimeChart");
-  const width = 500;
-  const height = 150;
+  const width = 400;
+  const height = 120;
   const padding = 20;
 
   const svgRef = useRef();
@@ -40,27 +40,89 @@ const LeadTimeChart = ({repoInfo}) => {
     if (repoInfo && repoInfo.data && repoInfo.data.length > 0) {
       console.log('showing repo chart')
       const averageInSecondsArray = repoInfo?.data.map(item => convertAverageTimeInSeconds(item.average));
-      console.log(averageInSecondsArray);
-  const maxAverageInSeconds = Math.max(...averageInSecondsArray);
+      const maxAverageInSeconds = Math.max(...averageInSecondsArray);
+
+      repoInfo.data?.forEach((d) => {
+        d.merged_at = new Date(d.merged_at);
+      });
+
+      //get the unique days represented
+      const uniqueDays = Array.from(new Set(repoInfo.data.map((d) => {
+        return d.merged_at.getDate();
+      })));
+
     //xscales
-    console.log(maxAverageInSeconds)
-    const xScale = d3.scalePoint().domain(repoInfo?.data.map((data) => data.merged_at )).range([(0+padding),(width-padding)])
-    console.log('start - end',xScale(repoInfo.data[0].merged_at),xScale(repoInfo.data[(repoInfo.data.length)-1].merged_at));
+    // console.log(maxAverageInSeconds)
+
+    const xScale = d3.scaleTime()
+      .domain(d3.extent(repoInfo.data, (d) => { return d.merged_at; }))
+      .range([0, width]);
+
     //yscales
     const yScale = d3.scaleLinear().domain([0,maxAverageInSeconds]).range([(height-padding),(0 + padding)])
-    console.log('start - end',yScale(maxAverageInSeconds),yScale(0));
+
+
+    // Define x-axis scale and axis
+    const xAxis = d3.axisBottom(xScale).tickValues(uniqueDays.map((day) => {
+    return new Date(repoInfo.data?.find((d) => {
+      return d.merged_at.getDate() === day;
+    }).merged_at);
+  })).tickFormat(d3.timeFormat("%d"));
+  
+    //customize y axis tick values to show less
+    const yAxisTicks = yScale.ticks(5);
+
+    // Define y-axis scale and axis
+    const yAxis = d3.axisLeft(yScale).tickValues(yAxisTicks);
+
+      // Render x-axis
+    d3.select(svgRef.current)
+    .append("g")
+    .attr("class", "x-axis")
+    .attr("transform", `translate(0, ${height - padding})`)
+    .call(xAxis);
+
+    // Render y-axis
+    d3.select(svgRef.current)
+    .append("g")
+    .attr("class", "y-axis")
+    .attr("transform", `translate(${padding}, 0)`)
+    .call(yAxis);
     
     //setup functions to drawlines
     const line = d3.line()
       .x(data => xScale(data.merged_at))
       .y(data => yScale(convertAverageTimeInSeconds(data.average)));
-    console.log('chart draw commands', line(repoInfo.data))
+
+      // X-axis label
+d3.select(svgRef.current)
+  .append("text")
+  .attr("class", "x-axis-label")
+  .attr("x", width / 2)
+  .attr("y", height - padding / 2 + 20)
+  .style("text-anchor", "middle")
+  .style("fill", "white")
+  .style("font-size", "12px")
+  .text("Merged At");
+
+// Y-axis label
+d3.select(svgRef.current)
+  .append("text")
+  .attr("class", "y-axis-label")
+  .attr("transform", "rotate(-90)")
+  .attr("x", -height / 3 - 30)
+  .attr("y", padding / 3 -20) 
+  .style("text-anchor", "middle")
+  .style("fill", "white")
+  .style("font-size", "12px")
+  .text("Average");
       
-    //raw line
+    //draw line
     const path = d3.select(svgRef.current).select('path')
     .attr('data', (value) => line(repoInfo.data))
     .attr('fill','none')
     .attr('stroke','white')
+    .attr('stroke-width', 2);
 
      // Generate path data for the line
     const pathData = line(repoInfo.data);
@@ -71,8 +133,8 @@ const LeadTimeChart = ({repoInfo}) => {
   }
   },[repoInfo])
 return (
-    <div>
-        <svg id="chart" ref={svgRef} viewBox="0 0 500 150">
+    <div className="flex w-full justify-center items-center">
+        <svg id="chart" ref={svgRef} viewBox="-50 -5 500 150">
             <path d="" fill="none" stroke="white" strokeWidth="5"/>
         </svg>
     </div>

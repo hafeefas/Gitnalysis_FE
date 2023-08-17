@@ -16,7 +16,7 @@ import { useMediaQuery } from '@mui/material';
 
 function ToolbarLayout() {
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const activeMenu = true;
   const isTabletScreen = useMediaQuery('(max-width: 770px)');
 
