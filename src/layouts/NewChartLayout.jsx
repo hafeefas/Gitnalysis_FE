@@ -6,7 +6,8 @@ import Branches from '.././components/Branches';
 import Collaborators from '../components/Collaborators';
 import MergeSuccessRate from '../components/MergeSuccessRate';
 import BarChart from '../components/CommitsBarChart';
-
+import MergedPRCount from '../components/PullRequests/MergedPRs';
+import OpenPullRequests from '../components/PullRequests/OpenPRs';
 const NewChartLayout = ({username,currRepo}) => {
   
   const [repoInfo,setRepoInfo] = useState(null)
@@ -43,18 +44,18 @@ const NewChartLayout = ({username,currRepo}) => {
                       <Branches fullRepo={currRepo} />
                       </div>
                       <div className="flex col-span-1 h-32 p-2 iflex w-full justify-center items-center bg-gradient-to-br from-lime-400 to-green-500 hover:from-pink-500 hover:to-yellow-500 rounded-xl font-bold text-white shadow-2xl">
-                      <MergeSuccessRate/>
+                      <MergeSuccessRate fullRepo={currRepo}/>
                       </div>
                   </div>
                   <div className="w-1/3">
                       <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-center">
                           <div className="ml-1 w-4/5 rounded-xl shadow-3xl" style={{backgroundColor:'#171C2Eff'}}>
     
-                              <div className="flex h-28 p-2 items-center justify-center font-bold text-white">Merged PRs</div>
-                          </div>
+                          <div className="flex h-28 p-2 items-center justify-center font-bold text-white"><MergedPRCount fullRepo={currRepo} />
+</div>                          </div>
                           <div className="ml-1 w-4/5 rounded-xl shadow-3xl " style={{transform: "translateX(-50px)", backgroundColor:'#171C2Eff'}}>
                 
-                              <div className="flex h-28 p-2 items-center justify-center font-bold text-white">Open PRs</div>
+                              <div className="flex h-28 p-2 items-center justify-center font-bold text-white"><OpenPullRequests fullRepo={currRepo}> </OpenPullRequests></div>
                           </div>
                           <div className="ml-1 w-4/5 rounded-xl shadow-3xl " style={{backgroundColor:'#171C2Eff'}}>
         
