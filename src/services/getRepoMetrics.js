@@ -20,4 +20,18 @@ export const getRepoMetrics = async (full_name) => {
     } catch (error) {
       console.error('Error fetching authenticated user:', error);
     }
+
   };
+
+  export const getCommitTimeline = async (full_name) => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/commits/timeline/${full_name}`);
+        const data = response.data
+
+        console.log(data)
+        return data
+
+    } catch (error) {
+        console.log(error)
+    }
+  }

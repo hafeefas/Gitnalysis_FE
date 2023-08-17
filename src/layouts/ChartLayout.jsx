@@ -1,27 +1,34 @@
 import React, {useState, useEffect} from 'react'
-import { getRepoMetrics,getLeadTime } from '../services/getRepoMetrics'
+import { getRepoMetrics,getLeadTime, getCommitTimeline } from '../services/getRepoMetrics'
 import DateRangeToolbar from '../components/DateRangeToolbar'
 import LeadTimeChart from '.././components/LeadTimeChart'
+import CommitsTimeline from '../components/CommitsTimeline'
 
 const ChartLayout = ({full_name}) => {
 
   const [repoInfo,setRepoInfo] = useState(null)
   const [lead_time_metric,setLead_time_metric] = useState(null)
+  const [commitData, setCommitData] = useState(null)
 
   useEffect(() => {
     async function fetchRepoMetrics() {
       try {
         const metrics = await getRepoMetrics(full_name);
         setRepoInfo(metrics);
+
+        console.log("metrics", metrics)
         const lead_time = await getLeadTime(full_name);
         setLead_time_metric(lead_time);
+
+        const commits = await getCommitTimeline(full_name)
+        setCommitData(commits)
       } catch (error) {
         console.error('Error fetching repository metrics:', error);
       }
     }
 
     fetchRepoMetrics();
-  }, [full_name]);
+  }, [full_name])
 
   const width = 500;
   const height = 150;
@@ -47,12 +54,14 @@ const ChartLayout = ({full_name}) => {
             <h6 class="text-black font-extrabold">Current Average Lead Time</h6>
             {lead_time_metric}
           </div>
+
         </div>
 
         <div class="grid grid-cols-3 gap-x-4 text-center">
-          <div class="bg-slate-300 p-4">Col</div>
-          <div class="bg-slate-300 p-4">Col</div>
-          <div class="bg-slate-300 p-4">Col</div>
+          <div class="bg-slate-400 p-6 col-span-8">
+          <CommitsTimeline data = {commitData}/>
+          </div>
+        
         </div>
 
       </div>
