@@ -10,9 +10,13 @@ const Branches = ({ fullRepo }) => {
     useEffect(() => {
         async function fetchBranches() {
             try {
-                fullRepo = fullRepo.split('/')
-                const username = fullRepo[0];
-                const repo = fullRepo[1];
+                if (typeof fullRepo !== 'string') {
+                    console.error('fullRepo should be a string');
+                    return;
+                }
+                const repoParts = fullRepo.split('/')
+                const username = repoParts[0];
+                const repo = repoParts[1];
                 const response = await axios.get(`http://localhost:8080/api/branches/${username}/${repo}`);
                 setBranches(response.data.branches);
             } catch (error) {

@@ -5,6 +5,7 @@ import LeadTimeChart from '.././components/LeadTimeChart'
 import Branches from '.././components/Branches';
 import Collaborators from '../components/Collaborators';
 import MergeSuccessRate from '../components/MergeSuccessRate';
+import BarChart from '../components/CommitsBarChart';
 
 const NewChartLayout = ({username,currRepo}) => {
   
@@ -78,7 +79,7 @@ const NewChartLayout = ({username,currRepo}) => {
                   <div className="flex col-span-1 h-60 p-2 justify-center items-center rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>Issues</div>
               </div>
               <div className="grid grid-cols-1 w-96 grid gap-x-4 gap-y-4 text-center" style={{transform: "translate(20px,-470px)" }}>
-                  <div className="flex p-2 justify-center items-center rounded-xl shadow-3xl text-white" style={{height:'375px', width:'90%', backgroundColor:'#171C2Eff'}}>Commits w/ collaborators barchart</div>
+                  <div className="flex p-2 justify-center items-center rounded-xl shadow-3xl text-white" style={{height:'375px', width:'90%', backgroundColor:'#171C2Eff'}}><BarChart fullRepo = {currRepo}/></div>
           </div>
 </div></>
 )
