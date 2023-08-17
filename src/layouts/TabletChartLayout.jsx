@@ -40,7 +40,7 @@ const TabletChartLayout = ({username,currRepo}) => {
         <div className="col-span-2 bg-slate-300 p-4 rounded-xl shadow-3xl flex h-28 p-2 items-center justify-center" style={{ backgroundColor: '#171C2Eff' }}>Merged PRs</div>
         <div className="col-span-2 bg-slate-300 p-4 rounded-xl shadow-3xl flex h-28 p-2 items-center justify-center" style={{ backgroundColor: '#171C2Eff' }}>Open Issues</div>
         <div className="col-span-2 bg-slate-300 p-4 rounded-xl shadow-3xl flex h-28 p-2 items-center justify-center" style={{ backgroundColor: '#171C2Eff' }}>Closed Issues</div>
-        <div className="col-span-4 bg-slate-300 p-4 rounded-xl shadow-3xl flex p-2 items-center justify-center h-56 " style={{ backgroundColor: '#171C2Eff' }}>Lead Time</div>
+        <div className="col-span-4 bg-slate-300 p-4 rounded-xl shadow-3xl flex p-2 items-center justify-center h-56 " style={{ backgroundColor: '#171C2Eff' }}><LeadTimeChart repoInfo={repoInfo}/></div>
         <div className="col-span-4 bg-slate-300 p-4 rounded-xl shadow-3xl flex p-2 items-center justify-center h-96" style={{ backgroundColor: '#171C2Eff' }}>Commits with Collaborators</div>
         <div className="col-span-4 bg-slate-300 h-32 p-4 rounded-xl shadow-3xl flex p-2 items-center justify-center" style={{ backgroundColor: '#171C2Eff' }}>Merged Success Rate</div>
         <div className="col-span-4 bg-slate-300 h-60 p-4 rounded-xl shadow-3xl flex p-2 items-center justify-center" style={{ backgroundColor: '#171C2Eff' }}>Change Failure Rate</div>
