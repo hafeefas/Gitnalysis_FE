@@ -35,14 +35,24 @@ const MergedPRCount = ({fullRepo}) => {
     }, [fullRepo])
 
     return(
-        <div className="flex flex-col justify-center h-full"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}>
-            <div style={{color: 'pink'}}>Merge Success Rate</div>
-            {mergedPr !== null && <div className="text-xl">{mergedPr}%</div>}
-            {isHovered && closedPrs !== null && <div>Closed PRs: {closedPrs}</div>}
+        <div 
+            className="flex flex-col justify-center h-full"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            {isHovered ? (
+                <>
+                <div style={{ color: 'lightpink' }}>Closed PRs</div>
+                {closedPrs !== null && <div className="text-xl">{closedPrs}</div>}
+            </>
+            ) : (
+                <>
+                    <div style={{ color: 'pink' }}>Merge Success Rate</div>
+                    {mergedPr !== null && <div className="text-xl">{mergedPr}%</div>}
+                </>
+            )}
         </div>
-    )
+    );
 }
 
 
