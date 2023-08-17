@@ -44,7 +44,7 @@ function ToolbarLayout() {
 
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
             !open ? "px-1" : "px-4"
-          }`}>
+          }`} onClick={() => setOpen(!open)}>
             <Link to="/repos" className='flex items-center'>
               <BsFolder className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
               <h1 className={` font-medium font-sans-serif text-2xl ${
@@ -56,7 +56,7 @@ function ToolbarLayout() {
 
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
-          }`}>
+          }`} onClick={() => setOpen(!open)}>
             <Link to="/"  className='flex items-center'>
               <ImStatsBars className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
 
@@ -69,7 +69,7 @@ function ToolbarLayout() {
 
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
-          }`}>
+          }`} onClick={() => setOpen(!open)}>
             <Link to=""  className={` flex items-center`}>
               <AiOutlineMail className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
               <h1 className={` font-medium font-sans-serif text-2xl ${
@@ -82,7 +82,7 @@ function ToolbarLayout() {
 
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
-          }`}>
+          }`} onClick={() => setOpen(!open)}>
             
             <Link to=""  className={`flex items-center `}>
               <AiOutlineFile className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
