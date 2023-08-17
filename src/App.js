@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Repos from './pages/Repos';
 import ChartLayout from './layouts/ChartLayout';
 import NewChartLayout from './layouts/NewChartLayout';
-import MobileChartLayout from './layouts/MobileChartLayout';
+import TabletChartLayout from './layouts/TabletChartLayout';
 import ToolbarLayout from './layouts/ToolbarLayout';
 import Navbar from './components/navbar';
 import axios from 'axios';
@@ -63,8 +63,8 @@ function App() {
           <Routes>
             {/* Dashboard */}
             {/* <Route path="/" element={<ChartLayout username={username} currRepo={currRepo} />} /> */}
-            {/* IF WE HAVE A SMALLER SCREEN INTO MOBILE, CHANGE TO A MOBILE READY LAYOUT */}
-            {isSmallScreen ? (<Route path="/" element={<MobileChartLayout username={username} currRepo={currRepo} />} />) : (<Route path="/" element={<NewChartLayout username={username} currRepo={currRepo} />} />)}
+            {/* IF WE HAVE A SMALLER SCREEN INTO MOBILE, CHANGE TO A MOBILE READY pmLAYOUT */}
+            {isSmallScreen ? (<Route path="/" element={<TabletChartLayout username={username} currRepo={currRepo} />} />) : (<Route path="/" element={<NewChartLayout username={username} currRepo={currRepo} />} />)}
             {/* Login Page */}
             <Route path="/login" element={<Login />} />
             <Route path="/repos" element={<Repos repos={repos} setCurrRepo={setCurrRepo}/>} />
