@@ -10,6 +10,7 @@ const Branches = ({ fullRepo }) => {
     useEffect(() => {
         async function fetchBranches() {
             try {
+                fullRepo = fullRepo.split('/')
                 const username = fullRepo[0];
                 const repo = fullRepo[1];
                 const response = await axios.get(`http://localhost:8080/api/branches/${username}/${repo}`);
@@ -36,8 +37,8 @@ const Branches = ({ fullRepo }) => {
     }, []);
 
     return (
-        <div className="flex col-span-1 h-32 p-2 items-center justify-center rounded-xl shadow-3xl text-white relative" style={{ backgroundColor: '#171C2Eff' }} onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef}>
-            <span className="font-bold text-red-600">{branches.length} Branches</span>
+        <div onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef}>
+            <span className="font-bold text-white">{branches.length} Branches</span>
             {showDropdown && (
                 <div className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto" style={{ backgroundColor: '#171C2Eff' }} ref={dropdownRef} onClick={(e) => e.stopPropagation()}>
                     <ul className="rounded-lg">
