@@ -69,7 +69,7 @@ const BarChart = ({fullRepo}) => {
     margin={{ top: 50, right: 50, bottom: 50, left: 60 }}
     padding={0.3}
     groupMode="grouped"
-    colors={ "lightblue"}
+    colors={ "#22E0E3ff"}
     borderColor={{ from: 'color', modifiers: [['darker', '1.6']] }}
     axisTop={null}
     axisRight={null}
@@ -77,9 +77,9 @@ const BarChart = ({fullRepo}) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: -45,  // slant the dates for better legibility
-        legend: 'Date',
-        legendPosition: 'middle',
-        legendOffset: 20,
+        // legend: 'Date',
+        // legendPosition: 'middle',
+        // legendOffset: 20,
         format: d => d  // this ensures the date is displayed as is
     }}
     axisLeft={{
