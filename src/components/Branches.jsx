@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
-const Branches = ({ username, repo }) => {
+const Branches = ({ fullRepo }) => {
     const [branches, setBranches] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
@@ -10,6 +10,8 @@ const Branches = ({ username, repo }) => {
     useEffect(() => {
         async function fetchBranches() {
             try {
+                const username = fullRepo[0];
+                const repo = fullRepo[1];
                 const response = await axios.get(`http://localhost:8080/api/branches/${username}/${repo}`);
                 setBranches(response.data.branches);
             } catch (error) {
@@ -18,7 +20,7 @@ const Branches = ({ username, repo }) => {
         }
 
         fetchBranches();
-    }, [username, repo]);
+    }, [fullRepo]);
 
     useEffect(() => {
         function handleClickOutside(event) {
