@@ -25,7 +25,7 @@ const TabletChartLayout = ({username,currRepo}) => {
   console.log("Rendering NewChartLayout");
 
   return (
-    <div className="w-full h-screen overflow-y-auto pt-28">
+    <div className="w-full h-screen overflow-y-auto pt-28 ml-8">
       <div className="grid gap-y-12">
         <div className="grid-rows-7 grid grid-cols-4 gap-4 mx-10 text-center text-white">
         <div className="col-span-2 bg-slate-300 p-4 rounded-xl shadow-3xl h-32 flex p-2 items-center justify-center " style={{ backgroundColor: '#171C2Eff' }}>Collaborators</div>
