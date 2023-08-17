@@ -2,10 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 
 const LeadTimeChart = ({repoInfo}) => {
-    //M50,50 = move 50 across, 50 down, L100,150 = draw line to 100 above, 150 down
-
-  console.log(repoInfo);
-   console.log("Rendering LeadTimeChart");
   const width = 400;
   const height = 120;
   const padding = 20;
@@ -30,15 +26,16 @@ const LeadTimeChart = ({repoInfo}) => {
             totalSeconds += parseInt(value);
         }
       }
-      console.log(totalSeconds);
+      // console.log(totalSeconds);
     return totalSeconds;
   }
   
   useEffect(() => {
-    console.log(repoInfo);
+    // console.log(repoInfo);
     //set up functions for scales
     if (repoInfo && repoInfo.data && repoInfo.data.length > 0) {
-      console.log('showing repo chart')
+      // console.log('showing repo chart')
+      //find the average time in seconds
       const averageInSecondsArray = repoInfo?.data.map(item => convertAverageTimeInSeconds(item.average));
       const maxAverageInSeconds = Math.max(...averageInSecondsArray);
 
@@ -51,9 +48,36 @@ const LeadTimeChart = ({repoInfo}) => {
         return d.merged_at.getDate();
       })));
 
-    //xscales
-    // console.log(maxAverageInSeconds)
+       const createGradient = select => {
+    const gradient = select
+      .select('defs')
+        .append('linearGradient')
+          .attr('id', 'gradient')
+          .attr('gradientTransform', 'rotate(90)');
+  gradient
+  .append('stop')
+  .attr('stop-color', '#F2C66B')
+  .attr('offset', '0%');
+  
+  gradient
+  .append('stop')
+  .attr('stop-color', '#D13D73')
+  .attr('offset', '100%');
 
+    gradient
+      .append('stop')
+        .attr('offset', '0%')
+        .attr('style', 'stop-color:#BBF6CA;stop-opacity:0.05');
+
+    gradient
+      .append('stop')
+        .attr('offset', '100%')
+        .attr('style', 'stop-color:#BBF6CA;stop-opacity:.5');
+  }
+  
+
+    // console.log(maxAverageInSeconds)
+    //xscales
     const xScale = d3.scaleTime()
       .domain(d3.extent(repoInfo.data, (d) => { return d.merged_at; }))
       .range([0, width]);
@@ -75,6 +99,8 @@ const LeadTimeChart = ({repoInfo}) => {
     // Define y-axis scale and axis
     const yAxis = d3.axisLeft(yScale).tickValues(yAxisTicks);
 
+    console.log(createGradient,'create gradient');
+
       // Render x-axis
     d3.select(svgRef.current)
     .append("g")
@@ -92,7 +118,25 @@ const LeadTimeChart = ({repoInfo}) => {
     //setup functions to drawlines
     const line = d3.line()
       .x(data => xScale(data.merged_at))
-      .y(data => yScale(convertAverageTimeInSeconds(data.average)));
+      .y(data => yScale(convertAverageTimeInSeconds(data.average)))
+      .curve(d3.curveNatural);
+
+      const areaGenerator = d3
+    .area()
+    .x(data => xScale(data.merged_at))
+    .y0(yScale(0)) // The bottom of the area
+    .y1(data => yScale(convertAverageTimeInSeconds(data.average)))
+    .curve(d3.curveNatural);
+
+      // Select the 'path.area' element within svgRef.current
+  d3.select(svgRef.current)
+    .select('path.area') // Correctly select the path with class 'area'
+    .datum(repoInfo.data)
+    .attr('class', 'area')
+    .attr('d', areaGenerator)
+    .attr('fill', 'url(#gradient)') // Apply the gradient fill
+    .attr('stroke', 'white')
+    .attr('stroke-width', 5);
 
       // X-axis label
 d3.select(svgRef.current)
@@ -120,8 +164,8 @@ d3.select(svgRef.current)
     //draw line
     const path = d3.select(svgRef.current).select('path')
     .attr('data', (value) => line(repoInfo.data))
-    .attr('fill','none')
-    .attr('stroke','white')
+    .attr('fill','url(#gradient)')
+    .attr('stroke','#22E0E3ff')
     .attr('stroke-width', 2);
 
      // Generate path data for the line
@@ -135,7 +179,7 @@ d3.select(svgRef.current)
 return (
     <div className="flex w-full justify-center items-center">
         <svg id="chart" ref={svgRef} viewBox="-50 -5 500 150">
-            <path d="" fill="none" stroke="white" strokeWidth="5"/>
+            <path d="" fill="url(#gradient)" stroke="white" strokeWidth="5"/>
         </svg>
     </div>
   )
