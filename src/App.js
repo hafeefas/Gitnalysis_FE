@@ -55,7 +55,7 @@ function App() {
     <div className="flex max-h-screen overflow-hidden" style={{backgroundColor:"#111526ff"}}>
       <Router>
         {/* Sidebar */}
-        {isMobileScreen ? (<div className="z-10"><MobileToolbarLayout /></div>) : (<ToolbarLayout />)}
+        <div className="z-10">{isMobileScreen ? (<MobileToolbarLayout />) : (<ToolbarLayout />)}</div>
 
         <div className="flex-1">
           {/* Add navigation buttons for tabs */}
