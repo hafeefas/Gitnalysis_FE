@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const Branches = ({ username, repo }) => {
     const [branches, setBranches] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
+    const dropdownRef = useRef(null);
+    const triggerRef = useRef(null);
 
     useEffect(() => {
         async function fetchBranches() {
@@ -18,15 +20,24 @@ const Branches = ({ username, repo }) => {
         fetchBranches();
     }, [username, repo]);
 
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
-    };
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !triggerRef.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
-        <div className="flex col-span-1 h-32 p-2 items-center justify-center rounded-xl shadow-3xl text-white relative" style={{ backgroundColor: '#171C2Eff' }} onClick={toggleDropdown}>
+        <div className="flex col-span-1 h-32 p-2 items-center justify-center rounded-xl shadow-3xl text-white relative" style={{ backgroundColor: '#171C2Eff' }} onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef}>
             <span className="font-bold text-red-600">{branches.length} Branches</span>
             {showDropdown && (
-                <div className="absolute top-1 w-64 rounded-lg shadow-lg text-black z-10 border-2 border-white" style={{ backgroundColor: '#171C2Eff' }}>
+                <div className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto" style={{ backgroundColor: '#171C2Eff' }} ref={dropdownRef} onClick={(e) => e.stopPropagation()}>
                     <ul className="rounded-lg">
                         {branches.map(branch => (
                             <li key={branch.name} className="border-b p-2 text-white">{branch.name}</li>
