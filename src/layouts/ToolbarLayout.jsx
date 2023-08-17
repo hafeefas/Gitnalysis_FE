@@ -8,6 +8,7 @@ import { MdMenuOpen, MdOutlineMenuOpen } from "react-icons/md";
 import { BsGithub, BsFolder } from "react-icons/bs";
 import { ImStatsBars } from "react-icons/im";
 import { AiOutlineMail, AiOutlineFile } from "react-icons/ai";
+import { useMediaQuery } from '@mui/material';
 
 //AiOutlineMail
 
@@ -17,21 +18,22 @@ function ToolbarLayout() {
 
   const [open, setOpen] = useState(true);
   const activeMenu = true;
+  const isTabletScreen = useMediaQuery('(max-width: 770px)');
 
   return (
     <div className='flex h-full text-white border-r pb-10' >
       
       <div
-        className={`h-screen p-5 pt-8 ${
-          open ? "w-64" : "w-20"
-        }  relative duration-300`} style={{backgroundColor:'#171C2Eff'}}
+        className={`h-screen p-5 pt-8 border-r ${
+          open ? "w-64" : isTabletScreen ? "w-16" : "w-20"
+        }  ${isTabletScreen ? "fixed" : "relative" } duration-300`} style={{backgroundColor:'#171C2Eff'}}
       >
         <MdOutlineMenuOpen className={`hover:text-violet-300 overflow-visible  bg-white text-black text-3xl rounded-md absolute -right-3 bottom-1/2  border-black border cursor-pointer ${
             !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}/>
           
-          <div className="inline-flex mb-4">
+          <div className="inline-flex mb-4 mt-12">
             <BsGithub className={` rounded cursor-pointer block text-3xl float-left mr-2 duration-300 ${
               open && "rotate-[360deg]"
             }`}/>
