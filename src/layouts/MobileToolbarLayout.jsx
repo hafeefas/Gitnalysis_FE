@@ -8,45 +8,46 @@ import { MdMenuOpen, MdOutlineMenuOpen } from "react-icons/md";
 import { BsGithub, BsFolder } from "react-icons/bs";
 import { ImStatsBars } from "react-icons/im";
 import { AiOutlineMail, AiOutlineFile } from "react-icons/ai";
-import { useMediaQuery } from '@mui/material';
 
 //AiOutlineMail
 
-
-
-function ToolbarLayout() {
+function MobileToolbarLayout() {
 
   const [open, setOpen] = useState(true);
   const activeMenu = true;
-  const isTabletScreen = useMediaQuery('(max-width: 770px)');
 
   return (
     <div className='flex h-full text-white border-r pb-10' >
       
       <div
-        className={`h-screen p-5 pt-8 border-r ${
-          open ? "w-64" : isTabletScreen ? "w-16" : "w-20"
-        }  ${isTabletScreen ? "fixed" : "relative" } duration-300`} style={{backgroundColor:'#171C2Eff'}}
+        className={`h-screen ${open ? "p-5" : "p-2"} pt-8 ${
+          open ? "w-64" : "w-0"
+        }  fixed duration-300 border-r`} style={{backgroundColor:'#171C2Eff'}}
       >
-        <MdOutlineMenuOpen className={`hover:text-violet-300 overflow-visible  bg-white text-black text-3xl rounded-md absolute -right-3 bottom-1/2  border-black border cursor-pointer ${
+          
+          <div className="inline-flex mb-4">
+            <MdOutlineMenuOpen className={`hover:text-violet-300 overflow-visible  bg-white text-black text-3xl rounded-md absolute -right-3 bottom-1/3  border-black border cursor-pointer ${
             !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}/>
-          
-          <div className="inline-flex mb-4 mt-12">
-            <BsGithub className={` rounded cursor-pointer block text-3xl float-left mr-2 duration-300 ${
-              open && "rotate-[360deg]"
-            }`}/>
-            <h1 className={`text-white font-sans-serif font-medium text-2xl duration-300 ${!open && "scale-0"}`}>
-              GITNALYSIS
-            </h1>
+      {open ? (
+  <div>
+    <BsGithub className={`rounded cursor-pointer block text-3xl float-left mr-2 duration-300 mt-12 ${open && "rotate-[360deg]"}`} />
+    <h1 className={`text-white font-sans-serif font-medium text-2xl duration-300 ${!open && "scale-0"}`}>
+      GITNALYSIS
+    </h1>
+  </div>
+) : (
+  <></>
+)}
+
           </div>
 
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
             !open ? "px-1" : "px-4"
-          }`}>
+          }`} onClick={() => setOpen(!open)}>
             <Link to="/repos" className='flex items-center'>
-              <BsFolder className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
+              
               <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"
             }`}>Repository</h1>
@@ -56,9 +57,8 @@ function ToolbarLayout() {
 
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
-          }`}>
+          }`} onClick={() => setOpen(!open)}>
             <Link to="/"  className='flex items-center'>
-              <ImStatsBars className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
 
               <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"
@@ -69,9 +69,8 @@ function ToolbarLayout() {
 
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
-          }`}>
+          }`} onClick={() => setOpen(!open)}>
             <Link to=""  className={` flex items-center`}>
-              <AiOutlineMail className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
               <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"
             }`}>
@@ -82,10 +81,9 @@ function ToolbarLayout() {
 
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
-          }`}>
+          }`} onClick={() => setOpen(!open)}>
             
             <Link to=""  className={`flex items-center `}>
-              <AiOutlineFile className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
               <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"
             }`}>
@@ -102,7 +100,7 @@ function ToolbarLayout() {
   );
 }
 
-export default ToolbarLayout;
+export default MobileToolbarLayout;
 
 //  <div className='bg-black text-white border-r border-black-300 ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10' >
 //       {activeMenu && (
