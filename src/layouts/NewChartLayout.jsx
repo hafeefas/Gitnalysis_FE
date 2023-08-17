@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { getRepoMetrics } from '../services/getRepoMetrics'
 import DateRangeToolbar from '../components/DateRangeToolbar'
 import LeadTimeChart from '.././components/LeadTimeChart'
+import Branches from '.././components/Branches';
 
 const NewChartLayout = ({username,currRepo}) => {
   
@@ -33,7 +34,7 @@ const NewChartLayout = ({username,currRepo}) => {
               <div className="flex w-full" >
                   <div className="grid grid-cols-3 grid-rows-2 gap-x-4 pr-4 text-center text-white" style={{width: "74%"}}>
                       <div className="flex col-span-1 h-32 p-2 items-center justify-center rounded-xl shadow-3xl" style={{backgroundColor:'#171C2Eff'}}>Collaborators</div>
-                      <div className="flex col-span-1 h-32 p-2 items-center justify-center rounded-xl shadow-3xl" style={{backgroundColor:'#171C2Eff'}}>Branches</div>
+                        <Branches username={username} repo={currRepo.split("/")[1]} />
                       <div className="flex col-span-1 h-32 p-2 items-center justify-center rounded-xl shadow-3xl" style={{backgroundColor:'#171C2Eff'}}>Pull Request Merged Success Rate</div>
                   </div>
                   <div className="w-1/3">
