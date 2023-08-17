@@ -23,13 +23,13 @@ const Branches = ({ username, repo }) => {
     };
 
     return (
-        <div className="flex col-span-1 h-32 p-2 items-center justify-center rounded-xl shadow-3xl" style={{ backgroundColor: '#171C2Eff' }} onClick={toggleDropdown}>
-            {branches.length} Branches
+        <div className="flex col-span-1 h-32 p-2 items-center justify-center rounded-xl shadow-3xl text-white relative" style={{ backgroundColor: '#171C2Eff' }} onClick={toggleDropdown}>
+            <span className="font-bold text-red-600">{branches.length} Branches</span>
             {showDropdown && (
-                <div className="absolute mt-2 w-64 rounded-md shadow-lg bg-white">
-                    <ul>
+                <div className="absolute top-1 w-64 rounded-lg shadow-lg text-black z-10 border-2 border-white" style={{ backgroundColor: '#171C2Eff' }}>
+                    <ul className="rounded-lg">
                         {branches.map(branch => (
-                            <li key={branch.name} className="border-b p-2">{branch.name}</li>
+                            <li key={branch.name} className="border-b p-2 text-white">{branch.name}</li>
                         ))}
                     </ul>
                 </div>
