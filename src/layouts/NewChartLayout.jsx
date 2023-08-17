@@ -44,7 +44,7 @@ const NewChartLayout = ({username,currRepo}) => {
                       <Branches fullRepo={currRepo} />
                       </div>
                       <div className="flex col-span-1 h-32 p-2 iflex w-full justify-center items-center bg-gradient-to-br from-lime-400 to-green-500 hover:from-pink-500 hover:to-yellow-500 rounded-xl font-bold text-white shadow-2xl">
-                      <MergeSuccessRate/>
+                      <MergeSuccessRate fullRepo={currRepo}/>
                       </div>
                   </div>
                   <div className="w-1/3">
