@@ -17,7 +17,7 @@ const ClosedIssues = ({fullRepo}) => {
                   const repo = repoParts[1];
           
                   const response = await axios.get(
-                    `http://localhost:8080/api/issues/${username}/${repo}/count/getNum`
+                    `${process.env.REACT_APP_BACKEND_URL}/api/issues/${username}/${repo}/count/getNum`
                   );
 
                   console.log(response.data)

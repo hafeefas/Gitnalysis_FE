@@ -18,7 +18,7 @@ const MergedPRCount = ({ fullRepo }) => {
         const repo = repoParts[1];
 
         const response = await axios.get(
-          `http://localhost:8080/api/pull-requests/merge-success-rate/${username}/${repo}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/pull-requests/merge-success-rate/${username}/${repo}`
         );
 
         setClosedPrs(response.data.successfullyMergedPRs);

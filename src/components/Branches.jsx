@@ -17,7 +17,7 @@ const Branches = ({ fullRepo }) => {
                 const repoParts = fullRepo.split('/')
                 const username = repoParts[0];
                 const repo = repoParts[1];
-                const response = await axios.get(`http://localhost:8080/api/branches/${username}/${repo}`);
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/${username}/${repo}`);
                 setBranches(response.data.branches);
             } catch (error) {
                 console.error('Error fetching branches:', error);
