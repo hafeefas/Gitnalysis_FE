@@ -6,8 +6,10 @@ import Branches from '.././components/Branches';
 import Collaborators from '../components/Collaborators';
 import MergeSuccessRate from '../components/MergeSuccessRate';
 import BarChart from '../components/CommitsBarChart';
-import MergedPRCount from '../components/PullRequests/MergedPRs';
+import MergedPRCount from '../components/PullRequests/ClosedPrs';
 import OpenPullRequests from '../components/PullRequests/OpenPRs';
+import ClosedIssues from '../components/Issues/ClosedIssues';
+import NewIssues from '../components/Issues/NewIssues';
 const NewChartLayout = ({username,currRepo}) => {
   
   const [repoInfo,setRepoInfo] = useState(null)
@@ -59,11 +61,11 @@ const NewChartLayout = ({username,currRepo}) => {
                           </div>
                           <div className="ml-1 w-4/5 rounded-xl shadow-3xl " style={{backgroundColor:'#171C2Eff'}}>
         
-                              <div className="flex p-2 items-center justify-center h-28 font-bold text-white"  >Closed Issues</div>
+                              <div className="flex p-2 items-center justify-center h-28 font-bold text-white"  ><ClosedIssues fullRepo = {currRepo}></ClosedIssues></div>
                           </div>
                           <div className="ml-1 w-4/5 rounded-xl shadow-3xl " style={{transform: 'translateX(-50px)', backgroundColor:'#171C2Eff' }}>
                 
-                              <div className="flex h-28 p-2 items-center justify-center font-bold text-white">New Issues</div>
+                              <div className="flex h-28 p-2 items-center justify-center font-bold text-white"><NewIssues fullRepo={currRepo}/></div>
                           </div>
                       </div>
                   </div>
