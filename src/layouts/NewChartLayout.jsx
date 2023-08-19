@@ -11,6 +11,7 @@ import OpenPullRequests from "../components/PullRequests/OpenPRs";
 import ClosedIssues from "../components/Issues/ClosedIssues";
 import NewIssues from "../components/Issues/NewIssues";
 import Forks from "../components/Forks";
+import CommentsPerCodeRatio from "../components/CommentsPerCodeRatio";
 
 const NewChartLayout = () => {
   
@@ -215,8 +216,8 @@ const NewChartLayout = () => {
         <div className="flex row-span-2 col-start-6 row-start-2 rounded-xl shadow-3xl ml-1 h-68 items-center justify-center font-bold text-white bg-gradient-to-br from-yellow-300 to-orange-500 hover:from-pink-500 hover:to-yellow-500 z-10 transition ease-in-out duration-200 hover:w-96" style={{backgroundColor:'#171C2Eff', transition: "ease-in-out 500ms"}}>
           <Forks />
         </div>
-        <div className="col-span-2 col-start-7 row-start-3 rounded-xl shadow-3xl ml-1 h-32 p-2 items-center justify-center font-bold text-white" style={{backgroundColor:'#171C2Eff'}}>
-          24
+        <div className="col-span-2 col-start-7 row-start-3 rounded-xl shadow-3xl ml-1 h-32 p-2 items-center justify-center font-bold text-white bg-gradient-to-br from-rose-400 to-red-700" style={{backgroundColor:'#171C2Eff'}}>
+          <CommentsPerCodeRatio />
         </div>
         <div className="col-span-3 row-span-3 col-start-6 row-start-4 ml-1 h-96 p-2 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
           <BarChart fullRepo = {currRepo}/>
