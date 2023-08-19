@@ -41,7 +41,7 @@ const Collaborators = ({ fullRepo }) => {
     }, []);
 
     return (
-        <div onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef} id="collaborators-data-card" onMouseOver = {() => triggerRef.current.style.cursor = "pointer"} >
+        <div className="h-full w-full flex items-center justify-center" onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef} onMouseOver = {() => triggerRef.current.style.cursor = "pointer"} >
             <span className="font-bold text-white">{collaborators.length} Collaborators</span>
             {console.log("coll" + JSON.stringify(collaborators[0]))}
             {showDropdown && (

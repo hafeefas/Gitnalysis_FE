@@ -41,7 +41,7 @@ const Branches = ({ fullRepo }) => {
     }, []);
 
     return (
-        <div onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef}>
+        <div className="h-full w-full flex items-center justify-center" onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef} onMouseOver = {() => triggerRef.current.style.cursor = "pointer"}>
             <span className="font-bold text-white">{branches.length} Branches</span>
             {showDropdown && (
                 <div className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto" style={{ backgroundColor: '#171C2Eff' }} ref={dropdownRef} onClick={(e) => e.stopPropagation()}>
