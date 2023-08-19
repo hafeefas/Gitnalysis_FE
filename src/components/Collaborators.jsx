@@ -8,7 +8,7 @@ const Collaborators = ({ fullRepo }) => {
     const triggerRef = useRef(null);
 
     useEffect(() => {
-        async function fetchBranches() {
+        async function fetchCollaborators() {
             try {
                 if (typeof fullRepo !== 'string') {
                     console.error('fullRepo should be a string');
@@ -24,7 +24,7 @@ const Collaborators = ({ fullRepo }) => {
             }
         }
 
-        fetchBranches();
+        fetchCollaborators();
     }, [fullRepo]);
 
     useEffect(() => {
