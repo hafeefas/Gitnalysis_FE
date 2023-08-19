@@ -1,19 +1,20 @@
 import React, {useEffect, useState} from 'react'
+import { useSelector } from 'react-redux'
 import axios from 'axios';
 
-const MergeSuccessRate = ({fullRepo}) => {
+const MergeSuccessRate = () => {
     const [mergedPr, setMergedPr] = useState(0)
-    
+    const currRepo = useSelector((state) => state.repo.currRepo);
 
     useEffect(() => {
         async function mergedPullRequests (){
             try {
-                if (typeof fullRepo !== 'string') {
+                if (typeof currRepo !== 'string') {
                     console.error('fullRepo should be a string');
                     return;
                 }
-                console.log("repoINfo,", fullRepo)
-                const repoParts = fullRepo.split('/')
+                console.log("repoINfo,", currRepo)
+                const repoParts = currRepo.split('/')
                 const username = repoParts[0];
                 console.log(username)
                 const repo = repoParts[1];
@@ -27,7 +28,7 @@ const MergeSuccessRate = ({fullRepo}) => {
             }
         }
         mergedPullRequests()
-    }, [fullRepo])
+    }, [currRepo])
   return (
 
 
