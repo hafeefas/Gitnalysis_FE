@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux'
 import axios from "axios";
 
-const OpenPullRequests = ({ fullRepo }) => {
+const OpenPullRequests = () => {
   const [openPRs, setOpenPRs] = useState(0);
   const [totalPRs, setTotalPRs] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
+  const currRepo = useSelector((state) => state.repo.currRepo);
 
   useEffect(() => {
     async function getOpenPrs() {
       try {
-        if (typeof fullRepo !== "string") {
-          console.error("fullRepo should be a string");
+        if (typeof currRepo !== "string") {
+          console.error("currRepo should be a string");
           return;
         }
-        console.log("repoINfo,", fullRepo);
-        const repoParts = fullRepo.split("/");
+        console.log("repoInfo,", currRepo);
+        const repoParts = currRepo.split("/");
         const username = repoParts[0];
         console.log(username);
         const repo = repoParts[1];
@@ -33,7 +35,7 @@ const OpenPullRequests = ({ fullRepo }) => {
     }
 
     getOpenPrs();
-  }, [fullRepo]);
+  }, [currRepo]);
 
   return (
     <div
