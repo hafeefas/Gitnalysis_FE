@@ -10,6 +10,7 @@ import MergedPRCount from "../components/PullRequests/ClosedPrs";
 import OpenPullRequests from "../components/PullRequests/OpenPRs";
 import ClosedIssues from "../components/Issues/ClosedIssues";
 import NewIssues from "../components/Issues/NewIssues";
+import Forks from "../components/Forks";
 
 const NewChartLayout = () => {
   
@@ -211,8 +212,8 @@ const NewChartLayout = () => {
         <div className="col-start-8 row-start-2 rounded-xl shadow-3xl ml-1 h-32 p-2 items-center justify-center font-bold text-white" style={{backgroundColor:'#171C2Eff'}}>
           <NewIssues />
         </div>
-        <div className="flex row-span-2 col-start-6 row-start-2 rounded-xl shadow-3xl ml-1 h-68 p-2 items-center justify-center font-bold text-white bg-gradient-to-br from-yellow-300 to-orange-500 hover:from-pink-500 hover:to-yellow-500" style={{backgroundColor:'#171C2Eff'}}>
-          Data
+        <div className="flex row-span-2 col-start-6 row-start-2 rounded-xl shadow-3xl ml-1 h-68 items-center justify-center font-bold text-white bg-gradient-to-br from-yellow-300 to-orange-500 hover:from-pink-500 hover:to-yellow-500 z-10 transition ease-in-out duration-200 hover:w-96" style={{backgroundColor:'#171C2Eff', transition: "ease-in-out 500ms"}}>
+          <Forks />
         </div>
         <div className="col-span-2 col-start-7 row-start-3 rounded-xl shadow-3xl ml-1 h-32 p-2 items-center justify-center font-bold text-white" style={{backgroundColor:'#171C2Eff'}}>
           24

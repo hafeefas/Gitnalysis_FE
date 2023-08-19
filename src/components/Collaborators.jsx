@@ -10,7 +10,7 @@ const Collaborators = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
 
   useEffect(() => {
-    async function fetchBranches() {
+    async function fetchCollaborators() {
       try {
         if (typeof currRepo !== "string") {
           console.error("currRepo should be a string");
@@ -30,8 +30,8 @@ const Collaborators = () => {
       }
     }
 
-    fetchBranches();
-  }, [currRepo]);
+        fetchCollaborators();
+    }, [currRepo]);
 
   useEffect(() => {
     function handleClickOutside(event) {
