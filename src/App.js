@@ -91,8 +91,7 @@ function App() {
                 }
               />
             )}
-            {/* Login Page */}
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} /> */}
             <Route
               path="/repos"
               element={<Repos />}

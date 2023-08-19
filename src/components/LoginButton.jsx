@@ -11,14 +11,15 @@ import { resetRepos, resetCurrRepo } from "../redux/slices/repoSlice";
 import { setUsername } from "../redux/slices/userSlice";
 
 const LoginButton = () => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+//   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+//   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.username);
 
   const handleLogoutUser = () => {
     console.log("logging out");
     logoutGitHubUser();
+    //clear the repos, the current repo, reset everything -> this isn't working yet tho
     dispatch(resetRepos());
     dispatch(resetCurrRepo());
     dispatch(toggleLoggedIn());

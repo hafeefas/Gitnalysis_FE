@@ -14,8 +14,7 @@ const Branches = () => {
       try {
         if (typeof currRepo !== "string") {
           console.error("currRepo should be a string");
-          return;
-        }
+          return;}
         const repoParts = currRepo.split("/");
         const username = repoParts[0];
         const repo = repoParts[1];
@@ -50,27 +49,25 @@ const Branches = () => {
     };
   }, []);
 
-  return (
-    <div onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef}>
-      <span className="font-bold text-white">{branches.length} Branches</span>
-      {showDropdown && (
-        <div
-          className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto"
-          style={{ backgroundColor: "#171C2Eff" }}
-          ref={dropdownRef}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <ul className="rounded-lg">
-            {branches.map((branch) => (
-              <li key={branch.name} className="border-b p-2 text-white">
-                {branch.name}
-              </li>
-            ))}
-          </ul>
+    const handleBranchClick = (branchName) => {
+        const url = `https://github.com/${currRepo}/tree/${branchName}`;
+        window.open(url, '_blank');
+    };
+
+    return (
+        <div className="h-full w-full flex items-center justify-center" onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef} onMouseOver = {() => triggerRef.current.style.cursor = "pointer"}>
+            <span className="font-bold text-white">{branches.length} Branches</span>
+            {showDropdown && (
+                <div className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto" style={{ backgroundColor: '#171C2Eff' }} ref={dropdownRef} onClick={(e) => e.stopPropagation()}>
+                    <ul className="rounded-lg">
+                        {branches.map(branch => (
+                            <li key={branch.name} className="border-b p-2 text-white cursor-pointer hover:bg-gray-700" onClick={() => handleBranchClick(branch.name)}>{branch.name}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+      )
 };
 
 export default Branches;
