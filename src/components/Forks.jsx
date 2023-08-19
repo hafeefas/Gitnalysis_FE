@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
+import {useSelector} from "react-redux";
 import axios from "axios";
 
 const Forks = ({ fullRepo }) => {
-  const [forks, setForks] = useState();
+  const [forks, setForks] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [page, setPage] = useState()
+  const currRepo = useSelector((state) => state.repo.currRepo);
 
   useEffect(() => {
     async function getForks() {
       try {
-        if (typeof fullRepo !== "string") {
+        if (typeof currRepo !== "string") {
           console.error("fullRepo should be a string");
           return;
         }
-        console.log("repoINfo,", fullRepo);
-        const repoParts = fullRepo.split("/");
+        console.log("repoINfo,", currRepo);
+        const repoParts = currRepo.split("/");
         const username = repoParts[0];
         console.log(username);
         const repo = repoParts[1];
@@ -29,7 +30,7 @@ const Forks = ({ fullRepo }) => {
       }
     }
     getForks();
-  }, [fullRepo]);
+  }, [currRepo]);
 
   return (
     <div
@@ -37,7 +38,7 @@ const Forks = ({ fullRepo }) => {
     onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}
   >
-    {isHovered && forks!== null ? (
+    {isHovered && forks!==null && currRepo!==null ? (
       <>
         <div className="text-2xl">Forks</div>
         {<div className="text-xl">
@@ -58,7 +59,7 @@ const Forks = ({ fullRepo }) => {
     ) : (
       <>
         <div>Forks</div>
-        {<div className="text-xl">{forks.length}</div>}
+        {forks!==null && currRepo!==null ? <div className="text-xl">{forks.length}</div> : <div className="text-xl">0</div>}
       </>
     )}
   </div>

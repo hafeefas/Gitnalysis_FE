@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux'
 import axios from "axios";
 
-const MergedPRCount = ({ fullRepo }) => {
+const MergedPRCount = () => {
   const [closedPrs, setClosedPrs] = useState(null);
+  const currRepo = useSelector((state) => state.repo.currRepo);
 
   useEffect(() => {
     async function mergedPullRequests() {
       try {
-        if (typeof fullRepo !== "string") {
-          console.error("fullRepo should be a string");
+        if (typeof currRepo !== "string") {
+          console.error("currRepo should be a string");
           return;
         }
-        console.log("repoINfo,", fullRepo);
-        const repoParts = fullRepo.split("/");
+        console.log("repoInfo,", currRepo);
+        const repoParts = currRepo.split("/");
         const username = repoParts[0];
         console.log(username);
         const repo = repoParts[1];
@@ -27,7 +29,7 @@ const MergedPRCount = ({ fullRepo }) => {
       }
     }
     mergedPullRequests();
-  }, [fullRepo]);
+  }, [currRepo]);
 
   return (
     <div className="flex flex-col justify-center h-full">
