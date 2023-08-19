@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getRepoMetrics } from "../services/getRepoMetrics";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import * as d3 from "d3";
 
 const LeadTimeChart = () => {
   const width = 600;
   const height = 120;
   const padding = 20;
-  const currRepo = useSelector((state) => state.repo.currRepo)
+  const currRepo = useSelector((state) => state.repo.currRepo);
   const [repoInfo, setRepoInfo] = useState(null);
 
   const svgRef = useRef();
@@ -179,7 +179,7 @@ const LeadTimeChart = () => {
 
   return (
     <div className="flex w-full justify-center items-center">
-      <svg id="chart" ref={svgRef} viewBox="-60 8 700 150">
+      <svg id="chart" ref={svgRef} viewBox="-60 -48 700 200">
         <path d="" fill="" stroke="white" strokeWidth="5" />
       </svg>
     </div>
