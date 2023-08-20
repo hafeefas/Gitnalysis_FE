@@ -36,7 +36,7 @@ const Forks = ({ fullRepo }) => {
     onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}
   >
-    {isHovered && forks!==null && currRepo!==null ? (
+    {isHovered && forks!==null && currRepo!==null && forks.length>0? (
       <>
         <div className="text-xl">Forks</div>
         {<div>

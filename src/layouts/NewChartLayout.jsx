@@ -12,6 +12,7 @@ import ClosedIssues from "../components/Issues/ClosedIssues";
 import NewIssues from "../components/Issues/NewIssues";
 import Forks from "../components/Forks";
 import CommentsPerCodeRatio from "../components/CommentsPerCodeRatio";
+import Stargazers from "../components/Stargazers";
 
 const NewChartLayout = () => {
   
@@ -213,7 +214,7 @@ const NewChartLayout = () => {
         <div className="col-start-8 row-start-2 rounded-xl shadow-3xl ml-1 h-32 p-2 items-center justify-center font-bold text-white" style={{backgroundColor:'#171C2Eff'}}>
           <NewIssues />
         </div>
-        <div className="flex row-span-2 col-start-6 row-start-2 rounded-xl shadow-3xl ml-1 h-68 items-center justify-center font-bold text-white bg-gradient-to-br from-yellow-300 to-orange-500 hover:from-pink-500 hover:to-yellow-500 z-10 transition ease-in-out duration-200 hover:w-80 hover:relative hover:right-24" style={{backgroundColor:'#171C2Eff', transition: "ease-in-out 500ms"}}>
+        <div className="flex row-span-2 col-start-6 row-start-2 rounded-xl shadow-3xl ml-1 h-68 items-center justify-center font-bold text-white bg-gradient-to-br from-yellow-300 to-orange-500 hover:from-pink-500 hover:to-yellow-500 z-10 transition ease-in-out duration-200 hover:w-80 hover:relative hover:right-24 oveflow-scroll" style={{backgroundColor:'#171C2Eff', transition: "ease-in-out 500ms"}}>
           <Forks />
         </div>
         <div className="col-span-2 col-start-7 row-start-3 rounded-xl shadow-3xl ml-1 h-32 p-2 items-center justify-center font-bold text-white bg-gradient-to-br from-rose-400 to-red-700 hover:from-pink-500 hover:to-yellow-500" style={{backgroundColor:'#171C2Eff'}}>
@@ -234,8 +235,8 @@ const NewChartLayout = () => {
         <div className="col-start-5 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
           32
         </div>
-        <div className="col-span-3 col-start-1 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
-          34
+        <div className="col-span-3 col-start-1 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white bg-gradient-to-br from-emerald-500 to-emerald-800" style={{backgroundColor:'#171C2Eff'}}>
+          <Stargazers />
         </div>
         <div className="col-span-3 col-start-6 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
           35
