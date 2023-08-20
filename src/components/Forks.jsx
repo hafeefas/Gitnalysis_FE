@@ -38,13 +38,13 @@ const Forks = ({ fullRepo }) => {
   >
     {isHovered && forks!==null && currRepo!==null ? (
       <>
-        <div className="text-2xl">Forks</div>
-        {<div className="text-xl">
+        <div className="text-xl">Forks</div>
+        {<div>
             {forks.map(fork => (
                <div className="border-b p-2"> 
                 <img className="rounded-3xl m-2 inline-block" src={fork.forkerAvatar} alt="forker avatar" height="40px" width="40px"/>
                 <span className="text-sm m-2 inline-block">{fork.forkedTimeAgo}</span>
-                <div className="text-base">{fork.forkedFullRepoName}</div>
+                <div className="text-base text-sm">{fork.forkedFullRepoName}</div>
                 {/* <img className="rounded-3xl m-2 inline-block" src={fork.forkerAvatar} alt="forker avatar" height="40px" width="40px"/>
                 <span className="text-sm m-2 inline-block">{fork.forkedTimeAgo}</span>
                 <div className="text-base">{fork.forkedFullRepoName}</div> */}
