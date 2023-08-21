@@ -55,19 +55,24 @@ const Branches = () => {
     };
 
     return (
-        <div className="h-full w-full flex items-center justify-center" onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef} onMouseOver = {() => triggerRef.current.style.cursor = "pointer"}>
+        <div className="h-full w-full flex items-center justify-center" onClick={() => setShowDropdown(!showDropdown)} ref={triggerRef}>
             <span className="font-bold text-white">{branches.length} Branches</span>
             {showDropdown && (
-                <div className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto" style={{ backgroundColor: '#171C2Eff' }} ref={dropdownRef} onClick={(e) => e.stopPropagation()}>
+                <div className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto" style={{ backgroundColor: '#171C2Eff' }} ref={dropdownRef}>
                     <ul className="rounded-lg">
                         {branches.map(branch => (
-                            <li key={branch.name} className="border-b p-2 text-white cursor-pointer hover:bg-gray-700" onClick={() => handleBranchClick(branch.name)}>{branch.name}</li>
+                            <li key={branch.name} className="border-b p-2 text-white cursor-pointer hover:bg-gray-700" onClick={() => handleBranchClick(branch.name)}>
+                                {branch.name}
+                                <span className="float-right text-sm">
+                                    {new Date(branch.commitDate).toLocaleDateString()}  {/* Display the commit date */}
+                                </span>
+                            </li>
                         ))}
                     </ul>
                 </div>
             )}
         </div>
-      )
+    );
 };
 
 export default Branches;
