@@ -13,7 +13,8 @@ import NewIssues from "../components/Issues/NewIssues";
 import Forks from "../components/Forks";
 import CommentsPerCodeRatio from "../components/CommentsPerCodeRatio";
 import Stargazers from "../components/Stargazers";
-import NumCommits from "../components/PullRequests/NumCommits";
+import NumCommits from "../components/NumCommits";
+import DateCreated from "../components/DateCreated";
 
 const NewChartLayout = () => {
   
@@ -239,8 +240,8 @@ const NewChartLayout = () => {
         <div className="col-span-3 col-start-1 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white bg-gradient-to-br from-emerald-500 to-emerald-800" style={{backgroundColor:'#171C2Eff'}}>
           <Stargazers />
         </div>
-        <div className="col-span-3 col-start-6 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
-          35
+        <div className="col-span-3 col-start-6 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white bg-gradient-to-br from-blue-500 to-blue-900" style={{backgroundColor:'#171C2Eff'}}>
+          <DateCreated />
         </div>
       </div>
     {/* </div>   */}
