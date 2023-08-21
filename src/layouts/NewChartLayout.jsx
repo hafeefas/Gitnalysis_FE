@@ -13,6 +13,7 @@ import NewIssues from "../components/Issues/NewIssues";
 import Forks from "../components/Forks";
 import CommentsPerCodeRatio from "../components/CommentsPerCodeRatio";
 import Stargazers from "../components/Stargazers";
+import NumCommits from "../components/PullRequests/NumCommits";
 
 const NewChartLayout = () => {
   
@@ -230,7 +231,7 @@ const NewChartLayout = () => {
           Issues
         </div>
         <div className="col-start-4 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
-          31
+          <NumCommits />
         </div>
         <div className="col-start-5 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
           32
