@@ -15,6 +15,7 @@ import CommentsPerCodeRatio from "../components/CommentsPerCodeRatio";
 import Stargazers from "../components/Stargazers";
 import NumCommits from "../components/NumCommits";
 import DateCreated from "../components/DateCreated";
+import NumDeployments from "../components/NumDeployments";
 
 const NewChartLayout = () => {
   
@@ -235,7 +236,7 @@ const NewChartLayout = () => {
           <NumCommits />
         </div>
         <div className="col-start-5 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
-          32
+          <NumDeployments />
         </div>
         <div className="col-span-3 col-start-1 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white bg-gradient-to-br from-emerald-500 to-emerald-800" style={{backgroundColor:'#171C2Eff'}}>
           <Stargazers />
