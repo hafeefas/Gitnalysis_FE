@@ -61,10 +61,10 @@ const Branches = () => {
                 <div className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto" style={{ backgroundColor: '#171C2Eff' }} ref={dropdownRef}>
                     <ul className="rounded-lg">
                         {branches.map(branch => (
-                            <li key={branch.name} className="border-b p-2 text-white cursor-pointer hover:bg-gray-700" onClick={() => handleBranchClick(branch.name)}>
-                                {branch.name}
-                                <span className="float-right text-sm">
-                                    {new Date(branch.commitDate).toLocaleDateString()}  {/* Display the commit date */}
+                            <li key={branch.name} className="border-b p-2 text-white cursor-pointer hover:bg-gray-700 flex justify-between" onClick={() => handleBranchClick(branch.name)}>
+                                <span>{branch.name}</span>
+                                <span className="text-sm ml-4">
+                                    {new Date(branch.commitDate).toLocaleDateString()}
                                 </span>
                             </li>
                         ))}
