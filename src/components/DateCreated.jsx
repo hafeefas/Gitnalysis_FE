@@ -8,7 +8,7 @@ const DateCreated = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
 
   useEffect(() => {
-    async function getOpenPrs() {
+    async function getDates() {
       try {
         if (typeof currRepo !== "string") {
           console.error("currRepo should be a string");
@@ -30,7 +30,7 @@ const DateCreated = () => {
       }
     }
 
-    getOpenPrs();
+    getDates();
   }, [currRepo]);
 
   return (

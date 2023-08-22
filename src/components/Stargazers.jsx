@@ -8,7 +8,7 @@ const Stargazers = () => {
     const currRepo = useSelector((state) => state.repo.currRepo);
   
     useEffect(() => {
-      async function getNewIssues() {
+      async function getStargazers() {
         try {
           if (typeof currRepo !== "string") {
             console.error("currRepo should be a string");
@@ -27,7 +27,7 @@ const Stargazers = () => {
           console.log(error);
         }
       }
-      getNewIssues();
+      getStargazers();
     }, [currRepo]);
 
   return (

@@ -8,7 +8,7 @@ const NumCommits = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
 
   useEffect(() => {
-    async function getOpenPrs() {
+    async function getNumCommits() {
       try {
         if (typeof currRepo !== "string") {
           console.error("currRepo should be a string");
@@ -33,7 +33,7 @@ const NumCommits = () => {
       }
     }
 
-    getOpenPrs();
+    getNumCommits();
   }, [currRepo]);
 
   return (

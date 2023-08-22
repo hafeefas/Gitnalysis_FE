@@ -8,7 +8,7 @@ const CommentsPerCodeRatio = ({ fullRepo }) => {
   const currRepo = useSelector((state) => state.repo.currRepo);
 
   useEffect(() => {
-    async function getForks() {
+    async function getRatio() {
       try {
         if (typeof currRepo !== "string") {
           console.error("fullRepo should be a string");
@@ -27,7 +27,7 @@ const CommentsPerCodeRatio = ({ fullRepo }) => {
         console.log(error);
       }
     }
-    getForks();
+    getRatio();
   }, [currRepo]);
 
   return (
