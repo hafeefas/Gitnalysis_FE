@@ -5,8 +5,7 @@ import { BsActivity } from "react-icons/bs";
 import { ResponsiveBar } from "@nivo/bar";
 import { ResponsiveLine } from '@nivo/line'
 
-const Activity = () => {
-  const [activity, setActivity] = useState(null);
+const IssuesTimeline= () => {
   const [chartData, setChartData] = useState(null);
   const currRepo = useSelector((state) => state.repo.currRepo);
 
@@ -22,27 +21,46 @@ const Activity = () => {
         const repo = repoParts[1];
 
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/repos/${username}/${repo}/getActivity/week`
+          `${process.env.REACT_APP_BACKEND_URL}/api/issues/${username}/${repo}/timeline/pastMonth`
         );
 
-        setActivity(response.data.repoActivityArray);
-
-        const rawChartData = response.data.activitiesTimelineChartObject;
+        const rawChartData = response.data;
         if(rawChartData){
-          console.log(rawChartData + JSON.stringify(rawChartData))
           const fixedChartData = [{
-            "id": "Activity Count",
+            "id": "Open",
             "color": "hsl(68, 70%, 50%)",
             "data" : [],
-          }
+          },
+          {
+            "id": "Closed",
+            "color": "hsl(68, 70%, 50%)",
+            "data" : [],
+          },
+          {
+            "id": "All",
+            "color": "hsl(68, 70%, 50%)",
+            "data" : [],
+          },
         ]
           for(const dateKey in rawChartData){
             fixedChartData[0].data.unshift({
               x : dateKey.split(" ")[0] === "0"? "this past " + dateKey.split(" ")[1].substring(0, dateKey.split(" ")[1].length-1) : dateKey,
-              y: rawChartData[dateKey]
+              y: rawChartData[dateKey].open
             })
           }
-          console.log("fixed chart" + JSON.stringify(fixedChartData));
+          for(const dateKey in rawChartData){
+            fixedChartData[1].data.unshift({
+              x : dateKey.split(" ")[0] === "0"? "this past " + dateKey.split(" ")[1].substring(0, dateKey.split(" ")[1].length-1) : dateKey,
+              y: rawChartData[dateKey].closed
+            })
+          }
+          for(const dateKey in rawChartData){
+            fixedChartData[2].data.unshift({
+              x : dateKey.split(" ")[0] === "0"? "this past " + dateKey.split(" ")[1].substring(0, dateKey.split(" ")[1].length-1) : dateKey,
+              y: rawChartData[dateKey].all
+            })
+          }
+
           setChartData(fixedChartData);
         }
 
@@ -55,30 +73,10 @@ const Activity = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="h-96">
-        <div className="mb-4 text-xl text-rose-300">Activity Monitor</div>
-        <div className="h-80 overflow-scroll shadow-2xl">
-        <>
-          {activity !== null && currRepo !== null 
-          ? activity.map(oneActivity => 
-            (<div className="flex flex-col gap-8 mt-4 mb-4">
-              <div className="flex flex w-full">
-              <img className="rounded-full mr-2" src={oneActivity.userAvatar} alt="user-avatar" width="30px" height="30px"/>
-              <div className="text-l">{oneActivity.userName + " made a " + oneActivity.activityType + " " + oneActivity.timeAgo}</div>
-              </div>
-            </div>  
-          )
-          )
-          : <div className="text-xl">N/A</div>
-          }
-        </>
-        </div>
-      </div>
-
       <div className="flex flex-col h-96">
       <>
-        {/* <div style={{ color: "#007FFF" }}>Issues Timeline</div> */}
-        {activity !== null && currRepo !== null 
+      <div>Issues Timeline</div>
+        {chartData !== null && currRepo !== null 
         ?  <ResponsiveLine
             data={chartData}
             theme={{
@@ -106,11 +104,11 @@ const Activity = () => {
                 },
               },
             }}
-            margin={{ top: 50, right: 50, bottom: 60, left: 60 }}
+            margin={{ top: 50, right: 80, bottom: 60, left: 60 }}
             xScale={{ type: 'point' }}
             yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
             // groupMode="grouped"
-            colors={"#22E0E3ff"}
+            colors={["red", "#22E0E3ff", "green"]}
             borderColor={{ from: "color", modifiers: [["darker", "1.6"]] }}
             axisTop={null}
             axisRight={null}
@@ -152,6 +150,32 @@ const Activity = () => {
                 ))}
               </div>
             )}
+                    legends={[
+            {
+                anchor: 'bottom-right',
+                direction: 'column',
+                justify: false,
+                translateX: 100,
+                translateY: 0,
+                itemsSpacing: 0,
+                itemDirection: 'left-to-right',
+                itemWidth: 80,
+                itemHeight: 20,
+                itemOpacity: 0.75,
+                symbolSize: 12,
+                symbolShape: 'circle',
+                symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                effects: [
+                    {
+                        on: 'hover',
+                        style: {
+                            itemBackground: 'rgba(0, 0, 0, .03)',
+                            itemOpacity: 1
+                        }
+                    }
+                ]
+            }
+                    ]}
           />
         : <div className="text-xl">N/A</div>
         }
@@ -161,4 +185,4 @@ const Activity = () => {
   );
 };
 
-export default Activity;
+export default IssuesTimeline;
