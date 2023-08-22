@@ -18,6 +18,7 @@ import DateCreated from "../components/DateCreated";
 import NumDeployments from "../components/NumDeployments";
 import Activity from "../components/Activity";
 import IssuesTimeline from "../components/IssuesTimeline";
+import MergeSuccessRatePie from "../components/MergeSuccessRatePie";
 
 const NewChartLayout = () => {
   
@@ -250,7 +251,7 @@ const NewChartLayout = () => {
           <Activity />
         </div>
         <div className="col-span-4 row-span-3 col-start-1 row-start-11 p-2 h-96 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
-          Data
+          <MergeSuccessRatePie />
         </div>
       </div>
     {/* </div>   */}
