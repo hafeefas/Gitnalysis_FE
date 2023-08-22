@@ -58,10 +58,10 @@ const Collaborators = () => {
       onMouseOver={() => (triggerRef.current.style.cursor = "pointer")}
     >
       <span className="font-bold text-white">
-        {collaborators.length} Collaborators
+        {currRepo !== null ? collaborators.length : "N/A"} Collaborators
       </span>
       {console.log("coll" + JSON.stringify(collaborators[0]))}
-      {showDropdown && (
+      {showDropdown && currRepo !== null ?(
         <div
           className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto"
           style={{ backgroundColor: "#171C2Eff" }}
@@ -87,7 +87,7 @@ const Collaborators = () => {
             ))}
           </ul>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
