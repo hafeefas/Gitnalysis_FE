@@ -1,39 +1,215 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentRepo } from "../redux/slices/repoSlice";
+import { BsStars } from "react-icons/bs";
+import { FaCodeFork } from "react-icons/fa6";
+import { VscRepo, VscGitPullRequest } from "react-icons/vsc";
 
 const RepoList = () => {
   const dispatch = useDispatch();
-  const allRepos = useSelector((state) => state.repo.allRepos);
   const navigate = useNavigate();
+  const allRepos = useSelector((state) => state.repo.allRepos);
+  const forkedRepos = useSelector((state) => state.repo.forkedRepos);
+  const nonForkedRepos = useSelector((state) => state.repo.nonForkedRepos);
+  const starredRepos = useSelector((state) => state.repo.starredRepos);
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
+
+  const ownerRepos = nonForkedRepos?.filter(
+    (repo) => repo.owner.login === loggedInUser.login
+  );
+
+  const contributedRepos = allRepos?.filter(
+    (repo) => repo.owner.login !== loggedInUser.login
+  );
+
+  console.log(contributedRepos);
+
+  const sortedForkedRepos = forkedRepos?.slice().sort((repo1, repo2) => {
+    const name1 = repo1.name.toLowerCase();
+    const name2 = repo2.name.toLowerCase();
+
+    if (name1 < name2) {
+      return -1;
+    }
+    if (name1 > name2) {
+      return 1;
+    }
+    return 0;
+  });
+
+  console.log(starredRepos, "STARRED");
+  const sortedStarredRepos = [...starredRepos?.starredRepos].sort(
+    (repo1, repo2) => {
+      const name1 = repo1.name.toLowerCase();
+      const name2 = repo2.name.toLowerCase();
+
+      if (name1 < name2) {
+        return -1;
+      }
+      if (name1 > name2) {
+        return 1;
+      }
+      return 0;
+    }
+  );
+
+  console.log(sortedStarredRepos, "SORTED STARRED");
+
+  const sortedContributedRepos = [...contributedRepos].sort((repo1, repo2) => {
+    const name1 = repo1.name.toLowerCase();
+    const name2 = repo2.name.toLowerCase();
+
+    if (name1 < name2) {
+      return -1;
+    }
+    if (name1 > name2) {
+      return 1;
+    }
+    return 0;
+  });
+
+  // console.log(sortedContributedRepos, "SORTED CONTRIBUTED");
+
+  const sortedOwnerRepos = ownerRepos.slice().sort((repo1, repo2) => {
+    const name1 = repo1.name.toLowerCase();
+    const name2 = repo2.name.toLowerCase();
+
+    if (name1 < name2) {
+      return -1;
+    }
+    if (name1 > name2) {
+      return 1;
+    }
+    return 0;
+  });
 
   const handleClickRepo = (repoName) => {
     // setCurrRepo(repoName);
     dispatch(setCurrentRepo(repoName));
-    console.log(repoName, "clicked repo");
+    // console.log(repoName, "clicked repo");
     navigate("/");
   };
 
+  const handleOpenUrl = (cloneUrl) => {
+    window.open(cloneUrl, "_blank");
+  };
+
   return (
-    <div
-      className="h-full overflow-x-scroll"
-      style={{ backgroundColor: "#171C2Eff" }}
-    >
-      <ul
-        className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
-        style={{ backgroundColor: "#171C2Eff" }}
-      >
-        {allRepos?.map((repoName) => (
-          <li
-            key={repoName.full_name}
-            onClick={() => handleClickRepo(repoName.full_name)}
-            className="w-1/3 px-4 py-2 border-b border-gray-200 dark:border-gray-600 inline-block text-white hover:bg-gradient-to-br from-teal-300 hover:to-sky-500 hover:text-black"
-          >
-            {repoName.name}
-          </li>
-        ))}
-      </ul>
+    <div>
+      <div className="flex text-3xl text-white p-5 justify-center items-center">
+        <div className="mr-4">
+          <VscRepo style={{ color: "green" }} />{" "}
+        </div>
+        <div>Your Repos</div>
+        <div className="ml-4">
+          <VscRepo style={{ color: "green" }} />
+        </div>
+      </div>
+      <div style={{ backgroundColor: "#171C2Eff" }}>
+        <ul
+          className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
+          style={{ backgroundColor: "#171C2Eff" }}
+        >
+          {sortedOwnerRepos?.map((repoName) => (
+            <li
+              key={repoName.full_name}
+              onClick={() => handleClickRepo(repoName.full_name)}
+              className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
+            >
+              {repoName.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="flex text-3xl text-white p-5 justify-center items-center">
+        <div className="mr-4">
+          <FaCodeFork style={{ color: "gray" }} />{" "}
+        </div>
+        <div>Forked Repos</div>
+        <div className="ml-4">
+          <FaCodeFork style={{ color: "gray" }} />
+        </div>
+      </div>
+      <div style={{ backgroundColor: "#171C2Eff" }}>
+        <ul
+          className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
+          style={{ backgroundColor: "#171C2Eff" }}
+        >
+          {sortedForkedRepos?.map((repoName) => (
+            <li
+              key={repoName.full_name}
+              onClick={() => handleOpenUrl(repoName.clone_url)}
+              className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-teal-300
+              hover:to-sky-500 hover:text-black"
+            >
+              {repoName.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="flex text-3xl text-white p-5 justify-center items-center">
+        <div className="mr-4">
+          <BsStars style={{ color: "yellow" }} />{" "}
+        </div>
+        <div> Starred Repos </div>
+        <div className="ml-4">
+          <BsStars style={{ color: "yellow" }} />
+        </div>
+      </div>
+      <div style={{ backgroundColor: "#171C2Eff" }}>
+        <ul
+          className="h-full w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
+          style={{ backgroundColor: "#171C2Eff" }}
+        >
+          {sortedStarredRepos?.map((repoName) => (
+            <li
+              key={repoName.full_name}
+              onClick={() => handleClickRepo(repoName.fullName)}
+              className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-pink-500 hover:to-yellow-500 hover:text-black"
+            >
+              <div className="flex items-center">
+                <img src={repoName.ownerAvatarUrl} className="h-8 w-8" />{" "}
+                <div className="flex flex-col ml-4">
+                  <div>{repoName.name}</div>
+                  <div>Owner: {repoName.owner}</div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="flex text-3xl text-white p-5 justify-center items-center">
+        <div className="mr-4">
+          <VscGitPullRequest style={{ color: "#cb9ac4ff" }} />{" "}
+        </div>
+        <div>Other Repos You've Contributed To</div>
+        <div className="ml-4">
+          <VscGitPullRequest style={{ color: "#cb9ac4ff" }} />
+        </div>
+      </div>
+      <div style={{ backgroundColor: "#171C2Eff" }}>
+        <ul
+          className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
+          style={{ backgroundColor: "#171C2Eff" }}
+        >
+          {sortedContributedRepos?.map((repoName) => (
+            <li
+              key={repoName.full_name}
+              onClick={() => handleOpenUrl(repoName.clone_url)}
+              className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-pink-500 hover:to-purple-500 hover:text-black"
+            >
+              <div className="flex items-center">
+                <img src={repoName.owner.avatar_url} className="h-8 w-8" />{" "}
+                <div className="flex flex-col ml-4">
+                  <div>{repoName.name}</div>
+                  <div>Owner: {repoName.owner.login}</div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
