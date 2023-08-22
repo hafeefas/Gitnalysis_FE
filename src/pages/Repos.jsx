@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getUserRepos } from "../redux/slices/repoSlice";
+import {
+  getUserRepos,
+  getForkedRepos,
+  getNonForkedRepos,
+  getStarredRepos,
+} from "../redux/slices/repoSlice";
 import { useMediaQuery } from "@mui/material";
 import RepoList from "../components/RepoList";
 import "../login.css";
@@ -15,6 +20,9 @@ const Repos = () => {
     const fetchAllRepos = async () => {
       try {
         await dispatch(getUserRepos());
+        await dispatch(getForkedRepos());
+        await dispatch(getNonForkedRepos());
+        await dispatch(getStarredRepos());
       } catch (error) {
         console.error("Error fetching repos:", error);
       }
@@ -28,8 +36,8 @@ const Repos = () => {
     <></>
   ) : (
     <div
-      className="h-screen flex justify-center items-center bg-gray-200 overflow-scroll"
-      style={{ backgroundColor: "#111526ff" }}
+      className="justify-center items-center bg-gray-200 overflow-scroll"
+      style={{ backgroundColor: "#111526ff", height: "40rem" }}
     >
       <div
         className="bg-gray-400 p-6 rounded-lg shadow-md max-w-screen-lg"
