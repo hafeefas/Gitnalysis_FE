@@ -84,18 +84,10 @@ function App() {
                 }
               />
             ) : (
-              <Route
-                path="/"
-                element={
-                  <NewChartLayout />
-                }
-              />
+              <Route path="/" element={<NewChartLayout />} />
             )}
             {/* <Route path="/login" element={<Login />} /> */}
-            <Route
-              path="/repos"
-              element={<Repos />}
-            />
+            <Route path="/repos" element={<Repos h-96 />} />
           </Routes>
         </div>
       </Router>

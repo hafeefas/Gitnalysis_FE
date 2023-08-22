@@ -16,17 +16,25 @@ const RepoList = () => {
   };
 
   return (
-    <ul className="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-      {allRepos?.map((repoName) => (
-        <li
-          key={repoName.full_name}
-          onClick={() => handleClickRepo(repoName.full_name)}
-          className="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600"
-        >
-          {repoName.name}
-        </li>
-      ))}
-    </ul>
+    <div
+      className="h-full overflow-x-scroll"
+      style={{ backgroundColor: "#171C2Eff" }}
+    >
+      <ul
+        className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
+        style={{ backgroundColor: "#171C2Eff" }}
+      >
+        {allRepos?.map((repoName) => (
+          <li
+            key={repoName.full_name}
+            onClick={() => handleClickRepo(repoName.full_name)}
+            className="w-1/3 px-4 py-2 border-b border-gray-200 dark:border-gray-600 inline-block text-white hover:bg-gradient-to-br from-teal-300 hover:to-sky-500 hover:text-black"
+          >
+            {repoName.name}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
