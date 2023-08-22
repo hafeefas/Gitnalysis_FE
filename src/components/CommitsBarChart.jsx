@@ -44,7 +44,7 @@ const BarChart = ({ fullRepo }) => {
   return (
     <div style={{ height: '35vh', width: '100%' }}>
       <div className="flex gap-8 items-center justify-center">
-        <div>Issues Timeline</div>
+        <div>Commits Timeline</div>
         <FormControl variant="outlined" style={{ marginBottom: '20px' }}>
           {/* <InputLabel id="timeRange-label">Time Range</InputLabel> */}
           <Select
