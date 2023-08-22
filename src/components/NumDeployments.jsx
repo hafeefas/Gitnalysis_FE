@@ -8,7 +8,7 @@ const NumDeployments = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
 
   useEffect(() => {
-    async function getOpenPrs() {
+    async function getNumDeployments() {
       try {
         if (typeof currRepo !== "string") {
           console.error("currRepo should be a string");
@@ -37,7 +37,7 @@ const NumDeployments = () => {
       }
     }
 
-    getOpenPrs();
+    getNumDeployments();
   }, [currRepo]);
 
   return (
