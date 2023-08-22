@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { BsActivity } from "react-icons/bs";
 import { ResponsiveBar } from "@nivo/bar";
-import { ResponsiveLine } from '@nivo/line'
+import { ResponsiveLine } from '@nivo/line';
+import { Select, MenuItem, FormControl, InputLabel, OutlinedInput} from "@material-ui/core";
 
 const IssuesTimeline= () => {
   const [chartData, setChartData] = useState(null);
   const currRepo = useSelector((state) => state.repo.currRepo);
+  const [timeRange, setTimeRange] = useState("pastWeek")
 
   useEffect(() => {
     async function getActivity() {
@@ -21,7 +23,7 @@ const IssuesTimeline= () => {
         const repo = repoParts[1];
 
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/issues/${username}/${repo}/timeline/pastMonth`
+          `${process.env.REACT_APP_BACKEND_URL}/api/issues/${username}/${repo}/timeline/${timeRange}`
         );
 
         const rawChartData = response.data;
@@ -69,13 +71,30 @@ const IssuesTimeline= () => {
       }
     }
     getActivity();
-  }, [currRepo]);
+  }, [currRepo, timeRange]);
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex flex-col h-96">
       <>
+      <div className="flex gap-8 items-center justify-center">
       <div>Issues Timeline</div>
+        <FormControl variant="outlined" style={{ marginBottom: '20px' }}>
+          {/* <InputLabel id="timeRange-label">Time Range</InputLabel> */}
+          <Select
+            labelId="timeRange-label"
+            value={timeRange}
+            onChange={(e) => setTimeRange(e.target.value)}
+          //   label="Time Range"
+            style={{ color: "white", backgroundColor: "#007FFF", borderRadius: "1rem", boxShadow: "1px 1px 1px white", position: "relative", top:"10px"}} 
+          >
+            {/* <MenuItem value="pastDay" >Past Day</MenuItem> */}
+            <MenuItem value="pastWeek" >Past Week</MenuItem>
+            <MenuItem value="pastMonth" >Past Month</MenuItem>
+            <MenuItem value="pastYear" >Past Year</MenuItem>
+          </Select>
+        </FormControl>        
+      </div>
         {chartData !== null && currRepo !== null 
         ?  <ResponsiveLine
             data={chartData}
@@ -126,7 +145,7 @@ const IssuesTimeline= () => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: 'Activities',
+              legend: 'Issues',
               legendOffset: -40,
               legendPosition: 'middle',
             }}
