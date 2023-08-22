@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUsername } from "./redux/slices/userSlice";
+import { getLoggedInUser } from "./redux/slices/userSlice";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Login from "./pages/Login";
 import Repos from "./pages/Repos";
@@ -25,20 +26,20 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_BACKEND_URL);
+    // console.log(process.env.REACT_APP_BACKEND_URL);
     const urlParams = new URLSearchParams(window.location.search);
-
     const userName = urlParams.get("username");
     const userId = urlParams.get("userId");
-    console.log("Username:", userName);
-    console.log("UserId:", userId);
+    // console.log("Username:", userName);
+    // console.log("UserId:", userId);
     if (userName !== null) {
       dispatch(setUsername(userName));
     }
     setUserName(userName);
     setUserId(userId);
+    dispatch(getLoggedInUser());
     // getAuthenticatedUser();
-    console.log(currRepo, "is the current Repo");
+    // console.log(currRepo, "is the current Repo");
     // const fetchRepos = async () => {
     //   try {
     //     const reposFromAuth = await getUserRepos(); // Await the Promise here
