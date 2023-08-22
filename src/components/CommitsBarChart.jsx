@@ -22,7 +22,7 @@ const BarChart = ({ fullRepo }) => {
           `${process.env.REACT_APP_BACKEND_URL}/api/commits/timeline/${username}/${repo}`,
           { withCredentials: true }
         );
-        // const response = await axios.get(`http://localhost:8080/api/commits/timeline/${username}/${repo}`,{withCredentials:true})
+        // const response = await axios.get(`http://localhost:8080/api/commits/timeline/${username}/${repo}`,{withCredentials:true});
         console.log(response.data);
         const dataArray = Object.entries(response.data).map(
           ([date, commits]) => ({ date, commits })

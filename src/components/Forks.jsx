@@ -14,10 +14,8 @@ const Forks = ({ fullRepo }) => {
           console.error("fullRepo should be a string");
           return;
         }
-        console.log("repoINfo,", currRepo);
         const repoParts = currRepo.split("/");
         const username = repoParts[0];
-        console.log(username);
         const repo = repoParts[1];
 
         const response = await axios.get(
@@ -38,15 +36,15 @@ const Forks = ({ fullRepo }) => {
     onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}
   >
-    {isHovered && forks!==null && currRepo!==null ? (
+    {isHovered && forks!==null && currRepo!==null && forks.length>0? (
       <>
-        <div className="text-2xl">Forks</div>
-        {<div className="text-xl">
+        <div className="text-xl">Forks</div>
+        {<div>
             {forks.map(fork => (
                <div className="border-b p-2"> 
                 <img className="rounded-3xl m-2 inline-block" src={fork.forkerAvatar} alt="forker avatar" height="40px" width="40px"/>
                 <span className="text-sm m-2 inline-block">{fork.forkedTimeAgo}</span>
-                <div className="text-base">{fork.forkedFullRepoName}</div>
+                <div className="text-base text-sm">{fork.forkedFullRepoName}</div>
                 {/* <img className="rounded-3xl m-2 inline-block" src={fork.forkerAvatar} alt="forker avatar" height="40px" width="40px"/>
                 <span className="text-sm m-2 inline-block">{fork.forkedTimeAgo}</span>
                 <div className="text-base">{fork.forkedFullRepoName}</div> */}
