@@ -17,6 +17,7 @@ import NumCommits from "../components/NumCommits";
 import DateCreated from "../components/DateCreated";
 import NumDeployments from "../components/NumDeployments";
 import Activity from "../components/Activity";
+import IssuesTimeline from "../components/IssuesTimeline";
 
 const NewChartLayout = () => {
   
@@ -228,7 +229,7 @@ const NewChartLayout = () => {
           <BarChart fullRepo = {currRepo}/>
         </div>
         <div className="col-span-4 row-span-3 col-start-1 row-start-4 p-2 h-96 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
-          Issues
+          <IssuesTimeline />
         </div>
         <div className="col-start-4 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white" style={{backgroundColor:'#171C2Eff'}}>
           <NumCommits />
