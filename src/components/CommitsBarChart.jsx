@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
+
 
 import { ResponsiveBar } from "@nivo/bar";
 import axios from "axios";
 
 const BarChart = ({ fullRepo }) => {
   const [commitsData, setCommitsData] = useState([]);
+  const [timeRange, setTimeRange] = useState("pastWeek")
+
 
   useEffect(() => {
     async function getCommits() {
@@ -19,7 +23,7 @@ const BarChart = ({ fullRepo }) => {
         console.log(username);
         const repo = repoParts[1];
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/commits/timeline/${username}/${repo}`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/commits/timeline/${username}/${repo}/${timeRange}`,
           { withCredentials: true }
         );
         // const response = await axios.get(`http://localhost:8080/api/commits/timeline/${username}/${repo}`,{withCredentials:true});
@@ -35,9 +39,26 @@ const BarChart = ({ fullRepo }) => {
     }
 
     getCommits();
-  }, [fullRepo]);
+  }, [fullRepo, timeRange]);
 
   return (
+    <div style={{ height: '35vh', width: '100%' }}>
+      <FormControl variant="outlined" style={{ marginBottom: '20px' }}>
+        <InputLabel id="timeRange-label">Time Range</InputLabel>
+        <Select
+          labelId="timeRange-label"
+          value={timeRange}
+          onChange={(e) => setTimeRange(e.target.value)}
+          label="Time Range"
+          style={{ color: "white" }} 
+        >
+          <MenuItem value="pastDay" >Past Day</MenuItem>
+          <MenuItem value="pastWeek" >Past Week</MenuItem>
+          <MenuItem value="pastMonth" >Past Month</MenuItem>
+          <MenuItem value="pastYear" >Past Year</MenuItem>
+        </Select>
+      </FormControl>
+
     <ResponsiveBar
       data={commitsData}
       theme={{
@@ -114,6 +135,8 @@ const BarChart = ({ fullRepo }) => {
       motionStiffness={90}
       motionDamping={15}
     />
+
+    </div>
   );
 };
 
