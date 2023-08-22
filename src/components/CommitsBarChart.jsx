@@ -43,22 +43,24 @@ const BarChart = ({ fullRepo }) => {
 
   return (
     <div style={{ height: '35vh', width: '100%' }}>
-      <FormControl variant="outlined" style={{ marginBottom: '20px' }}>
-        <InputLabel id="timeRange-label">Time Range</InputLabel>
-        <Select
-          labelId="timeRange-label"
-          value={timeRange}
-          onChange={(e) => setTimeRange(e.target.value)}
-          label="Time Range"
-          style={{ color: "white" }} 
-        >
-          <MenuItem value="pastDay" >Past Day</MenuItem>
-          <MenuItem value="pastWeek" >Past Week</MenuItem>
-          <MenuItem value="pastMonth" >Past Month</MenuItem>
-          <MenuItem value="pastYear" >Past Year</MenuItem>
-        </Select>
-      </FormControl>
-
+      <div className="flex gap-8 items-center justify-center">
+        <div>Issues Timeline</div>
+        <FormControl variant="outlined" style={{ marginBottom: '20px' }}>
+          {/* <InputLabel id="timeRange-label">Time Range</InputLabel> */}
+          <Select
+            labelId="timeRange-label"
+            value={timeRange}
+            onChange={(e) => setTimeRange(e.target.value)}
+            label="Time Range"
+            style={{ color: "white", backgroundColor: "#007FFF", borderRadius: "1rem", boxShadow: "1px 1px 1px white", position: "relative", top:"10px"}} 
+          >
+            <MenuItem value="pastDay" >Past Day</MenuItem>
+            <MenuItem value="pastWeek" >Past Week</MenuItem>
+            <MenuItem value="pastMonth" >Past Month</MenuItem>
+            <MenuItem value="pastYear" >Past Year</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
     <ResponsiveBar
       data={commitsData}
       theme={{
