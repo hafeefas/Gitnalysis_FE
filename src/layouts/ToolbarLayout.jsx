@@ -67,15 +67,13 @@ function ToolbarLayout() {
             </Link>
           </div>
 
-          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
-            !open ? "px-1" : "px-4"
-          }`} onClick={() => setOpen(!open)}>
-            <Link to=""  className={` flex items-center`}>
-              <AiOutlineMail className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-              <h1 className={` font-medium font-sans-serif text-2xl ${
-              !open && "hidden"
-            }`}>
-              Notifications
+          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${!open ? "px-1" : "px-4"
+            }`} onClick={() => setOpen(!open)}>
+            <Link to="/notifications" className={` flex items-center`}>
+              <AiOutlineMail className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `} />
+              <h1 className={` font-medium font-sans-serif text-2xl ${!open && "hidden"
+                }`}>
+                Notifications
               </h1>
             </Link>
           </div>
