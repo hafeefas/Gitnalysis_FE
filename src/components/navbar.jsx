@@ -82,7 +82,7 @@ function Navbar() {
             >
             {username
             ? <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4" src={user?.avatar_url} alt={user?.name + " avatar"}/> 
-            : <div className="p-2 flex gap-2 items-center">
+            : <div className="flex gap-2 items-center">
                 <RxAvatar style={{fontSize: "2rem", marginRight: "0.2rem", display: "flex", alignItems: "center"}}/>
                 <span className="text-xl">Guest</span>
               </div> }
