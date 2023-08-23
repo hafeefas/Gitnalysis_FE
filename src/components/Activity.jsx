@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { BsActivity } from "react-icons/bs";
-import { ResponsiveBar } from "@nivo/bar";
 import { ResponsiveLine } from '@nivo/line'
+import { Select, MenuItem, FormControl } from "@material-ui/core";
 
 const Activity = () => {
   const [activity, setActivity] = useState(null);
   const [chartData, setChartData] = useState(null);
   const currRepo = useSelector((state) => state.repo.currRepo);
+  const [timeRange, setTimeRange] = useState("week");
 
   useEffect(() => {
     async function getActivity() {
@@ -22,7 +22,7 @@ const Activity = () => {
         const repo = repoParts[1];
 
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/repos/${username}/${repo}/getActivity/week`
+          `${process.env.REACT_APP_BACKEND_URL}/api/repos/${username}/${repo}/getActivity/${timeRange}`
         );
 
         setActivity(response.data.repoActivityArray);
@@ -51,7 +51,7 @@ const Activity = () => {
       }
     }
     getActivity();
-  }, [currRepo]);
+  }, [currRepo, timeRange]);
 
   return (
     <div className="flex flex-col h-full">
@@ -76,6 +76,21 @@ const Activity = () => {
       </div>
 
       <div className="flex flex-col h-96">
+      <FormControl variant="outlined" style={{ marginBottom: '20px' }}>
+        {/* <InputLabel id="timeRange-label">Time Range</InputLabel> */}
+        <Select
+          labelId="timeRange-label"
+          value={timeRange}
+          onChange={(e) => setTimeRange(e.target.value)}
+        //   label="Time Range"
+          style={{ color: "white", backgroundColor: "#007FFF", borderRadius: "1rem", boxShadow: "1px 1px 1px white", position: "relative", top:"10px", width: "150px", margin: "0 auto"}} 
+        >
+          {/* <MenuItem value="pastDay" >Past Day</MenuItem> */}
+          <MenuItem value="week" >Past Week</MenuItem>
+          <MenuItem value="month" >Past Month</MenuItem>
+          <MenuItem value="year" >Past Year</MenuItem>
+        </Select>
+      </FormControl>  
       <>
         {/* <div style={{ color: "#007FFF" }}>Issues Timeline</div> */}
         {activity !== null && currRepo !== null 
