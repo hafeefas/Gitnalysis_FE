@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getRepoMetrics } from "../services/getRepoMetrics";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "@mui/material";
 import * as d3 from "d3";
 
 const LeadTimeChart = () => {
-  const width = 600;
-  const height = 120;
-  const padding = 20;
+  const width = 500;
+  const height = 60;
+  const padding = 10;
   const currRepo = useSelector((state) => state.repo.currRepo);
   const [repoInfo, setRepoInfo] = useState(null);
-
+  const isMobileScreen = useMediaQuery("(max-width: 420px)");
   const svgRef = useRef();
 
   const convertAverageTimeInSeconds = (averageString) => {
@@ -73,7 +74,7 @@ const LeadTimeChart = () => {
       const yScale = d3
         .scaleLinear()
         .domain([0, maxAverageInSeconds])
-        .range([height - padding, 0 + padding]);
+        .range([height - padding, 0 + padding - 100]);
 
       // Define x-axis scale and axis
       const xAxis = d3
@@ -96,11 +97,18 @@ const LeadTimeChart = () => {
       const yAxis = d3.axisLeft(yScale).tickValues(yAxisTicks);
 
       // Render x-axis
-      d3.select(svgRef.current)
+      const xAxisGroup = d3
+        .select(svgRef.current)
         .append("g")
         .attr("class", "x-axis")
         .attr("transform", `translate(0, ${height - padding})`)
         .call(xAxis);
+
+      // Rotate x-axis tick labels
+      xAxisGroup
+        .selectAll(".tick text")
+        .attr("transform", "translate(-10,10) rotate(-45)")
+        .style("text-anchor", "end");
 
       // Render y-axis
       d3.select(svgRef.current)
@@ -121,7 +129,7 @@ const LeadTimeChart = () => {
         .append("text")
         .attr("class", "x-axis-label")
         .attr("x", width / 2)
-        .attr("y", height - padding / 2 + 30)
+        .attr("y", height - padding / 2 + 60)
         .style("text-anchor", "middle")
         .style("fill", "white")
         .style("font-size", "12px")
@@ -178,8 +186,8 @@ const LeadTimeChart = () => {
   }, [currRepo]);
 
   return (
-    <div className="flex w-full justify-center items-center">
-      <svg id="chart" ref={svgRef} viewBox="-60 -48 700 200">
+    <div className="flex w-full justify-center items-center mt-12 h-56">
+      <svg id="chart" ref={svgRef} viewBox="-60 -168 600 400">
         <path d="" fill="" stroke="white" strokeWidth="5" />
       </svg>
     </div>
