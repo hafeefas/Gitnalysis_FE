@@ -19,6 +19,7 @@ import NumDeployments from "../components/NumDeployments";
 import Activity from "../components/Activity";
 import IssuesTimeline from "../components/IssuesTimeline";
 import MergeSuccessRatePie from "../components/MergeSuccessRatePie";
+import WebsiteUsersCounter from "../components/WebsiteUsersCounter";
 
 const NewChartLayout = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
@@ -134,6 +135,11 @@ const NewChartLayout = () => {
           style={{ backgroundColor: "#171C2Eff" }}
         >
           <MergeSuccessRatePie />
+        </div>
+        <div
+          className="col-span-8 row-span-1 col-start-1 row-start-12 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white bg-gradient-to-br from-indigo-300 to-indigo-500"
+        >
+          <WebsiteUsersCounter />
         </div>
       </div>
     </div>
