@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
+import { Select, MenuItem, FormControl, InputLabel } from '@mui/material'
 
 
 import { ResponsiveBar } from "@nivo/bar";
