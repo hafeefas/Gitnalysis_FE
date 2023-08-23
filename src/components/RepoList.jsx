@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentRepo } from "../redux/slices/repoSlice";
@@ -12,19 +12,32 @@ const RepoList = () => {
   const allRepos = useSelector((state) => state.repo.allRepos);
   const forkedRepos = useSelector((state) => state.repo.forkedRepos);
   const nonForkedRepos = useSelector((state) => state.repo.nonForkedRepos);
-  const starredRepos = useSelector((state) => state.repo.starredRepos);
+  const starredRepos = useSelector((state) => state.repo?.starredRepos);
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
+  //find all repos owned by the user
   const ownerRepos = nonForkedRepos?.filter(
     (repo) => repo.owner.login === loggedInUser.login
   );
 
+  //find repos not owned by logge in user that they contributed to
   const contributedRepos = allRepos?.filter(
     (repo) => repo.owner.login !== loggedInUser.login
   );
 
+  //remove all starred repoes from contributed repos
+  for (let i = 0; i < contributedRepos.length; i++) {
+    let repoIndex = starredRepos?.findIndex(
+      (repo) => repo.name === contributedRepos[i].name
+    );
+    contributedRepos.splice(repoIndex, 1);
+  }
+
+  console.log("hello");
+
   console.log(contributedRepos);
 
+  //sort the forked repos
   const sortedForkedRepos = forkedRepos?.slice().sort((repo1, repo2) => {
     const name1 = repo1.name.toLowerCase();
     const name2 = repo2.name.toLowerCase();
@@ -38,9 +51,11 @@ const RepoList = () => {
     return 0;
   });
 
-  console.log(starredRepos, "STARRED");
-  const sortedStarredRepos = [...starredRepos?.starredRepos].sort(
-    (repo1, repo2) => {
+  let sortedStarredRepos = [];
+  // console.log(starredRepos, "STARRED");
+  // sort the starred repos
+  if (starredRepos) {
+    sortedStarredRepos = [...starredRepos].sort((repo1, repo2) => {
       const name1 = repo1.name.toLowerCase();
       const name2 = repo2.name.toLowerCase();
 
@@ -51,11 +66,12 @@ const RepoList = () => {
         return 1;
       }
       return 0;
-    }
-  );
+    });
+  }
 
-  console.log(sortedStarredRepos, "SORTED STARRED");
+  // console.log(sortedStarredRepos, "SORTED STARRED");
 
+  //sort all the contributed repos
   const sortedContributedRepos = [...contributedRepos].sort((repo1, repo2) => {
     const name1 = repo1.name.toLowerCase();
     const name2 = repo2.name.toLowerCase();
@@ -71,6 +87,7 @@ const RepoList = () => {
 
   // console.log(sortedContributedRepos, "SORTED CONTRIBUTED");
 
+  //sort all owned repos
   const sortedOwnerRepos = ownerRepos.slice().sort((repo1, repo2) => {
     const name1 = repo1.name.toLowerCase();
     const name2 = repo2.name.toLowerCase();
@@ -84,6 +101,7 @@ const RepoList = () => {
     return 0;
   });
 
+  //show dashboard for a particular repo
   const handleClickRepo = (repoName) => {
     // setCurrRepo(repoName);
     dispatch(setCurrentRepo(repoName));
@@ -91,6 +109,7 @@ const RepoList = () => {
     navigate("/");
   };
 
+  //open a new tab with the github repo
   const handleOpenUrl = (cloneUrl) => {
     window.open(cloneUrl, "_blank");
   };
@@ -98,9 +117,9 @@ const RepoList = () => {
   return (
     <div>
       <div className="flex text-3xl text-white p-5 justify-center items-center">
-        <div className="mr-4">
+        {/* <div className="mr-4">
           <VscRepo style={{ color: "green" }} />{" "}
-        </div>
+        </div> */}
         <div>Your Repos</div>
         <div className="ml-4">
           <VscRepo style={{ color: "green" }} />
@@ -123,35 +142,9 @@ const RepoList = () => {
         </ul>
       </div>
       <div className="flex text-3xl text-white p-5 justify-center items-center">
-        <div className="mr-4">
-          <FaCodeFork style={{ color: "gray" }} />{" "}
-        </div>
-        <div>Forked Repos</div>
-        <div className="ml-4">
-          <FaCodeFork style={{ color: "gray" }} />
-        </div>
-      </div>
-      <div style={{ backgroundColor: "#171C2Eff" }}>
-        <ul
-          className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
-          style={{ backgroundColor: "#171C2Eff" }}
-        >
-          {sortedForkedRepos?.map((repoName) => (
-            <li
-              key={repoName.full_name}
-              onClick={() => handleOpenUrl(repoName.clone_url)}
-              className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-teal-300
-              hover:to-sky-500 hover:text-black"
-            >
-              {repoName.name}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="flex text-3xl text-white p-5 justify-center items-center">
-        <div className="mr-4">
+        {/* <div className="mr-4">
           <BsStars style={{ color: "yellow" }} />{" "}
-        </div>
+        </div> */}
         <div> Starred Repos </div>
         <div className="ml-4">
           <BsStars style={{ color: "yellow" }} />
@@ -180,9 +173,35 @@ const RepoList = () => {
         </ul>
       </div>
       <div className="flex text-3xl text-white p-5 justify-center items-center">
-        <div className="mr-4">
-          <VscGitPullRequest style={{ color: "#cb9ac4ff" }} />{" "}
+        {/* <div className="mr-4">
+          <FaCodeFork style={{ color: "gray" }} />{" "}
+        </div> */}
+        <div>Forked Repos</div>
+        <div className="ml-4">
+          <FaCodeFork style={{ color: "gray" }} />
         </div>
+      </div>
+      <div style={{ backgroundColor: "#171C2Eff" }}>
+        <ul
+          className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
+          style={{ backgroundColor: "#171C2Eff" }}
+        >
+          {sortedForkedRepos?.map((repoName) => (
+            <li
+              key={repoName.full_name}
+              onClick={() => handleOpenUrl(repoName.clone_url)}
+              className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-teal-300
+              hover:to-sky-500 hover:text-black"
+            >
+              {repoName.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="flex text-3xl text-white p-5 justify-center items-center">
+        {/* <div className="mr-4">
+          <VscGitPullRequest style={{ color: "#cb9ac4ff" }} />{" "}
+        </div> */}
         <div>Other Repos You've Contributed To</div>
         <div className="ml-4">
           <VscGitPullRequest style={{ color: "#cb9ac4ff" }} />
