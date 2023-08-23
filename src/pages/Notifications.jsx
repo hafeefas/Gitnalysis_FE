@@ -1,8 +1,7 @@
 import React from 'react';
-import Navbar from './components/navbar';
 import NotificationsList from '../components/NotificationsList';
 
-const NotificationsPage = () => {
+const Notifications = () => {
     return (
         <div>
             <NotificationsList />
@@ -10,4 +9,4 @@ const NotificationsPage = () => {
     );
 };
 
-export default NotificationsPage;
+export default Notifications;

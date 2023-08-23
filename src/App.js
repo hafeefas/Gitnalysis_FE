@@ -6,6 +6,7 @@ import { getLoggedInUser } from "./redux/slices/userSlice";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Login from "./pages/Login";
 import Repos from "./pages/Repos";
+import Notifications from './pages/Notifications';
 import ChartLayout from "./layouts/ChartLayout";
 import NewChartLayout from "./layouts/NewChartLayout";
 import TabletChartLayout from "./layouts/TabletChartLayout";
@@ -89,6 +90,7 @@ function App() {
             )}
             {/* <Route path="/login" element={<Login />} /> */}
             <Route path="/repos" element={<Repos h-96 />} />
+            <Route path="/notifications" element={<Notifications />} />
           </Routes>
         </div>
       </Router>
