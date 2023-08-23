@@ -19,14 +19,25 @@ const NotificationsList = () => {
     fetchNotifications();
   }, [page]);
 
+  const handlePrevious = () => {
+    if (notifications.length <= 30) {
+      alert('No older notifications');
+    } else {
+      setPage(page + 1);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center">
       <div className="text-3xl text-white p-5">
-        <div className="flex items-center">
+        <div className="flex items-center justify-center">
           <div>Your Notifications</div>
           <div className="ml-4">
             <VscBell style={{ color: "green" }} />
           </div>
+          <button onClick={handlePrevious} className="ml-4 py-1 px-2 text-sm rounded bg-gradient-to-br from-lime-400 to-green-500 text-white hover:opacity-90">
+            Previous 30
+          </button>
         </div>
       </div>
       <div className="bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white overflow-hidden" style={{ width: '33%' }}>
