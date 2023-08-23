@@ -20,6 +20,13 @@ const NotificationsList = () => {
   return (
     <div>
       <h2>Notifications</h2>
+      <ul>
+        {notifications.map((notification, index) => (
+          <li key={index}>
+            {notification.type} - {notification.title}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
