@@ -72,7 +72,7 @@ const RepoList = () => {
   // console.log(sortedStarredRepos, "SORTED STARRED");
 
   //sort all the contributed repos
-  const sortedContributedRepos = [...contributedRepos].sort((repo1, repo2) => {
+  const sortedContributedRepos = [...contributedRepos]?.sort((repo1, repo2) => {
     const name1 = repo1.name.toLowerCase();
     const name2 = repo2.name.toLowerCase();
 
@@ -88,7 +88,7 @@ const RepoList = () => {
   // console.log(sortedContributedRepos, "SORTED CONTRIBUTED");
 
   //sort all owned repos
-  const sortedOwnerRepos = ownerRepos.slice().sort((repo1, repo2) => {
+  const sortedOwnerRepos = ownerRepos?.slice().sort((repo1, repo2) => {
     const name1 = repo1.name.toLowerCase();
     const name2 = repo2.name.toLowerCase();
 

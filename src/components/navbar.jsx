@@ -61,7 +61,7 @@ function Navbar() {
 
   return (
     <div className="">
-      <div className="flex relative dark:bg-main-dark-bg " >
+      <div className="flex relative dark:bg-main-dark-bg z-50" >
 
         <div
           className="p-2 fixed right-4 top-4 hover:drop-shadow-xl"
