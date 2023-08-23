@@ -29,12 +29,12 @@ const NotificationsList = () => {
           </div>
         </div>
       </div>
-      <div className="w-full bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+      <div className="bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white overflow-hidden" style={{ width: '33%' }}>
         <ul className="text-sm font-medium">
           {notifications.map((notification, index) => (
             <li
               key={index}
-              className="py-2 pl-4 border-b border-gray-200 dark:border-gray-600 text-center text-white hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
+              className={`py-2 border-b border-gray-200 dark:border-gray-600 text-center text-white hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black ${index === notifications.length - 1 ? 'border-b-0' : ''}`}
             >
               {notification.type} - {notification.title} - {notification.timeAgo}
             </li>
