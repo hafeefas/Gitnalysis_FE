@@ -63,6 +63,7 @@ const BarChart = ({ fullRepo }) => {
       </div>
     <ResponsiveBar
       data={commitsData}
+      isInteractive={false}
       theme={{
         axis: {
           ticks: {
