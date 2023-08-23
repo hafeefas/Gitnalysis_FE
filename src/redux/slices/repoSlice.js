@@ -40,7 +40,8 @@ export const getStarredRepos = createAsyncThunk(
         { withCredentials: true }
       );
 
-      const starredRepos = res.data;
+      const starredRepos = res.data.starredRepos;
+      console.log(starredRepos, "starred in redux");
       return starredRepos;
     } catch (error) {
       console.log(error.message);
