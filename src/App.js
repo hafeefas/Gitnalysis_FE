@@ -68,7 +68,6 @@ function App() {
         <div className="z-10">
           {isMobileScreen ? <MobileToolbarLayout /> : <ToolbarLayout />}
         </div>
-
         <div className="flex-1">
           {/* Add navigation buttons for tabs */}
           <Navbar />
