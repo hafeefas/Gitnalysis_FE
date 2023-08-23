@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentRepo } from "../redux/slices/repoSlice";
@@ -15,10 +15,24 @@ const RepoList = () => {
   const starredRepos = useSelector((state) => state.repo?.starredRepos);
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   //find all repos owned by the user
   const ownerRepos = nonForkedRepos?.filter(
     (repo) => repo.owner.login === loggedInUser.login
   );
+
+  //for search, filter through the repositories based on the input
+  const filteredRepos = ownerRepos.filter((repo) =>
+    repo.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // console.log(filteredRepos, "im filtering the search")
+
+  //handle input changes and update the searching query
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
 
   //find repos not owned by logge in user that they contributed to
   const contributedRepos = allRepos?.filter(
@@ -125,12 +139,32 @@ const RepoList = () => {
           <VscRepo style={{ color: "green" }} />
         </div>
       </div>
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search for repos..."
+          className="p-2 w-full text-gray-900 bg-white border-gray-200 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          value={searchQuery}
+          onChange={handleInputChange}
+        />
+      </div>
       <div style={{ backgroundColor: "#171C2Eff" }}>
         <ul
           className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
           style={{ backgroundColor: "#171C2Eff" }}
         >
-          {sortedOwnerRepos?.map((repoName) => (
+          {/* had to replace the below commented code with this for search */}
+          {filteredRepos.map((repo) => (
+            <li
+              key={repo.full_name}
+              onClick={() => handleClickRepo(repo.full_name)}
+              className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
+            >
+              {repo.name}
+            </li>
+          ))}
+
+          {/* {sortedOwnerRepos?.map((repoName) => (
             <li
               key={repoName.full_name}
               onClick={() => handleClickRepo(repoName.full_name)}
@@ -138,7 +172,8 @@ const RepoList = () => {
             >
               {repoName.name}
             </li>
-          ))}
+          ))} */}
+
         </ul>
       </div>
       <div className="flex text-3xl text-white p-5 justify-center items-center">
