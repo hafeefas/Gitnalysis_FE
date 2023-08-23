@@ -21,6 +21,7 @@ import IssuesTimeline from "../components/IssuesTimeline";
 import MergeSuccessRatePie from "../components/MergeSuccessRatePie";
 import { getRepoMetrics } from "../services/getRepoMetrics";
 import { useMediaQuery } from "@mui/material";
+import WebsiteUsersCounter from "../components/WebsiteUsersCounter";
 
 const TabletChartLayout = ({ username, currRepo }) => {
   const [repoInfo, setRepoInfo] = useState(null);
@@ -123,7 +124,7 @@ const TabletChartLayout = ({ username, currRepo }) => {
     //     </div>
     //   </div>
     // </div>
-    <div className="w-screen h-full overflow-scroll p-20 pb-24 pt-24 pr-0">
+    <div className="w-screen h-full overflow-scroll p-20 pb-4 pt-20 pr-0">
       <div className="grid grid-cols-4 grid-rows-26 gap-4 pr-4 text-center ">
         <div className="flex col-span-2 h-32 p-2 iflex w-full justify-center items-center bg-gradient-to-br from-teal-300 to-sky-500 hover:from-pink-500 hover:to-yellow-500 rounded-xl font-bold text-white shadow-2xl">
           <Collaborators />
@@ -184,7 +185,7 @@ const TabletChartLayout = ({ username, currRepo }) => {
         <BarChart fullRepo={currRepo} />
       </div>
       <div
-        className="flex row-span-2 col-start-1 row-start-12 rounded-xl shadow-3xl ml-1 h-64 items-center justify-center font-bold text-white bg-gradient-to-br from-yellow-300 to-orange-500 hover:from-pink-500 hover:to-yellow-500 z-10 transition ease-in-out duration-200 hover:w-80 hover:relative hover:right-24 oveflow-scroll"
+        className="flex row-span-2 col-start-1 row-start-12 rounded-xl shadow-3xl ml-1 h-68 items-center justify-center font-bold text-white bg-gradient-to-br from-yellow-300 to-orange-500 hover:from-pink-500 hover:to-yellow-500 z-10 transition ease-in-out duration-200 hover:w-80 hover:relative hover:right-24 oveflow-scroll"
         style={{
           backgroundColor: "#171C2Eff",
           transition: "ease-in-out 500ms",
@@ -234,6 +235,11 @@ const TabletChartLayout = ({ username, currRepo }) => {
       >
         <NumDeployments />
       </div>
+      <div
+          className="col-span-4 row-span-1 col-start-1 row-start-27 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white bg-gradient-to-br from-indigo-300 to-indigo-500"
+        >
+          <WebsiteUsersCounter />
+        </div>
     </div>
   </div>
   );
