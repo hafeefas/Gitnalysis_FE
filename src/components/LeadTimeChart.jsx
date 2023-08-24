@@ -38,6 +38,7 @@ const LeadTimeChart = () => {
   useEffect(() => {
     // console.log(repoInfo);
     //set up functions for scales
+    let metricLegend = '';
     if (repoInfo && repoInfo.data && repoInfo.data.length > 0) {
       // console.log('showing repo chart')
       //find the average time in seconds
@@ -76,8 +77,8 @@ const LeadTimeChart = () => {
         .domain([0, maxAverageInSeconds])
         .range([height - padding, 0 + padding - 100]);
 
-      // Define x-axis scale and axis
-      const xAxis = d3
+      // Define x-axis scale by applying unique days of commits and average merge time from commit
+      let xAxis = d3
         .axisBottom(xScale)
         .tickValues(
           uniqueDays.map((day) => {
@@ -89,6 +90,12 @@ const LeadTimeChart = () => {
           })
         )
         .tickFormat(d3.timeFormat("%m/%d"));
+
+      //customize a axis tick values to show one week's worth
+      const xAxisTicks = xScale.ticks(7);
+
+      //apply the ticks customization
+      xAxis = d3.axisBottom(xScale).tickValues(xAxisTicks);
 
       //customize y axis tick values to show less
       const yAxisTicks = yScale.ticks(5);
@@ -133,7 +140,7 @@ const LeadTimeChart = () => {
         .style("text-anchor", "middle")
         .style("fill", "white")
         .style("font-size", "12px")
-        .text("Merged At");
+        .text("Merged On");
 
       // Y-axis label
       d3.select(svgRef.current)
@@ -154,6 +161,8 @@ const LeadTimeChart = () => {
         .y0(yScale(0)) // Start at the bottom of the chart
         .y1((data) => yScale(convertAverageTimeInSeconds(data.average)))
         .curve(d3.curveNatural);
+
+      
 
       // Render the area chart
       d3.select(svgRef.current)
