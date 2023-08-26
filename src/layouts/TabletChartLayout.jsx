@@ -19,31 +19,29 @@ import NumDeployments from "../components/NumDeployments";
 import Activity from "../components/Activity";
 import IssuesTimeline from "../components/IssuesTimeline";
 import MergeSuccessRatePie from "../components/MergeSuccessRatePie";
-import { getRepoMetrics } from "../services/getRepoMetrics";
 import { useMediaQuery } from "@mui/material";
 import WebsiteUsersCounter from "../components/WebsiteUsersCounter";
 
 const TabletChartLayout = ({ username, currRepo }) => {
-  const [repoInfo, setRepoInfo] = useState(null);
   const isMobileScreen = useMediaQuery("(max-width: 420px)");
 
-  useEffect(() => {
-    async function fetchRepoMetrics() {
-      try {
-        const splitCurrRepo = currRepo.split("/");
-        // console.log(splitCurrRepo);
-        const username = splitCurrRepo[0];
-        const repo = splitCurrRepo[1];
-        const metrics = await getRepoMetrics(username, repo);
-        setRepoInfo(metrics);
-        // console.log(metrics);
-      } catch (error) {
-        console.error("Error fetching repository metrics:", error);
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchRepoMetrics() {
+  //     try {
+  //       const splitCurrRepo = currRepo.split("/");
+  //       // console.log(splitCurrRepo);
+  //       const username = splitCurrRepo[0];
+  //       const repo = splitCurrRepo[1];
+  //       const metrics = await getRepoMetrics(username, repo);
+  //       setRepoInfo(metrics);
+  //       // console.log(metrics);
+  //     } catch (error) {
+  //       console.error("Error fetching repository metrics:", error);
+  //     }
+  //   }
 
-    fetchRepoMetrics();
-  }, [currRepo]);
+  //   fetchRepoMetrics();
+  // }, [currRepo]);
 
   //   console.log("Rendering NewChartLayout");
 

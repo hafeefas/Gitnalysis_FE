@@ -1,19 +1,8 @@
 import React, { useEffect, useState }  from "react";
-import { Link } from "react-router-dom";
-import ChartLayout from "../layouts/ChartLayout";
-import LoginForm from "./LoginForm";
-import App from "../App";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { logoutGitHubUser } from "../services/githubLogin";
-import GitHubLogo from "../icons/github-logo.png";
 import LoginButton from "./LoginButton";
 import { useSelector } from 'react-redux'
 import axios from "axios";
 import { RxAvatar } from 'react-icons/rx';
-
-
-
-
 
 function Navbar() {
   const currRepo = useSelector((state) => state.repo.currRepo)

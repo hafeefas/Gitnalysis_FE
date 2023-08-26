@@ -61,7 +61,7 @@ export const getForkedRepos = createAsyncThunk(
       );
 
       const allRepos = res.data;
-      const forkedRepos = allRepos.filter((repo) => repo.fork === true);
+      const forkedRepos = allRepos?.filter((repo) => repo.fork === true);
       console.log(forkedRepos);
       return forkedRepos;
     } catch (error) {
@@ -82,7 +82,7 @@ export const getNonForkedRepos = createAsyncThunk(
       );
 
       const allRepos = res.data;
-      const nonForkedRepos = allRepos.filter((repo) => repo.fork === false);
+      const nonForkedRepos = allRepos?.filter((repo) => repo.fork === false);
       console.log(nonForkedRepos);
       return nonForkedRepos;
     } catch (error) {

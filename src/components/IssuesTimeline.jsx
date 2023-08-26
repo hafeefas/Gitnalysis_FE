@@ -142,6 +142,16 @@ const IssuesTimeline = () => {
                       fill: "white",
                     },
                   },
+                  // legend: {
+                  //   text: {
+                  //     fill: "white",
+                  //   },
+                  // },
+                },
+                legends: {
+                  text: {
+                    fill: "white",
+                  },
                 },
                 grid: {
                   line: {
