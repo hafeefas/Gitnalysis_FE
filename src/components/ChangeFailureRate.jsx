@@ -20,8 +20,8 @@ const CFR = () => {
                   const username = repoParts[0];
                   const repo = repoParts[1];
 
-                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/deployments/${username}/${repo}/cfr`)
-                console.log(response.data)
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/deployments/${username}/${repo}/cfr`, {withCredentials: true})
+                console.log("cfr",response.data)
                 setCfr(response.data)
                 
                 
@@ -37,13 +37,13 @@ const CFR = () => {
     const data = [
         {
             id: "CFR",
-            label: "CFR",
-            value: 20
+            label: "Change Failure Rate",
+            value: cfr
         },
         {
-            id: "Remaining",
-            label: "Remaining",
-            value: 100 - 20
+            id: "Success",
+            label: "Sucessful Deployments",
+            value: 100 - cfr
         }
     ];
 
@@ -55,7 +55,7 @@ const CFR = () => {
                 innerRadius={0.5}
                 padAngle={0.7}
                 cornerRadius={3}
-                colors={['red', 'lightgreen']} // Change colors as per your requirement
+                colors={['#E31837', '#00FFFF']} // Change colors as per your requirement
                 borderColor={{ from: 'color', modifiers: [['darker', 0.6]] }}
                 radialLabel="id"
             />

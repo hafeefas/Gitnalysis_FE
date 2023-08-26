@@ -83,7 +83,7 @@ function App() {
               <Route path="/" element={<NewChartLayout />} />
             )}
             {/* <Route path="/login" element={<Login />} /> */}
-            {/* <Route path="/repos" element={<RepoCategories />} /> */}
+            {/* <Route path="/reposlist" element={<RepoCategories />} /> */}
             <Route path="/reposlist" element={<Repos h-96 />} />
             <Route path="/notifications" element={<Notifications />} />
           </Routes>
