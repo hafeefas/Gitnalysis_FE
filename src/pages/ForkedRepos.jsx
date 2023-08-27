@@ -76,11 +76,11 @@ const ForkedRepos = () =>{
     console.log(forkedRepos, "FORKEDD")
 
     return(
-        <div className="flex justify-center p-4">
+        <div className="flex justify-center place-items-center p-4 ">
             
-            <div className="border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex flex-col justify-center items-center"
+            <div className="border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex-col justify-center items-center"
                 style={{width: "400px", height: "400px", backgroundColor: "#171C2Eff"}} >
-            <div className="flex text-4xl text-white font-serif p-4 justify-center rounded-lg shadow-lg  items-center border-black  ">
+            <div className="flex h-fit text-4xl text-white font-serif p-4 justify-center rounded-lg shadow-lg  items-center border-black  ">
             {/* <div className="mr-4">
             <FaCodeFork style={{ color: "gray" }} />{" "}
             </div> */}
@@ -99,7 +99,7 @@ const ForkedRepos = () =>{
                 onChange={handleForkedReposInputChange}
                 />
                 <ul
-                className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
+                className="h-fit w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
                 style={{ backgroundColor: "#171C2Eff" }}
                 >
 
