@@ -8,6 +8,7 @@ import RepoSearch from "../components/RepoSearch";
 import { BsStars } from "react-icons/bs";
 import { FaCodeFork } from "react-icons/fa6";
 import { VscRepo, VscGitPullRequest } from "react-icons/vsc";
+import { NavLink } from "react-router-dom";
 
 const ReposHome = () => {
   const isMediumScreen = useMediaQuery("(max-width: 1100px)");
@@ -115,18 +116,21 @@ const ReposHome = () => {
               </ul>
             </div>
           </div>
-          <div
-            className="flex col-start-2 border-white border-2 border-dotted row-start-1 col-span-1 rounded-md h-4/5 shadow-3xl m-2 items-center justify-center font-bold text-white"
-            style={{ backgroundColor: "#171C2Eff" }}
-          >
-            <div className="mr-4">
-              <VscRepo style={{ color: "green", fontSize: "24px" }} />
+          <NavLink to="/ownedRepos">
+            <div
+              className="flex col-start-2 border-white border-2 border-dotted row-start-1 col-span-1 rounded-md h-4/5 shadow-3xl m-2 items-center justify-center font-bold text-white"
+              style={{ backgroundColor: "#171C2Eff" }}
+            >
+              <div className="mr-4">
+                <VscRepo style={{ color: "green", fontSize: "24px" }} />
+              </div>
+              Repos You Own
+              <div className="ml-4">
+                <VscRepo style={{ color: "green", fontSize: "24px" }} />
+              </div>
             </div>
-            Repos You Own
-            <div className="ml-4">
-              <VscRepo style={{ color: "green", fontSize: "24px" }} />
-            </div>
-          </div>
+          </NavLink>
+
           <div
             className="flex col-start-2 h-4/5 col-span-1  border-white border-2 border-dotted row-start-2 rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
             style={{ backgroundColor: "#171C2Eff" }}
@@ -170,14 +174,6 @@ const ReposHome = () => {
               />
             </div>
           </div>
-          {/* <div>ReposHome3</div>
-        <div>ReposHome4</div>
-        <div>ReposHome5</div>
-        <div>ReposHome6</div>
-        <div>ReposHome7</div>
-        <div>ReposHome8</div>
-        <div>ReposHome9</div>
-        <div>ReposHome10</div> */}
         </div>
       </div>
       <div
