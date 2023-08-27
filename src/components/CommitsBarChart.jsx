@@ -73,6 +73,7 @@ const BarChart = ({ fullRepo }) => {
     <ResponsiveBar
       data={commitsData}
       isInteractive={true}
+      enableLabel = {false}
       tooltip={CustomTooltip}
       theme={{
         axis: {
