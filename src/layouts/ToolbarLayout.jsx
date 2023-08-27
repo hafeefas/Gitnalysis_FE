@@ -12,8 +12,6 @@ import { useMediaQuery } from '@mui/material';
 
 //AiOutlineMail
 
-
-
 function ToolbarLayout() {
 
   const [open, setOpen] = useState(false);

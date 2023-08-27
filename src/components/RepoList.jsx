@@ -33,16 +33,6 @@ const RepoList = () => {
     return <div>Loading...</div>; // or render some loading indicator
   }
 
-  // searching for any github repo
-  const handleGithubLink = (event) => {
-    setGithubLink(event.target.value);
-  };
-
-  // const handleGithubLinkClick = () => {
-  //   console.log("user entered the github link: ${githubLink} " )
-  //   window.open(githubLink, "_blank");
-  // }
-
   //for search, filter through the repositories based on the input
   const filteredRepos = ownerRepos.filter((repo) =>
     repo.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -79,11 +69,13 @@ const RepoList = () => {
   );
 
   //remove all starred repoes from contributed repos
-  for (let i = 0; i < contributedRepos.length; i++) {
-    let repoIndex = starredRepos?.findIndex(
-      (repo) => repo.name === contributedRepos[i].name
-    );
-    contributedRepos.splice(repoIndex, 1);
+  if (contributedRepos) {
+    for (let i = 0; i < contributedRepos.length; i++) {
+      let repoIndex = starredRepos?.findIndex(
+        (repo) => repo.name === contributedRepos[i].name
+      );
+      contributedRepos.splice(repoIndex, 1);
+    }
   }
 
   console.log("hello");
@@ -332,17 +324,6 @@ const RepoList = () => {
           className="h-full w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
           style={{ backgroundColor: "#171C2Eff" }}
         >
-          {/* the filter will make the search work as well  */}
-
-          {/* {filteredRepos.map((repo) => (
-            <li
-              key={repo.full_name}
-              onClick={() => handleClickRepo(repo.full_name)}
-              className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
-            >
-              {repo.name}
-            </li>
-          ))} */}
           {sortedContributedReposSearch.map((repoName) => (
             <li
               key={repoName.full_name}

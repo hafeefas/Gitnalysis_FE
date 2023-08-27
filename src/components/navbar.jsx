@@ -7,15 +7,15 @@ import { RxAvatar } from 'react-icons/rx';
 function Navbar() {
   const currRepo = useSelector((state) => state.repo.currRepo)
   const username = useSelector((state) => state.user.username);
-  const [user,setUser] = useState()
-  
+  const [user, setUser] = useState()
+
   // const repoParts = currRepo?.split("/");
-        // const repo = repoParts[1]; 
+  // const repo = repoParts[1]; 
 
   useEffect(() => {
     async function fetchUsers() {
       try {
-       
+
         const response = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/api/users/me/`,
           {},
@@ -28,13 +28,13 @@ function Navbar() {
       }
     }
 
-        fetchUsers();
-    }, [currRepo]);
+    fetchUsers();
+  }, [currRepo]);
 
 
   // currRepo[0].owner.avatar_url
   console.log("LOGS " + currRepo);
-  
+
 
   const activeMenu = false;
 
@@ -58,7 +58,7 @@ function Navbar() {
           <LoginButton />
         </div>
 
-        
+
 
         <div
           className={
@@ -80,8 +80,9 @@ function Navbar() {
             :<div className="p-2 text-xl"></div>
             }
 
-            </div>
-            
+
+          </div>
+
         </div>
       </div>
     </div>
