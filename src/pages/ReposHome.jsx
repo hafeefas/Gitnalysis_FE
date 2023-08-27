@@ -147,7 +147,8 @@ const ReposHome = () => {
               <BsStars style={{ color: "yellow" }} />
             </div>
           </NavLink>
-          <div
+          <NavLink to="/forkedrepos">
+            <div
             className="flex col-start-2 h-4/5 row-start-3 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
             style={{ backgroundColor: "#171C2Eff" }}
           >
@@ -162,6 +163,8 @@ const ReposHome = () => {
             </Link>
             
           </div>
+          </NavLink>
+          
           <div
             className="flex col-start-2 h-4/5 row-start-4 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
             style={{ backgroundColor: "#171C2Eff" }}
