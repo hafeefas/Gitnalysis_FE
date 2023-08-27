@@ -13,6 +13,9 @@ import { useMediaQuery } from "@mui/material";
 import MobileToolbarLayout from "./layouts/MobileToolbarLayout";
 import ReposHome from "./pages/ReposHome";
 
+import ForkedRepos from "./pages/ForkedRepos";
+
+
 function App() {
   const [username, setUserName] = useState("");
   const [userid, setUserId] = useState("");
@@ -86,6 +89,8 @@ function App() {
             <Route path="/repos" element={<ReposHome />} />
             <Route path="/reposlist" element={<Repos />} />
             <Route path="/notifications" element={<Notifications />} />
+            <Route path="/forkedrepos" element={<ForkedRepos />} />
+
           </Routes>
         </div>
       </Router>

@@ -17,6 +17,7 @@ import RepoSearch from "../components/RepoSearch";
 import { BsStars } from "react-icons/bs";
 import { FaCodeFork } from "react-icons/fa6";
 import { VscRepo, VscGitPullRequest } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 
 const ReposHome = () => {
   return (
@@ -108,13 +109,16 @@ const ReposHome = () => {
             className="flex col-start-2 h-4/5 row-start-3 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
             style={{ backgroundColor: "#171C2Eff" }}
           >
-            <div className="mr-4">
-              <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
-            </div>
-            Repos You've Forked
-            <div className="ml-4">
-              <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
-            </div>
+            <Link to="/ForkedRepos" className="flex ">
+              <div className="mr-4">
+                <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
+              </div>
+              Repos You've Forked
+              <div className="ml-4">
+                <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
+              </div>
+            </Link>
+            
           </div>
           <div
             className="flex col-start-2 h-4/5 row-start-4 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
