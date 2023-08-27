@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Select, MenuItem, FormControl, InputLabel } from '@mui/material'
-
-
 import { ResponsiveBar } from "@nivo/bar";
 import axios from "axios";
+
+const CustomTooltip = ({ id, value, indexValue }) => (
+  <div style={{ padding: '12px', color: '#fff', background: 'rgba(0, 0, 0, 0.7)' }}>
+    <strong>{indexValue}</strong>
+    <br />
+    Commits: {value}
+  </div>
+);
+
+
+
 
 const BarChart = ({ fullRepo }) => {
   const [commitsData, setCommitsData] = useState([]);
@@ -63,7 +72,8 @@ const BarChart = ({ fullRepo }) => {
       </div>
     <ResponsiveBar
       data={commitsData}
-      isInteractive={false}
+      isInteractive={true}
+      tooltip={CustomTooltip}
       theme={{
         axis: {
           ticks: {
