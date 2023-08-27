@@ -11,7 +11,7 @@ import ToolbarLayout from "./layouts/ToolbarLayout";
 import Navbar from "./components/navbar";
 import { useMediaQuery } from "@mui/material";
 import MobileToolbarLayout from "./layouts/MobileToolbarLayout";
-import RepoCategories from "./pages/RepoCategories";
+import ReposHome from "./pages/ReposHome";
 
 function App() {
   const [username, setUserName] = useState("");
@@ -83,8 +83,8 @@ function App() {
               <Route path="/" element={<NewChartLayout />} />
             )}
             {/* <Route path="/login" element={<Login />} /> */}
-            <Route path="/repos" element={<RepoCategories />} />
-            <Route path="/reposlist" element={<Repos h-96 />} />
+            <Route path="/repos" element={<ReposHome />} />
+            <Route path="/reposlist" element={<Repos />} />
             <Route path="/notifications" element={<Notifications />} />
           </Routes>
         </div>
