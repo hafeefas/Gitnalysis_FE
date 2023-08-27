@@ -19,6 +19,7 @@ import NumDeployments from "../components/NumDeployments";
 import Activity from "../components/Activity";
 import IssuesTimeline from "../components/IssuesTimeline";
 import MergeSuccessRatePie from "../components/MergeSuccessRatePie";
+import WebsiteUsersCounter from "../components/WebsiteUsersCounter";
 
 const NewChartLayout = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
@@ -36,8 +37,10 @@ const NewChartLayout = () => {
           className="col-span-5 row-span-2 col-start-1 row-start-2 text-center items-center rounded-xl shadow-3xl text-white h-full font-bold"
           style={{ backgroundColor: "#171C2Eff" }}
         >
-          Lead Time for Change
-          <LeadTimeChart />
+          <div className="pt-6 pb-4">
+            Lead Time for Change
+            <LeadTimeChart />
+          </div>
         </div>
         <div className="flex col-span-2 col-start-5 row-start-1 h-32 p-2 iflex w-full justify-center items-center bg-gradient-to-br from-lime-400 to-green-500 hover:from-pink-500 hover:to-yellow-500 rounded-xl font-bold text-white shadow-2xl">
           <MergeSuccessRate />
@@ -134,6 +137,9 @@ const NewChartLayout = () => {
           style={{ backgroundColor: "#171C2Eff" }}
         >
           <MergeSuccessRatePie />
+        </div>
+        <div className="col-span-8 row-span-1 col-start-1 row-start-12 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white bg-gradient-to-br from-indigo-300 to-indigo-500">
+          <WebsiteUsersCounter />
         </div>
       </div>
     </div>

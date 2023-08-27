@@ -73,30 +73,35 @@ const RepoList = () => {
   );
 
   //remove all starred repoes from contributed repos
+  if(contributedRepos){
   for (let i = 0; i < contributedRepos.length; i++) {
     let repoIndex = starredRepos?.findIndex(
       (repo) => repo.name === contributedRepos[i].name
     );
     contributedRepos.splice(repoIndex, 1);
   }
+}
 
   console.log("hello");
 
   console.log(contributedRepos);
 
-  //sort the forked repos
-  const sortedForkedRepos = forkedRepos?.slice().sort((repo1, repo2) => {
-    const name1 = repo1.name.toLowerCase();
-    const name2 = repo2.name.toLowerCase();
+  let sortedForkedRepos = [];
+  if (forkedRepos) {
+    //sort the forked repos
+    sortedForkedRepos = forkedRepos?.slice().sort((repo1, repo2) => {
+      const name1 = repo1.name.toLowerCase();
+      const name2 = repo2.name.toLowerCase();
 
-    if (name1 < name2) {
-      return -1;
-    }
-    if (name1 > name2) {
-      return 1;
-    }
-    return 0;
-  });
+      if (name1 < name2) {
+        return -1;
+      }
+      if (name1 > name2) {
+        return 1;
+      }
+      return 0;
+    });
+  }
 
   let sortedStarredRepos = [];
   // console.log(starredRepos, "STARRED");

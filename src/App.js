@@ -3,24 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUsername } from "./redux/slices/userSlice";
 import { getLoggedInUser } from "./redux/slices/userSlice";
-import LogoutIcon from "@mui/icons-material/Logout";
-import Login from "./pages/Login";
 import Repos from "./pages/Repos";
-import Notifications from './pages/Notifications';
-import ChartLayout from "./layouts/ChartLayout";
+import Notifications from "./pages/Notifications";
 import NewChartLayout from "./layouts/NewChartLayout";
 import TabletChartLayout from "./layouts/TabletChartLayout";
 import ToolbarLayout from "./layouts/ToolbarLayout";
 import Navbar from "./components/navbar";
-import axios from "axios";
-import { getAuthenticatedUser, getUserRepos } from "./services/githubLogin";
 import { useMediaQuery } from "@mui/material";
 import MobileToolbarLayout from "./layouts/MobileToolbarLayout";
+import ReposHome from "./pages/ReposHome";
 
 function App() {
   const [username, setUserName] = useState("");
   const [userid, setUserId] = useState("");
-  const [repos, setRepos] = useState();
   const [currRepo, setCurrRepo] = useState("");
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
   const isMobileScreen = useMediaQuery("(max-width: 420px)");
@@ -88,7 +83,8 @@ function App() {
               <Route path="/" element={<NewChartLayout />} />
             )}
             {/* <Route path="/login" element={<Login />} /> */}
-            <Route path="/repos" element={<Repos h-96 />} />
+            <Route path="/repos" element={<ReposHome />} />
+            <Route path="/reposlist" element={<Repos />} />
             <Route path="/notifications" element={<Notifications />} />
           </Routes>
         </div>
