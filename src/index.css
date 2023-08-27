@@ -24,3 +24,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@keyframes moveBackground {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@layer utilities {
+  /* Define the animation class using the animate utility class */
+  .animate-translate {
+    animation: moveBackground 20s linear infinite; /* Adjust animation duration as needed */
+  }
+}

@@ -1,15 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  getUserRepos,
-  getForkedRepos,
-  getNonForkedRepos,
-  getStarredRepos,
-} from "../redux/slices/repoSlice";
 import { useMediaQuery } from "@mui/material";
-import RepoList from "../components/RepoList";
-import "../login.css";
-import DateRangeToolbar from "../components/DateRangeToolbar";
 import gitnalsyisBackground from "../assets/gitnalysis_coder.png";
 import MetricsIcon from "../icons/MetricsIcon";
 import LinkIcon from "../icons/LinkIcon";
@@ -19,12 +10,17 @@ import { FaCodeFork } from "react-icons/fa6";
 import { VscRepo, VscGitPullRequest } from "react-icons/vsc";
 
 const ReposHome = () => {
+  const isMediumScreen = useMediaQuery("(max-width: 1100px)");
   return (
     <div
-      className="flex w-full bg-gray-200 overflow-scroll text-white h-2/3 mt-24"
+      className="flex w-full h-screen bg-gray-200 overflow-scroll text-white mt-6"
       style={{ backgroundColor: "#111526ff" }}
     >
-      <div className="grid w-3/4 grid-cols-2 grid-rows-0 row-span-8 ml-8 text-center z-10">
+      <div
+        className={`grid ${
+          isMediumScreen ? "w-full" : "w-3/4"
+        } grid-cols-2 h-5/6 grid-rows-0 row-span-8 ml-8 text-center z-10`}
+      >
         <div
           className="flex row-span-1 col-span-2  justify-center items-end pb-8 text-5xl"
           style={{ fontFamily: `'Domine', serif` }}
@@ -54,26 +50,68 @@ const ReposHome = () => {
         </div>
         <div className="grid grid-cols-2 grid-rows-4 col-span-2 row-span-4">
           <div
-            className="flex col-start-1 col-span-1 row-span-4 text-3xl"
+            className="flex col-start-1 col-span-1 row-span-4 text-[3vw] md:text-[2vw] sm:text-[1.5vw]"
             style={{
               fontFamily: `"Montserrat", sans-erif`,
             }}
           >
             <div className="grid items-center ml-12 mr-10">
-              Or, choose from repo categories to:
+              <div className="text-[2.5vw] md:text-[1.75vw] sm:text-[1vw] mb-10">
+                Or, choose from repo categories to:
+              </div>
               <ul className="-mt-10">
-                <li className="flex flex-start break-normal mb-2">
-                  <MetricsIcon />
-                  <div className="text-base text-left ml-4 w-5/6 mb-4">
-                    View metrics for owned and starred repos
-                  </div>
-                </li>
-                <li className="flex items-center">
-                  <LinkIcon />
-                  <div className="text-base text-left ml-4 w-5/6">
-                    Link to your forked repos and others you've contributed to
-                  </div>
-                </li>
+                {isMediumScreen ? (
+                  <li
+                    className={`flex break-normal mb-2 ${
+                      isMediumScreen ? "flex-col" : ""
+                    }`}
+                  >
+                    <div className="flex justify-center">
+                      <MetricsIcon />
+                    </div>
+                    <div className="flex justify-center text-base text-center ml-4 w-5/6 mb-4 text-[1.5vw] md:text-[1.5vw] sm:text-[1.25vw]">
+                      View metrics for owned and starred repos
+                    </div>
+                  </li>
+                ) : (
+                  <li
+                    className={`flex flex-start break-normal mb-2 ${
+                      isMediumScreen ? "flex-col" : ""
+                    }`}
+                  >
+                    <div>
+                      <MetricsIcon />
+                    </div>
+                    <div className="text-base text-left ml-4 w-5/6 mb-4 text-[1.5vw] md:text-[1.25vw] sm:text-[1vw]">
+                      View metrics for owned and starred repos
+                    </div>
+                  </li>
+                )}
+                {isMediumScreen ? (
+                  <li
+                    className={`flex break-normal mb-2 ${
+                      isMediumScreen ? "flex-col" : ""
+                    }`}
+                  >
+                    <div className="flex justify-center">
+                      <LinkIcon />
+                    </div>
+                    <div className="flex justify-center text-base text-center ml-4 w-5/6 mb-4 text-[1.5vw] md:text-[1.5vw] sm:text-[1.25vw]">
+                      View metrics for owned and starred repos
+                    </div>
+                  </li>
+                ) : (
+                  <li
+                    className={`flex flex-start break-normal mb-2 ${
+                      isMediumScreen ? "flex-col" : ""
+                    }`}
+                  >
+                    <LinkIcon />
+                    <div className="text-base text-left ml-4 w-5/6 text-[1.5vw] md:text-[1.5vw] sm:text-[1.25vw]">
+                      Link to your forked repos and others you've contributed to
+                    </div>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
@@ -142,7 +180,11 @@ const ReposHome = () => {
         <div>ReposHome10</div> */}
         </div>
       </div>
-      <div className="flex justify-center items-center -translate-x-14 ">
+      <div
+        className={`flex justify-center items-center -translate-y-12 -translate-x-14 ${
+          isMediumScreen ? "-translate-x-20" : ""
+        }`}
+      >
         <img src={gitnalsyisBackground} />
       </div>
     </div>
