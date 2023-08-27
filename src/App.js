@@ -12,6 +12,7 @@ import Navbar from "./components/navbar";
 import { useMediaQuery } from "@mui/material";
 import MobileToolbarLayout from "./layouts/MobileToolbarLayout";
 import ReposHome from "./pages/ReposHome";
+import OwnedRepos from "./pages/OwnedRepos";
 
 function App() {
   const [username, setUserName] = useState("");
@@ -84,6 +85,7 @@ function App() {
             )}
             {/* <Route path="/login" element={<Login />} /> */}
             <Route path="/repos" element={<ReposHome />} />
+            <Route path="/ownedRepos" element={<OwnedRepos />} />
             <Route path="/reposlist" element={<Repos />} />
             <Route path="/notifications" element={<Notifications />} />
           </Routes>

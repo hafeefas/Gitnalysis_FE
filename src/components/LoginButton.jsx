@@ -15,8 +15,8 @@ import { BsGithub } from "react-icons/bs";
 //BsGithub
 
 const LoginButton = () => {
-//   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-//   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  //   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  //   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.username);
 
@@ -63,13 +63,12 @@ const LoginButton = () => {
   return (
     <div className="flex justify-center items-center">
       {username ? (
-        
         <button
           className=" w-48 flex justify-center items-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded focus:outline-none font-sans-serif font-medium"
           type="button"
           onClick={handleLogoutUser}
         >
-          <BsGithub className="hover:text-white  text-xl mr-2 text-slate-400 hover:text-white"/>
+          <BsGithub className="hover:text-white  text-xl mr-2 text-slate-400 hover:text-white" />
           {/* <img src={GitHubLogo} alt="GitHub Logo" className="h-5 w-5 mr-2" />{" "} */}
           Logout
         </button>

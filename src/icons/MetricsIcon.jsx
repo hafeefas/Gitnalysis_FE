@@ -1,11 +1,24 @@
-import React from 'react'
+import React from "react";
+import { useMediaQuery } from "@mui/material";
 
 const MetricsIcon = () => {
+  const isMediumScreen = useMediaQuery("(max-width: 1100px)");
+  const isTabletScreen = useMediaQuery("(max-width: 770px)");
+  const isMobileScreen = useMediaQuery("(max-width: 420px)");
+
   return (
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="50"
+        width={
+          isMediumScreen
+            ? "30"
+            : isTabletScreen
+            ? "25"
+            : isMobileScreen
+            ? "40"
+            : "50"
+        }
         height="50"
         viewBox="0 0 50 50"
         style={{ fill: "#000000" }}
@@ -16,6 +29,6 @@ const MetricsIcon = () => {
       </svg>
     </div>
   );
-}
+};
 
-export default MetricsIcon
+export default MetricsIcon;

@@ -1,11 +1,24 @@
 import React from "react";
+import { useMediaQuery } from "@mui/material";
 
 const LinkIcon = () => {
+  const isMediumScreen = useMediaQuery("(max-width: 1100px)");
+  const isTabletScreen = useMediaQuery("(max-width: 770px)");
+  const isMobileScreen = useMediaQuery("(max-width: 420px)");
+
   return (
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="50"
+        width={
+          isMobileScreen
+            ? "40"
+            : isTabletScreen
+            ? "25"
+            : isMediumScreen
+            ? "30"
+            : "50"
+        }
         height="50"
         viewBox="0 0 50 50"
         style={{ fill: "#000000" }}
