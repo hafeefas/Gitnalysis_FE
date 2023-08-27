@@ -86,6 +86,7 @@ function App() {
             {/* <Route path="/login" element={<Login />} /> */}
             <Route path="/repos" element={<ReposHome />} />
             <Route path="/ownedRepos" element={<OwnedRepos />} />
+            <Route path="/starredRepos" element={<OwnedRepos />} />
             <Route path="/reposlist" element={<Repos />} />
             <Route path="/notifications" element={<Notifications />} />
           </Routes>
