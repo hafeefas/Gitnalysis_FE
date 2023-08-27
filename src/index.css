@@ -2,24 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  --oxford-blue: #171C2Eff;
-  --robin-egg-blue: #22E0E3ff;
+* {
+  --oxford-blue: #171c2eff;
+  --robin-egg-blue: #22e0e3ff;
   --rich-black: #111526ff;
-  --steel-pink: #DD15C9ff;
-  --heliotrope: #D171F1ff;
+  --steel-pink: #dd15c9ff;
+  --heliotrope: #d171f1ff;
+  --cinnabar: #f3502aff;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
