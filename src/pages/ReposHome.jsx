@@ -51,7 +51,7 @@ const ReposHome = () => {
           }}
         >
           {/* Discover insights and metrics of your favorite GitHub repositories */}
-          <RepoSearch />
+          <RepoSearch/>
         </div>
         <div className="grid grid-cols-2 grid-rows-4 col-span-2 row-span-4">
           <div
