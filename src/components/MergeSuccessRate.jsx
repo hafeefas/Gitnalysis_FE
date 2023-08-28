@@ -10,7 +10,7 @@ const MergeSuccessRate = () => {
 
     const tooltipContent = (percentage) => {
         if (percentage >= 90) {
-            return `A ${percentage}% merge success rate, is generally considered good. However, factors like project type, size, maturity, review process, and contributor experience can influence this rate.`;
+            return `A ${percentage}% merge success rate is generally considered good. However, factors like project type, size, maturity, review process, and contributor experience can influence this rate.`;
         } else {
             return `A merge success rate of ${percentage}% is below the general good threshold of 90%. However, remember that factors like project type, size, maturity, review process, and contributor experience can influence this rate.`;
             }
