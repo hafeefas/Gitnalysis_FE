@@ -47,7 +47,7 @@ const ReposHome = () => {
           }}
         >
           {/* Discover insights and metrics of your favorite GitHub repositories */}
-          <RepoSearch/>
+          <RepoSearch />
         </div>
         <div className="grid grid-cols-2 grid-rows-4 col-span-2 row-span-4">
           <div
@@ -130,22 +130,23 @@ const ReposHome = () => {
               </div>
             </div>
           </NavLink>
-
-          <div
-            className="flex col-start-2 h-4/5 col-span-1  border-white border-2 border-dotted row-start-2 rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
-            style={{ backgroundColor: "#171C2Eff" }}
-          >
+          <NavLink to="/starredRepos">
+            <div
+              className="flex col-start-2 h-4/5 col-span-1  border-white border-2 border-dotted row-start-2 rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
+              style={{ backgroundColor: "#171C2Eff" }}
+            >
+              <div className="mr-4">
+                <BsStars style={{ color: "yellow", fontSize: "24px" }} />
+              </div>
+              Your Starred Repos
+              <div className="ml-4">
+                <BsStars style={{ color: "yellow", fontSize: "24px" }} />
+              </div>
+            </div>
             <div className="mr-4">
-              <BsStars style={{ color: "yellow", fontSize: "24px" }} />
+              <BsStars style={{ color: "yellow" }} />
             </div>
-            Your Starred Repos
-            <div className="ml-4">
-              <BsStars style={{ color: "yellow", fontSize: "24px" }} />
-            </div>
-          </div>
-          <div className="mr-4">
-            <BsStars style={{ color: "yellow" }} />
-          </div>
+          </NavLink>
           <div
             className="flex col-start-2 h-4/5 row-start-3 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
             style={{ backgroundColor: "#171C2Eff" }}
