@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom'
 import {
   getUserRepos,
   getForkedRepos,
@@ -50,7 +51,7 @@ const ReposHome = () => {
           }}
         >
           {/* Discover insights and metrics of your favorite GitHub repositories */}
-          <RepoSearch/>
+          <RepoSearch />
         </div>
         <div className="grid grid-cols-2 grid-rows-4 col-span-2 row-span-4">
           <div
@@ -108,6 +109,21 @@ const ReposHome = () => {
             className="flex col-start-2 h-4/5 row-start-3 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
             style={{ backgroundColor: "#171C2Eff" }}
           >
+            <Link to="/ForkedRepos" className="flex ">
+              <div className="mr-4">
+                <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
+              </div>
+              Repos You've Forked
+              <div className="ml-4">
+                <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
+              </div>
+            </Link>
+
+          </div>
+          <div
+            className="flex col-start-2 h-4/5 row-start-3 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
+            style={{ backgroundColor: "#171C2Eff" }}
+          >
             <div className="mr-4">
               <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
             </div>
@@ -125,7 +141,9 @@ const ReposHome = () => {
                 style={{ color: "#cb9ac4ff", fontSize: "24px" }}
               />
             </div>
-            Other Repos
+            <Link to="/contributedrepos">
+              Other Repos
+            </Link>
             <div className="ml-4">
               <VscGitPullRequest
                 style={{ color: "#cb9ac4ff", fontSize: "24px" }}
