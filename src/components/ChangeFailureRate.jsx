@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { ResponsivePie } from '@nivo/pie'
 import axios from 'axios'
+import { Tooltip } from '@mui/material'
 
 
 
@@ -38,7 +39,7 @@ const CFR = () => {
         {
             id: "CFR",
             label: "Change Failure Rate",
-            value: cfr
+            value: cfr,
         },
         {
             id: "Success",
@@ -49,16 +50,45 @@ const CFR = () => {
 
     return (
         <div style={{ height: 400, width: 400 }}>
+            <Tooltip
+                title={`The Change Failure Rate (CFR) is the percentage of deployments that result in failure. A common guideline is to aim for a CFR below 15% to ensure a stable and reliable software release process.`}
+                arrow
+                placement="top"
+                // style={{
+                //     backgroundColor: '#333',
+                //     color: '#fff',
+                //     fontSize: '14px',
+                //     border: '1px solid #ccc',
+                //     borderRadius: '4px',
+                //     padding: '8px',
+                // }}
+            >
+            <div>Change Failure Rate</div>
+            </Tooltip>
             <ResponsivePie
                 data={data}
-                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                isInteractive = {false}
+                margin={{ top: 80, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.5}
                 padAngle={0.7}
                 cornerRadius={3}
-                colors={['#E31837', '#00FFFF']} // Change colors as per your requirement
-                borderColor={{ from: 'color', modifiers: [['darker', 0.6]] }}
+                activeOuterRadiusOffset={8}
+                borderWidth={1}
+                colors={['#fec7d7', '#fffffe']} 
+                borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
+                arcLinkLabelsSkipAngle={10}
+                arcLinkLabelsTextColor="white"
+                arcLinkLabelsThickness={2}
+                arcLinkLabelsColor={{ from: "color" }}
+                arcLabelsSkipAngle={10}
+                arcLabelsTextColor={{
+                  from: "color",
+                  modifiers: [["darker", 2]],
+                }}
                 radialLabel="id"
+                radialLabelsTextColor="white" 
             />
+           
             
         </div>
     )
