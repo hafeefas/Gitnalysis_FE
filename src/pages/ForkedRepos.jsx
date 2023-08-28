@@ -2,93 +2,122 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentRepo } from "../redux/slices/repoSlice";
-import { getUserRepos, getNonForkedRepos } from "../redux/slices/repoSlice";
+import { FaCodeFork } from "react-icons/fa6";
 import { useMediaQuery } from "@mui/material";
-import { VscRepo } from "react-icons/vsc";
+import { getForkedRepos } from "../redux/slices/repoSlice";
 import { motion } from "framer-motion"
 
-const OwnedRepos = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const allRepos = useSelector((state) => state.repo.allRepos);
-  const nonForkedRepos = useSelector((state) => state.repo?.nonForkedRepos);
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [githubLink, setGithubLink] = useState("");
-  const [showDropdown, setShowDropdown] = useState(false); // Track the visibility of the dropdown
+const ForkedRepos = () =>{
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const forkedRepos = useSelector((state) => state.repo.forkedRepos);
+    const nonForkedRepos = useSelector((state) => state.repo.nonForkedRepos);
+    const loggedInUser = useSelector((state) => state.user.loggedInUser);
+    const allRepos = useSelector((state) => state.repo.allRepos);
 
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value;
-    setSearchQuery(inputValue);
-    setShowDropdown(inputValue !== ""); // Set showDropdown to true only when input is not empty
-  };
+ 
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [forkedReposSearchQuery, setForkedReposSearchQuery] = useState("");
+    const [githubLink, setGithubLink] = useState("")
+    const isTabletScreen = useMediaQuery("(max-width: 770px)");
+    const isMobileScreen = useMediaQuery("(max-width: 420px)");
 
-  const handleDropdownItemClick = (repoName) => {
-    setSearchQuery(repoName);
-    setShowDropdown(false); // Hide the dropdown after selecting an item
-    handleClickRepo(repoName); // Trigger the action when an item is clicked
-  };
+    const ownerRepos = nonForkedRepos?.filter(
+        (repo) => repo.owner.login === loggedInUser.login
+      );
+      console.log(ownerRepos, "is owner repios null ")
 
-  //find all repos owned by the user
-  const ownerRepos = nonForkedRepos?.filter(
-    (repo) => repo.owner.login === loggedInUser.login
-  );
-  console.log(ownerRepos, "is owner repios null ");
-
-  const sortedOwnerRepos = ownerRepos?.slice().sort((repo1, repo2) => {
-    const name1 = repo1.name.toLowerCase();
-    const name2 = repo2.name.toLowerCase();
-
-    if (name1 < name2) {
-      return -1;
-    }
-    if (name1 > name2) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const filteredRepos = sortedOwnerRepos?.filter((repo) =>
+   
+     //for search, filter through the repositories based on the input
+    const filteredRepos = ownerRepos.filter((repo) =>
     repo.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+    );
+    console.log(filteredRepos)
 
-  //show dashboard for a particular repo
-  const handleClickRepo = (repoName) => {
-    // setCurrRepo(repoName);
-    dispatch(setCurrentRepo(repoName));
-    // console.log(repoName, "clicked repo");
-    navigate("/");
-  };
 
-  useEffect(() => {
-    const fetchUserRepos = async () => {
-      try {
-        await dispatch(getNonForkedRepos());
-      } catch (error) {
-        console.error("Error fetching repos:", error);
-      }
+    console.log("console logging the forked repos", forkedRepos)
+
+    // for search, filter through the forked repos
+    const filterForked = forkedRepos.filter((repo) =>
+    repo.name.toLowerCase().includes(forkedReposSearchQuery.toLowerCase())
+    )
+        //console.log(filterForked, "filtering fork")
+        //handle input changes and update the searching query for filtered repos
+    
+
+    //handle input change for forked repos
+    const handleForkedReposInputChange = (event) => {
+        setForkedReposSearchQuery(event.target.value);
     };
-    fetchUserRepos();
-  }, []);
+    const handleInputChange = (event) => {
+        const inputValue = event.target.value;
+        setSearchQuery(inputValue);
+        setShowDropdown(inputValue !== ""); // Set showDropdown to true only when input is not empty
+        console.log(inputValue, "FORKEDREPOS INPUT SEARCH");
+      };
+    
+      const handleDropdownItemClick = (repoName) => {
+        setSearchQuery(repoName);
+        setShowDropdown(false); // Hide the dropdown after selecting an item
+        handleClickRepo(repoName); // Trigger the action when an item is clicked
+        console.log(repoName, "FORKEDREPOS DROPDOWN REPO NAME");
+      };
+    
 
-  if (allRepos) {
-    console.log(allRepos);
-  }
+    let sortedForkedRepos = [];
+    if (forkedRepos) {
+        //sort the forked repos
+        sortedForkedRepos = forkedRepos?.slice().sort((repo1, repo2) => {
+        const name1 = repo1.name.toLowerCase();
+        const name2 = repo2.name.toLowerCase();
 
-  // Check if loggedInUser is available
-  if (!loggedInUser) {
-    return <div>Please log in to view the repos that you own!</div>; // or render some loading indicator
-  }
+        if (name1 < name2) {
+            return -1;
+        }
+        if (name1 > name2) {
+            return 1;
+        }
+        return 0;
+        });
+    }
+        //show dashboard for a particular repo
+    const handleClickRepo = (repoName) => {
+        // setCurrRepo(repoName);
+        dispatch(setCurrentRepo(repoName));
+        // console.log(repoName, "clicked repo");
+        navigate("/");
+    };
+    console.log(forkedRepos, "FORKEDD")
 
-  return (
-    <div className="mt-12 flex-col flex justify-center items-center p-4">
+
+    
+
+    useEffect(() => {
+        const fetchForkedRepos = async () => {
+        try {            
+            await dispatch(getForkedRepos());
+        } catch (error) {
+            console.error("Error fetching repos:", error);
+        }
+        };
+        fetchForkedRepos();
+    }, [dispatch]);
+        // Check if loggedInUser is available
+        if (!loggedInUser) {
+            return <div>Loading...</div>; // or render some loading indicator
+        }
+
+    return(
+       
+        <div className="mt-12 flex-col flex justify-center items-center p-4">
       <div className="mt-8 duration-300 w-96 border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex-col justify-center items-center"
             style={{ backgroundColor: "#171C2Eff" }}>
         <div className="flex h-fit text-4xl text-white font-serif p-4 justify-center rounded-lg shadow-lg  items-center border-black">
-              <h1>Your Repos</h1>
+              <h1>Forked Repos</h1>
               <div className="ml-4">
-                  <VscRepo style={{ color: "green" }} />
+                  <FaCodeFork style={{ color: "green" }} />
               </div>
           </div>
         <div
@@ -156,7 +185,7 @@ const OwnedRepos = () => {
           className="h-fit ml-5 mr-5 w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
           style={{ backgroundColor: "#171C2Eff" }}
         >
-          {sortedOwnerRepos?.map((repo) => (
+          {sortedForkedRepos?.map((repo) => (
             <li
               key={repo.full_name}
               onClick={() => handleClickRepo(repo.full_name)}
@@ -168,7 +197,7 @@ const OwnedRepos = () => {
         </ul>
       </motion.div>
     </div>
-  );
-};
-
-export default OwnedRepos;
+        
+    )
+}
+export default ForkedRepos;

@@ -16,6 +16,9 @@ import ContributedRepos from "./pages/ContributedRepos";
 import OwnedRepos from "./pages/OwnedRepos";
 import StarredRepos from "./pages/StarredRepos";
 
+import ForkedRepos from "./pages/ForkedRepos";
+
+
 function App() {
   const [username, setUserName] = useState("");
   const [userid, setUserId] = useState("");
@@ -93,6 +96,8 @@ function App() {
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/contributedrepos" element={<ContributedRepos/>} />
             
+            <Route path="/forkedrepos" element={<ForkedRepos />} />
+
           </Routes>
         </div>
       </Router>
