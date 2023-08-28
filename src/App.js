@@ -15,6 +15,9 @@ import ReposHome from "./pages/ReposHome";
 import OwnedRepos from "./pages/OwnedRepos";
 import StarredRepos from "./pages/StarredRepos";
 
+import ForkedRepos from "./pages/ForkedRepos";
+
+
 function App() {
   const [username, setUserName] = useState("");
   const [userid, setUserId] = useState("");
@@ -90,6 +93,8 @@ function App() {
             <Route path="/starredRepos" element={<StarredRepos />} />
             <Route path="/reposlist" element={<Repos />} />
             <Route path="/notifications" element={<Notifications />} />
+            <Route path="/forkedrepos" element={<ForkedRepos />} />
+
           </Routes>
         </div>
       </Router>
