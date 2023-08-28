@@ -82,8 +82,8 @@ const OwnedRepos = () => {
   }
 
   return (
-    <div className="flex-col flex justify-center items-center p-4">
-      <div className="duration-300 w-96 border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex-col justify-center items-center"
+    <div className="mt-12 flex-col flex justify-center items-center p-4">
+      <div className="mt-8 duration-300 w-96 border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex-col justify-center items-center"
             style={{ backgroundColor: "#171C2Eff" }}>
         <div className="flex h-fit text-4xl text-white font-serif p-4 justify-center rounded-lg shadow-lg  items-center border-black">
               <h1>Your Repos</h1>
