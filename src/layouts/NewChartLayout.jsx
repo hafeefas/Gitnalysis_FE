@@ -21,6 +21,7 @@ import IssuesTimeline from "../components/IssuesTimeline";
 import MergeSuccessRatePie from "../components/MergeSuccessRatePie";
 import WebsiteUsersCounter from "../components/WebsiteUsersCounter";
 import LeadTimeMetric from "../components/LeadTimeMetric";
+import CFR from "../components/ChangeFailureRate";
 
 const NewChartLayout = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
