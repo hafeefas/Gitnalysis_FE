@@ -1,11 +1,21 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios';
+import { Tooltip } from '@mui/material';
 
 const MergeSuccessRate = () => {
     const [mergedPr, setMergedPr] = useState(0)
     const currRepo = useSelector((state) => state.repo.currRepo);
 
+
+    const tooltipContent = (percentage) => {
+        if (percentage >= 90) {
+            return `A ${percentage}% merge success rate, is generally considered good. However, factors like project type, size, maturity, review process, and contributor experience can influence this rate.`;
+        } else {
+            return `A merge success rate of ${percentage}% is below the general good threshold of 90%. However, remember that factors like project type, size, maturity, review process, and contributor experience can influence this rate.`;
+            }
+        };
+    
     useEffect(() => {
         async function mergedPullRequests (){
             try {
@@ -29,16 +39,20 @@ const MergeSuccessRate = () => {
         }
         mergedPullRequests()
     }, [currRepo])
-  return (
-
-
-<div className="flex flex-col justify-center h-full">
+    return (
+        <div className="flex flex-col justify-center h-full">
             <div className="pink-text">Pull Request Merge Success Rate</div>
-            {mergedPr !== null && <div className="text-xl">{mergedPr}%</div>}
+            {mergedPr !== null && 
+                <Tooltip title={tooltipContent(mergedPr)}>
+                    <div className="text-xl">{mergedPr}%</div>
+                </Tooltip>
+            }
         </div>
-
-
-  )
-}
-
-export default MergeSuccessRate
+    );
+    }
+    
+    export default MergeSuccessRate
+    {/* <div className="flex flex-col justify-center h-full">
+                <div className="pink-text">Pull Request Merge Success Rate</div>
+                {mergedPr !== null && <div className="text-xl">{mergedPr}%</div>}
+            </div> */}
