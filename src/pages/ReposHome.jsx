@@ -47,7 +47,7 @@ const ReposHome = () => {
           }}
         >
           {/* Discover insights and metrics of your favorite GitHub repositories */}
-          <RepoSearch/>
+          <RepoSearch />
         </div>
         <div className="grid grid-cols-2 grid-rows-4 col-span-2 row-span-4">
           <div
@@ -118,7 +118,7 @@ const ReposHome = () => {
           </div>
           <NavLink to="/ownedRepos">
             <div
-              className="flex col-start-2 border-white border-2 border-dotted row-start-1 col-span-1 rounded-md h-4/5 shadow-3xl m-2 items-center justify-center font-bold text-white"
+              className="flex col-start-2 border-white border-2 border-dotted row-start-1 col-span-1 rounded-md h-4/5 shadow-3xl m-2 items-center justify-center font-bold text-white hover:bg-gradient-to-br hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
               style={{ backgroundColor: "#171C2Eff" }}
             >
               <div className="mr-4">
@@ -130,36 +130,40 @@ const ReposHome = () => {
               </div>
             </div>
           </NavLink>
+          <NavLink to="/starredRepos">
+            <div
+              className="flex col-start-2 h-4/5 col-span-1  border-white border-2 border-dotted row-start-2 rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white hover:bg-gradient-to-br from-pink-500 hover:to-yellow-500 hover:text-black"
+              style={{ backgroundColor: "#171C2Eff" }}
+            >
+              <div className="mr-4">
+                <BsStars style={{ color: "yellow", fontSize: "24px" }} />
+              </div>
+              Your Starred Repos
+              <div className="ml-4">
+                <BsStars style={{ color: "yellow", fontSize: "24px" }} />
+              </div>
+            </div>
+            <div className="mr-4">
+              <BsStars style={{ color: "yellow" }} />
+            </div>
+          </NavLink>
+          <NavLink to="/forkedrepos">
+            <div
+              className="flex col-start-2 h-4/5 row-start-3 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white hover:bg-gradient-to-br from-teal-300 hover:to-sky-500 hover:text-black"
+              style={{ backgroundColor: "#171C2Eff" }}
+            >
+              <div className="mr-4">
+                <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
+              </div>
+              Repos You've Forked
+              <div className="ml-4">
+                <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
+              </div>
+            </div>
+          </NavLink>
 
           <div
-            className="flex col-start-2 h-4/5 col-span-1  border-white border-2 border-dotted row-start-2 rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
-            style={{ backgroundColor: "#171C2Eff" }}
-          >
-            <div className="mr-4">
-              <BsStars style={{ color: "yellow", fontSize: "24px" }} />
-            </div>
-            Your Starred Repos
-            <div className="ml-4">
-              <BsStars style={{ color: "yellow", fontSize: "24px" }} />
-            </div>
-          </div>
-          <div className="mr-4">
-            <BsStars style={{ color: "yellow" }} />
-          </div>
-          <div
-            className="flex col-start-2 h-4/5 row-start-3 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
-            style={{ backgroundColor: "#171C2Eff" }}
-          >
-            <div className="mr-4">
-              <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
-            </div>
-            Repos You've Forked
-            <div className="ml-4">
-              <FaCodeFork style={{ color: "gray", fontSize: "24px" }} />
-            </div>
-          </div>
-          <div
-            className="flex col-start-2 h-4/5 row-start-4 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white"
+            className="flex col-start-2 h-4/5 row-start-4 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white hover:bg-gradient-to-br from-pink-500 hover:to-purple-500 hover:text-black"
             style={{ backgroundColor: "#171C2Eff" }}
           >
             <div className="mr-4">

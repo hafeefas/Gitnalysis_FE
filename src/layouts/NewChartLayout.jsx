@@ -20,7 +20,8 @@ import Activity from "../components/Activity";
 import IssuesTimeline from "../components/IssuesTimeline";
 import MergeSuccessRatePie from "../components/MergeSuccessRatePie";
 import WebsiteUsersCounter from "../components/WebsiteUsersCounter";
-import CFR from "../components/ChangeFailureRate";
+import LeadTimeMetric from "../components/LeadTimeMetric";
+
 const NewChartLayout = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
 
@@ -38,7 +39,7 @@ const NewChartLayout = () => {
           style={{ backgroundColor: "#171C2Eff" }}
         >
           <div className="pt-6 pb-4">
-            Lead Time for Change
+            <LeadTimeMetric />
             <LeadTimeChart />
           </div>
         </div>
