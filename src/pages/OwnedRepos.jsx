@@ -5,7 +5,7 @@ import { setCurrentRepo } from "../redux/slices/repoSlice";
 import { getUserRepos, getNonForkedRepos } from "../redux/slices/repoSlice";
 import { useMediaQuery } from "@mui/material";
 import { VscRepo } from "react-icons/vsc";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const OwnedRepos = () => {
   const dispatch = useDispatch();
@@ -82,7 +82,7 @@ const OwnedRepos = () => {
   }
 
   return (
-    <div className="mt-12 flex-col flex justify-center items-center p-4">
+    <div className="mt-12 ml-20 flex-col flex justify-center items-center p-4">
       <div
         className="mt-8 duration-300 w-96 border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex-col justify-center items-center"
         style={{ backgroundColor: "#171C2Eff" }}

@@ -5,8 +5,7 @@ import { setCurrentRepo } from "../redux/slices/repoSlice";
 import { getStarredRepos } from "../redux/slices/repoSlice";
 import { useMediaQuery } from "@mui/material";
 import { BsStars } from "react-icons/bs";
-import { motion } from "framer-motion"
-
+import { motion } from "framer-motion";
 
 const StarredRepos = () => {
   const dispatch = useDispatch();
@@ -97,9 +96,9 @@ const StarredRepos = () => {
   }
 
   return (
-    <div className="mt-12 flex-col flex justify-center items-center p-4">
+    <div className="h-screen flex-col flex justify-center items-center p-4">
       <div
-        className="mt-8 duration-300 w-96 border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex-col justify-center items-center"
+        className="duration-300 w-96 border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex-col justify-center items-center"
         style={{ backgroundColor: "#171C2Eff" }}
       >
         <div className="flex h-fit text-4xl text-white font-serif p-4 justify-center rounded-lg shadow-lg  items-center border-black">
