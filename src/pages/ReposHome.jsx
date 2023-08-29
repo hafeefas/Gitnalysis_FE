@@ -20,7 +20,7 @@ const ReposHome = () => {
       <div
         className={`grid ${
           isMediumScreen ? "w-full" : "w-3/4"
-        } grid-cols-2 overflow-auto grid-rows-0 row-span-8 ml-8 text-center z-10`}
+        } grid-cols-2 h-5/6 grid-rows-0 row-span-8 ml-8 text-center z-10`}
       >
         <div
           className="flex row-span-1 col-span-2  justify-center items-end pb-8 text-5xl"
@@ -71,8 +71,7 @@ const ReposHome = () => {
                       <MetricsIcon />
                     </div>
                     <div className="flex justify-center text-base text-center ml-4 w-5/6 mb-4 text-[1.5vw] md:text-[1.5vw] sm:text-[1.25vw]">
-                      View metrics for repositories associated with your GitHub
-                      account
+                      View metrics for owned and starred repos
                     </div>
                   </li>
                 ) : (
@@ -85,8 +84,7 @@ const ReposHome = () => {
                       <MetricsIcon />
                     </div>
                     <div className="text-base text-left ml-4 w-5/6 mb-4 text-[1.5vw] md:text-[1.25vw] sm:text-[1vw]">
-                      View metrics for repositories associated with your GitHub
-                      account
+                      View metrics for owned and starred repos
                     </div>
                   </li>
                 )}
@@ -100,7 +98,7 @@ const ReposHome = () => {
                       <LinkIcon />
                     </div>
                     <div className="flex justify-center text-base text-center ml-4 w-5/6 mb-4 text-[1.5vw] md:text-[1.5vw] sm:text-[1.25vw]">
-                      Link to repos directly from the dashboard
+                      View metrics for owned and starred repos
                     </div>
                   </li>
                 ) : (
