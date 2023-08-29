@@ -6,16 +6,6 @@ import { Tooltip } from '@mui/material';
 const MergeSuccessRate = () => {
     const [mergedPr, setMergedPr] = useState(0)
     const currRepo = useSelector((state) => state.repo.currRepo);
-
-
-    const tooltipContent = (percentage) => {
-        if (percentage >= 90) {
-            return `A ${percentage}% merge success rate is generally considered good. However, factors like project type, size, maturity, review process, and contributor experience can influence this rate.`;
-        } else {
-            return `A merge success rate of ${percentage}% is below the general good threshold of 90%. However, remember that factors like project type, size, maturity, review process, and contributor experience can influence this rate.`;
-            }
-        };
-    
     useEffect(() => {
         async function mergedPullRequests (){
             try {
@@ -43,9 +33,15 @@ const MergeSuccessRate = () => {
         <div className="flex flex-col justify-center h-full">
             <div className="pink-text">Pull Request Merge Success Rate</div>
             {mergedPr !== null && 
-                <Tooltip title={tooltipContent(mergedPr)}>
-                    <div className="text-xl">{mergedPr}%</div>
-                </Tooltip>
+                <Tooltip 
+                title={
+                    <div className="bg-white text-black px-4 py-2">
+                        The Pull Request Merge Success Rate indicates the percentage of pull requests that were successfully merged. A higher percentage generally suggests a smoother collaboration and review process. Typically, a rate of 90% or above is considered good, though this can vary based on factors like project type, size, and review processes.
+                    </div>
+                }
+            >
+                <div className="text-xl">{mergedPr}%</div>
+            </Tooltip>
             }
         </div>
     );
