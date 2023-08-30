@@ -1,6 +1,6 @@
-<p align="center"> 
-  <img src="/readme/logo.png" alt="Gitnalysis Logo" height="80px">
-</p>
+<div align="center">
+  <img src="https://github.com/hafeefas/Gitnalysis_FE/assets/91578619/a68ad181-11a9-43a9-beef-14997c3cf342" alt="Gitnalysis Logo">
+</div>
 
 <h1 align="center"> <a href="=https://gitnalysis-front-end.vercel.app">Gitnalysis</a> </h1>
 <h3 align="center"> <a href="https://github.com/andreatranchina/GITnalysis-back-end">Backend Code</a> </h3>
