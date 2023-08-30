@@ -1,100 +1,134 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import FolderIcon from '@mui/icons-material/Folder';
-import EmailIcon from '@mui/icons-material/Email';
-import SettingsIcon from '@mui/icons-material/Settings';
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import FolderIcon from "@mui/icons-material/Folder";
+import EmailIcon from "@mui/icons-material/Email";
+import SettingsIcon from "@mui/icons-material/Settings";
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import { MdMenuOpen, MdOutlineMenuOpen } from "react-icons/md";
 import { BsGithub, BsFolder } from "react-icons/bs";
 import { ImStatsBars } from "react-icons/im";
 import { AiOutlineMail, AiOutlineFile } from "react-icons/ai";
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery } from "@mui/material";
 
 //AiOutlineMail
 
 function ToolbarLayout() {
-
   const [open, setOpen] = useState(false);
   const activeMenu = true;
-  const isTabletScreen = useMediaQuery('(max-width: 770px)');
+  const isTabletScreen = useMediaQuery("(max-width: 770px)");
 
   return (
-    <div className='flex h-full text-white border-r pb-10' >
-      
+    <div className="flex h-full text-white border-r pb-10">
       <div
         className={`h-screen p-5 pt-8 border-r ${
           open ? "w-64" : isTabletScreen ? "w-16" : "w-20"
-        }  ${isTabletScreen ? "fixed" : "relative" } duration-300`} style={{backgroundColor:'#171C2Eff'}}
+        }  ${isTabletScreen ? "absolute" : "relative"} duration-300`}
+        style={{ backgroundColor: "#171C2Eff" }}
       >
-        <MdOutlineMenuOpen className={`hover:text-violet-300 overflow-visible  bg-white text-black text-3xl rounded-md absolute -right-3 bottom-1/2  border-black border cursor-pointer ${
+        <MdOutlineMenuOpen
+          className={`hover:text-violet-300 overflow-visible  bg-white text-black text-3xl rounded-md absolute -right-3 bottom-1/2  border-black border cursor-pointer ${
             !open && "rotate-180"
           }`}
-          onClick={() => setOpen(!open)}/>
-          
-          <div className="inline-flex mb-4 mt-12">
-            <BsGithub className={` rounded cursor-pointer block text-3xl float-left mr-2 duration-300 ${
+          onClick={() => setOpen(!open)}
+        />
+
+        <div className="inline-flex mb-4 mt-12">
+          <BsGithub
+            className={` rounded cursor-pointer block text-3xl float-left mr-2 duration-300 ${
               open && "rotate-[360deg]"
-            }`}/>
-            <h1 className={`text-white font-sans-serif font-medium text-2xl duration-300 ${!open && "scale-0"}`}>
-              GITNALYSIS
+            }`}
+          />
+          <h1
+            className={`text-white font-sans-serif font-medium text-2xl duration-300 ${
+              !open && "scale-0"
+            }`}
+          >
+            GITNALYSIS
+          </h1>
+        </div>
+
+        <div
+          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
+            !open ? "px-1" : "px-4"
+          }`}
+          onClick={() => setOpen(!open)}
+        >
+          <Link to="/repos" className="flex items-center">
+            <BsFolder
+              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+            />
+            <h1
+              className={` font-medium font-sans-serif text-2xl ${
+                !open && "hidden"
+              }`}
+            >
+              Repository
             </h1>
-          </div>
+          </Link>
+        </div>
 
-          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
+        <div
+          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
-          }`} onClick={() => setOpen(!open)}>
-            <Link to="/repos" className='flex items-center'>
-              <BsFolder className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-              <h1 className={` font-medium font-sans-serif text-2xl ${
-              !open && "hidden"
-            }`}>Repository</h1>
-              
-            </Link>
-          </div>
+          }`}
+          onClick={() => setOpen(!open)}
+        >
+          <Link to="/" className="flex items-center">
+            <ImStatsBars
+              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+            />
 
-          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
+            <h1
+              className={` font-medium font-sans-serif text-2xl ${
+                !open && "hidden"
+              }`}
+            >
+              Statistics
+            </h1>
+          </Link>
+        </div>
+
+        <div
+          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
-          }`} onClick={() => setOpen(!open)}>
-            <Link to="/"  className='flex items-center'>
-              <ImStatsBars className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
+          }`}
+          onClick={() => setOpen(!open)}
+        >
+          <Link to="/notifications" className={` flex items-center`}>
+            <AiOutlineMail
+              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+            />
+            <h1
+              className={` font-medium font-sans-serif text-2xl ${
+                !open && "hidden"
+              }`}
+            >
+              Notifications
+            </h1>
+          </Link>
+        </div>
 
-              <h1 className={` font-medium font-sans-serif text-2xl ${
-              !open && "hidden"
-            }`}>Statistics</h1>
-              
-            </Link>
-          </div>
-
-          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${!open ? "px-1" : "px-4"
-            }`} onClick={() => setOpen(!open)}>
-            <Link to="/notifications" className={` flex items-center`}>
-              <AiOutlineMail className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `} />
-              <h1 className={` font-medium font-sans-serif text-2xl ${!open && "hidden"
-                }`}>
-                Notifications
-              </h1>
-            </Link>
-          </div>
-
-          <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
+        <div
+          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
-          }`} onClick={() => setOpen(!open)}>
-            
-            <Link to=""  className={`flex items-center `}>
-              <AiOutlineFile className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}/>
-              <h1 className={` font-medium font-sans-serif text-2xl ${
-              !open && "hidden"
-            }`}>
-                Files
-              </h1>
-              
-            </Link>
-          </div>
-
+          }`}
+          onClick={() => setOpen(!open)}
+        >
+          <Link to="" className={`flex items-center `}>
+            <AiOutlineFile
+              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+            />
+            <h1
+              className={` font-medium font-sans-serif text-2xl ${
+                !open && "hidden"
+              }`}
+            >
+              Files
+            </h1>
+          </Link>
+        </div>
       </div>
-
-    </div> 
-
+    </div>
   );
 }
 
@@ -107,7 +141,6 @@ export default ToolbarLayout;
 //             <Link to="/" onClick={() => { }} className="item-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-right border-black ">
 //               <FolderIcon />            </Link>
 
-
 //             <Link to="/login" onClick={() => { }} className=" gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-right ">
 //               <EmailIcon />
 //             </Link>
@@ -119,4 +152,4 @@ export default ToolbarLayout;
 //         <SettingsIcon />
 //         <p></p>
 //       </div>
-//     </div> 
+//     </div>
