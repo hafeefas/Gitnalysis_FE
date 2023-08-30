@@ -12,6 +12,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#about-the-project"> ➤ About The Project</a></li>
+    <li><a href="#built-with"> ➤ Built With</a></li>
     <li><a href="#select-a-repository"> ➤ Select a Repository</a></li>
     <li><a href="#view-statistics"> ➤ View Statistics</a></li>
     <li><a href="#check-notifications"> ➤ Check Notifications</a></li>
@@ -32,7 +33,7 @@ As a group of eight, we developed a dynamic web app that enhances a developer's 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <!-- 🛠️ Built With -->
-<h2 id="builtwith"> 🛠️ Built With</h2>
+<h2 id="built-with"> 🛠️ Built With</h2>
 
 * [![React][React.js]][React-url]
 * [![Redux][Redux.js]][Redux-url]
@@ -47,45 +48,29 @@ As a group of eight, we developed a dynamic web app that enhances a developer's 
 * [![Octokit][Octokit.js]][Octokit-url]
 * [![Passport][Passport.js]][Passport-url]
 
-<img width="1399" alt="Screen Shot 2023-07-30 at 9 54 26 PM" src="https://github.com/andreatranchina/fuse-video/assets/91578619/438a57a4-7ae0-4a78-b4e5-c8d5610b2eb1">
-<img width="1422" alt="Screen Shot 2023-07-31 at 6 26 59 AM" src="https://github.com/andreatranchina/fuse-video/assets/91578619/aaad7ed8-86b8-4c00-9a9b-fea9f9b910da">
-
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <!-- Select A Repository -->
 <h2 id="select-a-repository"> 🔎: Select A Repository</h2>
 <div class="placeholder-container">
-  <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/andreatranchina/fuse-video/assets/91578619/aefa5cab-2fb9-4646-875e-048b0851be3d">
+  <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/hafeefas/Gitnalysis_FE/blob/main/src/icons/repos.JPG">
 </div>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-<!-- Select A Repository -->
-<h2 id="joinvideochat"> 🔎: Select A Repository</h2>
+<!-- View Statistics -->
+<h2 id="view-statistics"> 📊: View Statistics</h2>
 <div class="placeholder-container">
-  <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/andreatranchina/fuse-video/assets/91578619/aefa5cab-2fb9-4646-875e-048b0851be3d">
+  <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/hafeefas/Gitnalysis_FE/blob/main/src/icons/stats1.JPG">
+
+  
+  <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/hafeefas/Gitnalysis_FE/blob/main/src/icons/stats2.JPG">
 </div>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-<!-- Select A Repository -->
-<h2 id="joinvideochat"> 🔎: Select A Repository</h2>
-<div class="placeholder-container">
-  <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/andreatranchina/fuse-video/assets/91578619/aefa5cab-2fb9-4646-875e-048b0851be3d">
-</div>
-
-![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
-
-<!-- Select A Repository -->
-<h2 id="joinvideochat"> 🔎: Select A Repository</h2>
-<div class="placeholder-container">
-  <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/andreatranchina/fuse-video/assets/91578619/aefa5cab-2fb9-4646-875e-048b0851be3d">
-</div>
-
-![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
-
-<!-- Select A Repository -->
-<h2 id="joinvideochat"> 🔎: Select A Repository</h2>
+<!-- Check Notifications -->
+<h2 id="check-notifications"> 🔔: Check Notifications</h2>
 <div class="placeholder-container">
   <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/andreatranchina/fuse-video/assets/91578619/aefa5cab-2fb9-4646-875e-048b0851be3d">
 </div>
@@ -94,31 +79,6 @@ As a group of eight, we developed a dynamic web app that enhances a developer's 
 
 <!-- CREDITS -->
 <h2 id="credits"> :scroll: Credits</h2>
-
-Andrea Tranchina
-
-[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/andreatranchina)
-[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ma-shamshiri)
-
-Andrea Tranchina
-
-[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/andreatranchina)
-[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ma-shamshiri)
-
-Andrea Tranchina
-
-[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/andreatranchina)
-[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ma-shamshiri)
-
-Andrea Tranchina
-
-[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/andreatranchina)
-[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ma-shamshiri)
-
-Andrea Tranchina
-
-[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/andreatranchina)
-[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ma-shamshiri)
 
 Andrea Tranchina
 
@@ -135,6 +95,26 @@ Jonathan Shabatayev
 [![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jons-repo)
 [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jonathan-s-153119236/)
 
+NAME
+
+[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](GITHUB LINK)
+[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](LINKEDIN LINK)
+
+NAME
+
+[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](GITHUB LINK)
+[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](LINKEDIN LINK)
+
+NAME
+
+[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](GITHUB LINK)
+[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](LINKEDIN LINK)
+
+NAME
+
+[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](GITHUB LINK)
+[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](LINKEDIN LINK)
+
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <!-- To Contribute -->
@@ -150,16 +130,12 @@ This will install all necessary dependencies.
 
 In addition to this, you must input your own API keys in a .env.local file that looks like this:
 
-<pre><code>REACT_APP_DEEPL_API_KEY=''
-REACT_APP_API_KEY=
-REACT_APP_AUTH_DOMAIN=
-REACT_APP_PROJECT_ID=
-REACT_APP_STORAGE_BUCKET=
-REACT_APP_MESSAGING_SENDER_ID=
-REACT_APP_APP_ID=
-REACT_APP_MEASUREMENT_ID=</code></pre>
-
-API's used were DeepL, Elastic Email, Twilio, and Firebase.
+<pre><code>REACT_APP_DEEPL_API_KEY=
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+GITHUB_TOKEN=
+FRONTEND_URL='http://localhost:3000'
+BACKEND_URL='http://localhost:8080'</code></pre>
 
 ### `npm start`
 
