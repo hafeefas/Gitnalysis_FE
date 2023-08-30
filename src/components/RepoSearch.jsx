@@ -8,17 +8,7 @@ const RepoSearch = ({ link }) => {
   const [owner, setOwner] = useState("");
   const [repo, setRepo] = useState("");
   const isMobileScreen = useMediaQuery("(max-width: 420px)");
-  const [hovered, setHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHovered(false);
-  };
-
-  const backgroundColor = hovered ? "#f3502b" : "#f3502aff";
+  const isTabletScreen = useMediaQuery("(max-width: 770px)");
 
   const ownerRepo = () => {
     if (link !== undefined || link !== "") {
@@ -72,7 +62,7 @@ const RepoSearch = ({ link }) => {
                     isMobileScreen ? "" : "pl-10"
                   }`}
                   placeholder={
-                    isMobileScreen
+                    isMobileScreen || isTabletScreen
                       ? "Input your repo link... "
                       : "Input your repo link here..."
                   }

@@ -63,7 +63,7 @@ const ReposHome = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 grid-rows-5 gap-4 -mt-12 justify-center mx-auto ">
-        <div className="col-span-2 h-28 ml-10 w-4/5">
+        <div className="col-span-2 h-28 ml-12 w-4/5">
           <NavLink to="/ownedRepos">
             <div
               className="flex col-start-2 border-white border-2 border-dotted row-start-1 col-span-1 rounded-md h-4/5 shadow-3xl m-2  items-center justify-center font-bold text-white hover:bg-gradient-to-br hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
@@ -79,7 +79,7 @@ const ReposHome = () => {
             </div>
           </NavLink>
         </div>
-        <div className="col-span-2 h-28 ml-10 w-4/5 col-start-1 row-start-3">
+        <div className="col-span-2 h-28 ml-12 w-4/5 col-start-1 row-start-3">
           <NavLink to="/forkedrepos">
             <div
               className="flex col-start-2 h-4/5 row-start-3 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white hover:bg-gradient-to-br from-teal-300 hover:to-sky-500 hover:text-black"
@@ -95,7 +95,7 @@ const ReposHome = () => {
             </div>
           </NavLink>
         </div>
-        <div className="col-span-2 h-28 ml-10 w-4/5 col-start-1 row-start-2">
+        <div className="col-span-2 h-28 ml-12 w-4/5 col-start-1 row-start-2">
           <NavLink to="/starredRepos">
             <div
               className="flex col-start-2 h-4/5 col-span-1  border-white border-2 border-dotted row-start-2 rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white hover:bg-gradient-to-br from-pink-500 hover:to-yellow-500 hover:text-black"
@@ -111,7 +111,7 @@ const ReposHome = () => {
             </div>
           </NavLink>
         </div>
-        <div className="col-span-2 col-start-1 row-start-4 ml-10 w-4/5 h-28">
+        <div className="col-span-2 col-start-1 row-start-4 ml-12 w-4/5 h-28">
           <div
             className="flex col-span-2 h-4/5 row-start-4 border-white border-2 border-dotted rounded-md shadow-3xl m-2 items-center justify-center font-bold text-white hover:bg-gradient-to-br from-pink-500 hover:to-purple-500 hover:text-black mb-10"
             style={{ backgroundColor: "#171C2Eff" }}
