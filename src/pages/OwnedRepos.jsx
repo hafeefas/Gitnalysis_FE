@@ -5,7 +5,7 @@ import { setCurrentRepo } from "../redux/slices/repoSlice";
 import { getUserRepos, getNonForkedRepos } from "../redux/slices/repoSlice";
 import { useMediaQuery } from "@mui/material";
 import { VscRepo } from "react-icons/vsc";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const OwnedRepos = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const OwnedRepos = () => {
   const ownerRepos = nonForkedRepos?.filter(
     (repo) => repo.owner.login === loggedInUser.login
   );
-  console.log(ownerRepos, "is owner repios null ");
+  // console.log(ownerRepos, "is owner repios null ");
 
   const sortedOwnerRepos = ownerRepos?.slice().sort((repo1, repo2) => {
     const name1 = repo1.name.toLowerCase();
@@ -72,9 +72,9 @@ const OwnedRepos = () => {
     fetchUserRepos();
   }, []);
 
-  if (allRepos) {
-    console.log(allRepos);
-  }
+  // if (allRepos) {
+  //   console.log(allRepos);
+  // }
 
   // Check if loggedInUser is available
   if (!loggedInUser) {
