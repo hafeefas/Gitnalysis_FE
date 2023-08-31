@@ -98,12 +98,12 @@ const Activity = () => {
           {/* <InputLabel id="timeRange-label">Time Range</InputLabel> */}
           <Select
             labelId="timeRange-label"
+            className="bg-gradient-to-r from-cyan-500 to-blue-500"
             value={timeRange}
             onChange={(e) => setTimeRange(e.target.value)}
             //   label="Time Range"
             style={{
               color: "white",
-              backgroundColor: "#007FFF",
               borderRadius: "1rem",
               boxShadow: "1px 1px 1px white",
               position: "relative",

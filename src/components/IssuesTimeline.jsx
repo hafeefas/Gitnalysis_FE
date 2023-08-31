@@ -106,13 +106,13 @@ const IssuesTimeline = () => {
             <FormControl variant="outlined" style={{ marginBottom: "20px" }}>
               {/* <InputLabel id="timeRange-label">Time Range</InputLabel> */}
               <Select
+                className="bg-gradient-to-r from-cyan-500 to-blue-500"
                 labelId="timeRange-label"
                 value={timeRange}
                 onChange={(e) => setTimeRange(e.target.value)}
                 //   label="Time Range"
                 style={{
                   color: "white",
-                  backgroundColor: "#007FFF",
                   borderRadius: "1rem",
                   boxShadow: "1px 1px 1px white",
                   position: "relative",

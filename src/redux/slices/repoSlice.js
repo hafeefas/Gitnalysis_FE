@@ -23,6 +23,7 @@ export const getUserRepos = createAsyncThunk("repo/getUserRepos", async () => {
     );
 
     const repos = res.data;
+    console.log(repos);
     return repos;
   } catch (error) {
     console.log(error.message);
@@ -33,14 +34,16 @@ export const getUserRepos = createAsyncThunk("repo/getUserRepos", async () => {
 export const getStarredRepos = createAsyncThunk(
   "repo/getStarredRepos",
   async () => {
+    console.log("hit starred repos");
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/stars/me/starred`,
         {},
         { withCredentials: true }
       );
-
       const starredRepos = res.data.starredRepos;
+      console.log(starredRepos, "THE STARRED REPOS");
+      console.log(res.data, "RES.DATA FOR STARRED REPOS");
       console.log(starredRepos, "starred in redux");
       return starredRepos;
     } catch (error) {
@@ -82,6 +85,7 @@ export const getNonForkedRepos = createAsyncThunk(
       );
 
       const allRepos = res.data;
+      console.log(allRepos);
       const nonForkedRepos = allRepos?.filter((repo) => repo.fork === false);
       console.log(nonForkedRepos);
       return nonForkedRepos;
@@ -96,6 +100,8 @@ const repoSlice = createSlice({
   initialState,
   reducers: {
     setCurrentRepo: (state, action) => {
+      console.log(action);
+      console.log(state);
       state.currRepo = action.payload;
     },
     setOwnerRepos: (state, action) => {

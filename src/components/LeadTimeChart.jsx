@@ -4,13 +4,14 @@ import { useSelector } from "react-redux";
 import { darkScrollbar, useMediaQuery } from "@mui/material";
 import * as d3 from "d3";
 import { ResponsiveLine } from "@nivo/line";
-import { Tooltip } from '@mui/material';
+import { Tooltip } from "@mui/material";
 
 const LeadTimeChart = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
   const [repoInfo, setRepoInfo] = useState(null);
   const [unitsToDisplay, setUnitsToDisplay] = useState("");
   const isMobileScreen = useMediaQuery("(max-width: 420px)");
+  const [isLoading, setIsLoading] = useState(true);
 
   // const transformDataForChart = (rawData) => {
   //   return [
@@ -24,6 +25,13 @@ const LeadTimeChart = () => {
   //   ];
   // };
 
+  const repoParts = currRepo.split("/");
+  const username = repoParts[0];
+  const repo = repoParts[1];
+
+  const handleRepoLinkClick = () => {
+    window.open(`https://github.com/${username}/${repo}`, "_blank");
+  };
 
   const monthsInSecs = 30 * 24 * 3600;
   const weeksInSecs = 24 * 3600 * 7;
@@ -52,6 +60,10 @@ const LeadTimeChart = () => {
     // console.log(totalSeconds);
     return totalSeconds;
   };
+
+  if (currRepo) {
+    console.log(currRepo);
+  }
 
   const findUniqueDaysAverages = (metrics, timeUnit) => {
     let uniqueDaysAverages = [];
@@ -99,6 +111,10 @@ const LeadTimeChart = () => {
     });
     return uniqueDaysAverages;
   };
+
+  if (currRepo) {
+    console.log(currRepo, " cURRENT FORKED REPO");
+  }
 
   useEffect(() => {
     async function fetchRepoMetrics() {
@@ -193,180 +209,212 @@ const LeadTimeChart = () => {
           ];
           console.log(fixedChartData);
           setRepoInfo(fixedChartData);
+          setIsLoading(false);
         }
       } catch (error) {
         console.error("Error fetching repository metrics:", error);
+        setIsLoading(false);
       }
     }
+
+    const timeout = setTimeout(() => {
+      setIsLoading(false); // Set loading to false if no data comes in after 10 seconds
+    }, 10000);
+
     fetchRepoMetrics();
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
-    <Tooltip title={<div className="bg-white text-black px-4 py-2"> The lead time metric shows how long on average it takes to merge a PR. It indicates how long senior team members take to review a PR. A longer lead time can mean the senior members are complacent in reviewing the code. This metric may vary depending on the team structure.</div>} arrow 
-    placement="top">
-    <div className="flex w-full justify-center items-center h-56">
-            
-      {repoInfo ? (
-        <>
-          <ResponsiveLine
-            data={repoInfo}
-            theme={{
-              axis: {
-                ticks: {
-                  text: {
-                    fill: "white",
-                    fontSize: 10,
-                  },
-                },
-                legend: {
-                  text: {
-                    fill: "white",
-                  },
-                },
-              },
-              grid: {
-                line: {
-                  stroke: "white",
-                },
-              },
-              legends: {
-                text: {
-                  fill: "tomato",
-                },
-              },
-            }}
-            margin={{ top: 0, right: 60, bottom: 60, left: 80 }}
-            xScale={{ type: "point" }}
-            yScale={{
-              type: "linear",
-              min: "auto",
-              max: "auto",
-              stacked: false,
-              reverse: false,
-            }}
-            // yFormat=" >-.2f"
-            // fill={(d) => {
-            //   console.log(d);
-            //   // Check the entire array and then apply color logic
-            //   const color = d.data.every(
-            //     (point) => point.y >= 0 && point.y < 20
-            //   )
-            //     ? "red" // Example color
-            //     : d.every((point) => point.y >= 20 && point.y < 25)
-            //     ? "yellow" // Example color
-            //     : "green"; // Example color
-
-            //   return color;
-            // }}
-            colors={"#22E0E3ff"}
-            borderColor={{ from: "color", modifiers: [["darker", "1.6"]] }}
-            axisTop={null}
-            axisRight={null}
-            axisBottom={{
-              orient: "bottom",
-              tickSize: 5,
-              tickPadding: 5,
-              legend: "Date",
-              tickRotation: -45,
-              legendOffset: 46,
-              legendPosition: "middle",
-              legendTextStyle: {
-                fill: "white", // Set the text color of the legend to white
-              },
-              textColor: {
-                fill: "white",
-              },
-            }}
-            axisLeft={{
-              orient: "left",
-              tickSize: 5,
-              tickPadding: 5,
-              tickRotation: 0,
-              legend: `Average (${unitsToDisplay})`,
-              legendOffset: -40,
-              legendPosition: "middle",
-              text: {
-                fill: "white",
-              },
-            }}
-            animate={true}
-            enablePoints={false}
-            pointSize={10}
-            pointColor={{ theme: "background" }}
-            pointBorderWidth={2}
-            pointBorderColor={{ from: "serieColor" }}
-            enableGridX={false}
-            enableGridY={false}
-            curve="natural"
-            enableSlices="x"
-            enableArea={true}
-            areaBaselineValue={5} // Set the baseline value for the gradient
-            areaOpacity={0.2} // Set the opacity of the gradient
-            enableAreaGradient={true} // Enable gradient for areas
-            areaGradientColors={["#22E0E3ff", "rgba(34, 224, 227, 0)"]} // Gradient colors
-            areaGradientFromOpacity={0.2} // Opacity of the start of the gradient
-            areaGradientToOpacity={0} // Opacity of the end of the gradient
-            sliceTooltip={({ slice }) => (
-              <div>
-                <strong>{slice.points[0].data.x}</strong>
-                {slice.points.map((point) => (
-                  <div key={point.id}>avg. {point.data.yFormatted}</div>
-                ))}
-              </div>
-            )}
-            enablePointLabel={"true"}
-            pointLabelYOffset={-2}
-            legends={[
-              {
-                anchor: "bottom-right",
-                direction: "column",
-                justify: false,
-                translateX: -35,
-                translateY: -120,
-                itemsSpacing: 0,
-                itemDirection: "left-to-right",
-                itemWidth: 80,
-                itemHeight: 20,
-                itemOpacity: 0.75,
-                symbolSize: 12,
-                symbolShape: "circle",
-                symbolBorderColor: "rgba(0, 0, 0, .5)",
-                effects: [
-                  {
-                    on: "hover",
-                    style: {
-                      itemBackground: "rgba(0, 0, 0, .03)",
-                      itemOpacity: 1,
+    <Tooltip
+      title={
+        <div className="bg-white text-black px-4 py-2">
+          {" "}
+          The lead time metric shows how long on average it takes to merge a PR.
+          It indicates how long senior team members take to review a PR. A
+          longer lead time can mean the senior members are complacent in
+          reviewing the code. This metric may vary depending on the team
+          structure.
+        </div>
+      }
+      arrow
+      placement="top"
+    >
+      <div className="flex w-full justify-center items-center h-56">
+        {isLoading ? (
+          <div role="status">
+            <svg
+              aria-hidden="true"
+              class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600"
+              viewBox="0 0 100 101"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                fill="currentColor"
+              />
+              <path
+                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                fill="currentFill"
+              />
+            </svg>
+            <span class="sr-only">Loading...</span>
+          </div>
+        ) : repoInfo && repoInfo[0].data.length > 0 ? (
+          <>
+            <ResponsiveLine
+              data={repoInfo}
+              theme={{
+                axis: {
+                  ticks: {
+                    text: {
+                      fill: "white",
+                      fontSize: 10,
                     },
                   },
-                ],
-              },
-            ]}
-          />
-        </>
-      ) : (
-        <div role="status">
-          <svg
-            aria-hidden="true"
-            class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600"
-            viewBox="0 0 100 101"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-              fill="currentColor"
+                  legend: {
+                    text: {
+                      fill: "white",
+                    },
+                  },
+                },
+                grid: {
+                  line: {
+                    stroke: "white",
+                  },
+                },
+                legends: {
+                  text: {
+                    fill: "tomato",
+                  },
+                },
+              }}
+              margin={{ top: 20, right: 60, bottom: 60, left: 80 }}
+              xScale={{ type: "point" }}
+              yScale={{
+                type: "linear",
+                min: 0,
+                max: "auto",
+                stacked: false,
+                reverse: false,
+              }}
+              // yFormat=" >-.2f"
+              // fill={(d) => {
+              //   console.log(d);
+              //   // Check the entire array and then apply color logic
+              //   const color = d.data.every(
+              //     (point) => point.y >= 0 && point.y < 20
+              //   )
+              //     ? "red" // Example color
+              //     : d.every((point) => point.y >= 20 && point.y < 25)
+              //     ? "yellow" // Example color
+              //     : "green"; // Example color
+
+              //   return color;
+              // }}
+              colors={"#22E0E3ff"}
+              borderColor={{ from: "color", modifiers: [["darker", "1.6"]] }}
+              axisTop={null}
+              axisRight={null}
+              axisBottom={{
+                orient: "bottom",
+                tickSize: 5,
+                tickPadding: 5,
+                legend: "Date",
+                tickRotation: -45,
+                legendOffset: 46,
+                legendPosition: "middle",
+                legendTextStyle: {
+                  fill: "white", // Set the text color of the legend to white
+                },
+                textColor: {
+                  fill: "white",
+                },
+              }}
+              axisLeft={{
+                orient: "left",
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 0,
+                legend: `Average (${unitsToDisplay})`,
+                legendOffset: -40,
+                legendPosition: "middle",
+                text: {
+                  fill: "white",
+                },
+              }}
+              animate={true}
+              enablePoints={false}
+              pointSize={10}
+              pointColor={{ theme: "background" }}
+              pointBorderWidth={2}
+              pointBorderColor={{ from: "serieColor" }}
+              enableGridX={false}
+              enableGridY={false}
+              curve="natural"
+              enableSlices="x"
+              enableArea={true}
+              areaBaselineValue={5} // Set the baseline value for the gradient
+              areaOpacity={0.2} // Set the opacity of the gradient
+              enableAreaGradient={true} // Enable gradient for areas
+              areaGradientColors={["#22E0E3ff", "rgba(34, 224, 227, 0)"]} // Gradient colors
+              areaGradientFromOpacity={0.2} // Opacity of the start of the gradient
+              areaGradientToOpacity={0} // Opacity of the end of the gradient
+              sliceTooltip={({ slice }) => (
+                <div>
+                  <strong>{slice.points[0].data.x}</strong>
+                  {slice.points.map((point) => (
+                    <div key={point.id}>avg. {point.data.yFormatted}</div>
+                  ))}
+                </div>
+              )}
+              enablePointLabel={"true"}
+              pointLabelYOffset={-2}
+              legends={[
+                {
+                  anchor: "bottom-right",
+                  direction: "column",
+                  justify: false,
+                  translateX: -35,
+                  translateY: -120,
+                  itemsSpacing: 0,
+                  itemDirection: "left-to-right",
+                  itemWidth: 80,
+                  itemHeight: 20,
+                  itemOpacity: 0.75,
+                  symbolSize: 12,
+                  symbolShape: "circle",
+                  symbolBorderColor: "rgba(0, 0, 0, .5)",
+                  effects: [
+                    {
+                      on: "hover",
+                      style: {
+                        itemBackground: "rgba(0, 0, 0, .03)",
+                        itemOpacity: 1,
+                      },
+                    },
+                  ],
+                },
+              ]}
             />
-            <path
-              d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-              fill="currentFill"
-            />
-          </svg>
-          <span class="sr-only">Loading...</span>
-        </div>
-      )}
-    </div>
-  </Tooltip>
+          </>
+        ) : (
+          <div className="flex flex-col">
+            <div role="status" className="mb-8">
+              No Data Available.
+            </div>
+            <button
+              onClick={handleRepoLinkClick}
+              className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 p-4 hover:from-pink-500 hover:to-yellow-500 animate-bounce"
+            >
+              View Repo on GitHub
+            </button>
+          </div>
+        )}
+      </div>
+    </Tooltip>
   );
 };
 

@@ -9,6 +9,8 @@ import { BsGithub, BsFolder } from "react-icons/bs";
 import { ImStatsBars } from "react-icons/im";
 import { AiOutlineMail, AiOutlineFile } from "react-icons/ai";
 import { useMediaQuery } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 
 //AiOutlineMail
 
@@ -17,115 +19,115 @@ function ToolbarLayout() {
   const activeMenu = true;
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
 
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
+
   return (
-    <div className="flex h-full text-white border-r pb-10">
+    <div className="flex h-full text-white border-r">
       <div
-        className={`h-screen p-5 pt-8 border-r ${
+        className={`h-full p-5 pt-8 border-r ${
           open ? "w-64" : isTabletScreen ? "w-16" : "w-20"
         }  ${isTabletScreen ? "absolute" : "relative"} duration-300`}
         style={{ backgroundColor: "#171C2Eff" }}
       >
         <MdOutlineMenuOpen
-          className={`hover:text-violet-300 overflow-visible  bg-white text-black text-3xl rounded-md absolute -right-3 bottom-1/2  border-black border cursor-pointer ${
+          className={`hover:text-violet-300 overflow-visible  ${
+            open === true ? "bg-orange-700" : "bg-white"
+          }  text-black text-3xl rounded-md absolute -right-3 bottom-1/2  border-black border cursor-pointer ${
             !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}
         />
-
-        <div className="inline-flex mb-4 mt-12">
-          <BsGithub
-            className={` rounded cursor-pointer block text-3xl float-left mr-2 duration-300 ${
-              open && "rotate-[360deg]"
-            }`}
-          />
-          <h1
-            className={`text-white font-sans-serif font-medium text-2xl duration-300 ${
-              !open && "scale-0"
-            }`}
+        <div className="fixed">
+          <div className="inline-flex mb-4 mt-12">
+            <BsGithub
+              className={`rounded cursor-pointer block text-3xl float-left mr-2 duration-300 ${
+                open && "rotate-[360deg]"
+              }`}
+            />
+            <h1
+              className={`text-white font-sans-serif font-medium text-2xl duration-300 ${
+                !open && "scale-0"
+              }`}
+            >
+              GITNALYSIS
+            </h1>
+          </div>
+          <BootstrapTooltip title="Repositories" placement="right-start">
+            <div
+              className={`hover:text-orange-700 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
+                !open ? "px-1" : "px-4"
+              }`}
+              onClick={() => setOpen(!open)}
+            >
+              <Link to="/repos" className="flex items-center">
+                <BsFolder
+                  className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+                />
+                <h1
+                  className={` font-medium font-sans-serif text-2xl ${
+                    !open && "hidden"
+                  }`}
+                >
+                  Repositories
+                </h1>
+              </Link>
+            </div>
+          </BootstrapTooltip>
+          <BootstrapTooltip
+            title="Statistics & Metrics"
+            placement="right-start"
           >
-            GITNALYSIS
-          </h1>
-        </div>
-
-        <div
-          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
-            !open ? "px-1" : "px-4"
-          }`}
-          onClick={() => setOpen(!open)}
-        >
-          <Link to="/repos" className="flex items-center">
-            <BsFolder
-              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
-            />
-            <h1
-              className={` font-medium font-sans-serif text-2xl ${
-                !open && "hidden"
+            <div
+              className={`hover:text-orange-700 hover:scale-110 duration-300 flex justify-start p-4  ${
+                !open ? "px-1" : "px-4"
               }`}
+              onClick={() => setOpen(!open)}
             >
-              Repository
-            </h1>
-          </Link>
-        </div>
+              <Link to="/" className="flex items-center">
+                <ImStatsBars
+                  className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+                />
 
-        <div
-          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
-            !open ? "px-1" : "px-4"
-          }`}
-          onClick={() => setOpen(!open)}
-        >
-          <Link to="/" className="flex items-center">
-            <ImStatsBars
-              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
-            />
-
-            <h1
-              className={` font-medium font-sans-serif text-2xl ${
-                !open && "hidden"
+                <h1
+                  className={` font-medium font-sans-serif text-2xl ${
+                    !open && "hidden"
+                  }`}
+                >
+                  Statistics
+                </h1>
+              </Link>
+            </div>
+          </BootstrapTooltip>
+          <BootstrapTooltip title="Notifications" placement="right-start">
+            <div
+              className={`hover:text-orange-700 hover:scale-110 duration-300 flex justify-start p-4  ${
+                !open ? "px-1" : "px-4"
               }`}
+              onClick={() => setOpen(!open)}
             >
-              Statistics
-            </h1>
-          </Link>
-        </div>
-
-        <div
-          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
-            !open ? "px-1" : "px-4"
-          }`}
-          onClick={() => setOpen(!open)}
-        >
-          <Link to="/notifications" className={` flex items-center`}>
-            <AiOutlineMail
-              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
-            />
-            <h1
-              className={` font-medium font-sans-serif text-2xl ${
-                !open && "hidden"
-              }`}
-            >
-              Notifications
-            </h1>
-          </Link>
-        </div>
-
-        <div
-          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
-            !open ? "px-1" : "px-4"
-          }`}
-          onClick={() => setOpen(!open)}
-        >
-          <Link to="" className={`flex items-center `}>
-            <AiOutlineFile
-              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
-            />
-            <h1
-              className={` font-medium font-sans-serif text-2xl ${
-                !open && "hidden"
-              }`}
-            >
-              Files
-            </h1>
-          </Link>
+              <Link to="/notifications" className={` flex items-center`}>
+                <AiOutlineMail
+                  className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+                />
+                <h1
+                  className={` font-medium font-sans-serif text-2xl ${
+                    !open && "hidden"
+                  }`}
+                >
+                  Notifications
+                </h1>
+              </Link>
+            </div>
+          </BootstrapTooltip>
         </div>
       </div>
     </div>

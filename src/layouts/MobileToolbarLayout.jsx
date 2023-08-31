@@ -12,10 +12,10 @@ import { AiOutlineMail, AiOutlineFile } from "react-icons/ai";
 //AiOutlineMail
 
 function MobileToolbarLayout() {
-
+  
   const [open, setOpen] = useState(true);
   const activeMenu = true;
-
+  
   return (
     <div className='flex h-full text-white border-r pb-10' >
       

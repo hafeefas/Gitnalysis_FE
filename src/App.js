@@ -18,7 +18,6 @@ import StarredRepos from "./pages/StarredRepos";
 
 import ForkedRepos from "./pages/ForkedRepos";
 
-
 function App() {
   const [username, setUserName] = useState("");
   const [userid, setUserId] = useState("");
@@ -61,7 +60,7 @@ function App() {
 
   return (
     <div
-      className="flex max-h-screen overflow-hidden"
+      className="flex min-h-screen overflow-scroll"
       style={{ backgroundColor: "#111526ff" }}
     >
       <Router>
@@ -94,10 +93,9 @@ function App() {
             <Route path="/starredRepos" element={<StarredRepos />} />
             <Route path="/reposlist" element={<Repos />} />
             <Route path="/notifications" element={<Notifications />} />
-            <Route path="/contributedrepos" element={<ContributedRepos/>} />
-            
-            <Route path="/forkedrepos" element={<ForkedRepos />} />
+            <Route path="/contributedrepos" element={<ContributedRepos />} />
 
+            <Route path="/forkedrepos" element={<ForkedRepos />} />
           </Routes>
         </div>
       </Router>

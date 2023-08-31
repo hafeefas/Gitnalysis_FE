@@ -5,19 +5,23 @@ import { setCurrentRepo } from "../redux/slices/repoSlice";
 import { getStarredRepos } from "../redux/slices/repoSlice";
 import { useMediaQuery } from "@mui/material";
 import { BsStars } from "react-icons/bs";
-import { motion } from "framer-motion"
-
+import { motion } from "framer-motion";
 
 const StarredRepos = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allRepos = useSelector((state) => state.repo.allRepos);
+  const currRepo = useSelector((state) => state.repo.currRepo);
   const starredRepos = useSelector((state) => state.repo.starredRepos);
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [githubLink, setGithubLink] = useState("");
   const [showDropdown, setShowDropdown] = useState(false); // Track the visibility of the dropdown
+
+  if (starredRepos) {
+    console.log(starredRepos, "STARRED REPOS FIXING");
+  }
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -76,7 +80,9 @@ const StarredRepos = () => {
   }
 
   useEffect(() => {
+    console.log("use effect is happening");
     const fetchStarredRepos = async () => {
+      console.log("hit fetch repos in starred repos");
       try {
         await dispatch(getStarredRepos());
         console.log("getting the starred repos");
