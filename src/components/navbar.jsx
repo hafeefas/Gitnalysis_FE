@@ -38,8 +38,13 @@ function Navbar() {
     fetchUsers();
   }, [currRepo]);
 
-  // currRepo[0].owner.avatar_url
-  console.log("LOGS " + currRepo);
+  const handleRepoLinkClick = () => {
+    if (currRepo) {
+      window.open(`https://github.com/${userName}/${repo}`, "_blank");
+    } else {
+      return;
+    }
+  };
 
   const activeMenu = false;
 
@@ -68,7 +73,10 @@ function Navbar() {
               activeMenu ? "h-full md:ml-72 w-full" : "h-full w-full flex-2 "
             }
           >
-            <div className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-1 pb-1 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400">
+            <div
+              className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-1 pb-1 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400 cursor-pointer"
+              onClick={handleRepoLinkClick}
+            >
               {username ? (
                 <img
                   class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
@@ -118,7 +126,10 @@ function Navbar() {
               activeMenu ? "h-full md:ml-72 w-full" : "h-full w-full flex-2 "
             }
           >
-            <div className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-4 pb-4 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400">
+            <div
+              className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-4 pb-4 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400 cursor-pointer"
+              onClick={handleRepoLinkClick}
+            >
               {username ? (
                 <img
                   class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
@@ -162,7 +173,10 @@ function Navbar() {
               activeMenu ? "h-full md:ml-72 w-full" : "h-full w-full flex-2 "
             }
           >
-            <div className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-4 pb-4 pl-3 bg-gradient-to-br bg-gradient-to-br from-indigo-100 to-indigo-400">
+            <div
+              className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-4 pb-4 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400 cursor-pointer"
+              onClick={handleRepoLinkClick}
+            >
               {username ? (
                 <img
                   class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
