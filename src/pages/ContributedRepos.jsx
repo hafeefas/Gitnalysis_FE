@@ -3,16 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentRepo } from "../redux/slices/repoSlice";
 import { useNavigate } from "react-router-dom";
 import { VscRepo, VscGitPullRequest } from "react-icons/vsc";
-
+import CategoriesDropdown from '../components/CategoriesDropdown';
 
 function ContributedRepos() {
     const [contributedReposSearchQuery, setContributedReposSearchQuery] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("");  //passing as prop to categoriesdropdown
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const allRepos = useSelector((state) => state.repo.allRepos);
-    const forkedRepos = useSelector((state) => state.repo.forkedRepos);
-    const nonForkedRepos = useSelector((state) => state.repo?.nonForkedRepos);
     const starredRepos = useSelector((state) => state.repo?.starredRepos);
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
@@ -80,6 +79,13 @@ function ContributedRepos() {
                 value={contributedReposSearchQuery}
                 onChange={(event) => setContributedReposSearchQuery(event.target.value)}
             />
+
+            <CategoriesDropdown
+                contributedRepos={sortedContributedRepos}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+            />
+
             <p className="text-white text-sm mb-2 ml-1">
                 {" "}
                 *Please be sure to only search by the name of the repo, not the owner{" "}
