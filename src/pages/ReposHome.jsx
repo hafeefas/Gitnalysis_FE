@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom'
 import { useMediaQuery } from "@mui/material";
 import gitnalsyisBackground from "../assets/gitnalysis_coder.png";
 import MetricsIcon from "../icons/MetricsIcon";
@@ -455,7 +456,9 @@ const ReposHome = () => {
                 style={{ color: "#cb9ac4ff", fontSize: "24px" }}
               />
             </div>
-            Other Repos
+            <Link to="/contributedrepos">
+              Other Repos
+            </Link>
             <div className="ml-4">
               <VscGitPullRequest
                 style={{ color: "#cb9ac4ff", fontSize: "24px" }}
