@@ -49,13 +49,7 @@ const CFR = () => {
   return (
     <div style={{ height: 400, width: 400, marginLeft: "100px" }}>
       <Tooltip
-        title={
-          <div className="bg-white text-black px-4 py-2">
-            The Change Failure Rate (CFR) is the percentage of deployments that
-            result in failure. A common guideline is to aim for a CFR below 15%
-            to ensure a stable and reliable software release process.
-          </div>
-        }
+        title="The Change Failure Rate (CFR) is the percentage of deployments that result in failure. A common guideline is to aim for a CFR below 15% to ensure a stable and reliable software release process."
         arrow
         placement="top"
       >

@@ -23,6 +23,7 @@ import WebsiteUsersCounter from "../components/WebsiteUsersCounter";
 import LeadTimeMetric from "../components/LeadTimeMetric";
 import CFR from "../components/ChangeFailureRate";
 import { useMediaQuery } from "@mui/material";
+import MTTR from "../components/MeanTimeToRecovery";
 
 const NewChartLayout = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
@@ -104,7 +105,7 @@ const NewChartLayout = () => {
           className="col-start-4 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white"
           style={{ backgroundColor: "#171C2Eff" }}
         >
-          <NumCommits />
+          <MTTR />
         </div>
         <div
           className="col-start-5 row-start-7 p-2 h-32 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white"
