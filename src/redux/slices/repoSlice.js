@@ -23,7 +23,7 @@ export const getUserRepos = createAsyncThunk("repo/getUserRepos", async () => {
     );
 
     const repos = res.data;
-    console.log(repos);
+    console.log(repos, "all repos");
     return repos;
   } catch (error) {
     console.log(error.message);
@@ -34,7 +34,7 @@ export const getUserRepos = createAsyncThunk("repo/getUserRepos", async () => {
 export const getStarredRepos = createAsyncThunk(
   "repo/getStarredRepos",
   async () => {
-    console.log("hit starred repos");
+    // console.log("hit starred repos");
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/stars/me/starred`,
@@ -42,9 +42,9 @@ export const getStarredRepos = createAsyncThunk(
         { withCredentials: true }
       );
       const starredRepos = res.data.starredRepos;
-      console.log(starredRepos, "THE STARRED REPOS");
-      console.log(res.data, "RES.DATA FOR STARRED REPOS");
-      console.log(starredRepos, "starred in redux");
+      // console.log(starredRepos, "THE STARRED REPOS");
+      // console.log(res.data, "RES.DATA FOR STARRED REPOS");
+      // console.log(starredRepos, "starred in redux");
       return starredRepos;
     } catch (error) {
       console.log(error.message);
@@ -65,7 +65,7 @@ export const getForkedRepos = createAsyncThunk(
 
       const allRepos = res.data;
       const forkedRepos = allRepos?.filter((repo) => repo.fork === true);
-      console.log(forkedRepos);
+      // console.log(forkedRepos);
       return forkedRepos;
     } catch (error) {
       console.log(error.message);
