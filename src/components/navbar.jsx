@@ -11,10 +11,14 @@ function Navbar() {
   const [user, setUser] = useState();
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
   const isMobileScreen = useMediaQuery("(max-width: 470px)");
+  let userName = [];
+  let repo = [];
 
-  const repoParts = currRepo.split("/");
-  const userName = repoParts[0];
-  const repo = repoParts[1];
+  if (currRepo) {
+    const repoParts = currRepo.split("/");
+    const userName = repoParts[0];
+    const repo = repoParts[1];
+  }
 
   useEffect(() => {
     async function fetchUsers() {
