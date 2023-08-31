@@ -233,16 +233,12 @@ const LeadTimeChart = () => {
 
   return (
     <Tooltip
-      title={
-        <div className="bg-white text-black px-4 py-2">
-          {" "}
+      title="
           The lead time metric shows how long on average it takes to merge a PR.
           It indicates how long senior team members take to review a PR. A
           longer lead time can mean the senior members are complacent in
           reviewing the code. This metric may vary depending on the team
-          structure.
-        </div>
-      }
+          structure."
       arrow
       placement="top"
     >

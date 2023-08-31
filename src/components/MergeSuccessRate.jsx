@@ -34,11 +34,7 @@ const MergeSuccessRate = () => {
             <div className="pink-text">Pull Request Merge Success Rate</div>
             {mergedPr !== null && 
                 <Tooltip 
-                title={
-                    <div className="bg-white text-black px-4 py-2">
-                        The Pull Request Merge Success Rate indicates the percentage of pull requests that were successfully merged. A higher percentage generally suggests a smoother collaboration and review process. Typically, a rate of 90% or above is considered good, though this can vary based on factors like project type, size, and review processes.
-                    </div>
-                }
+                title= "The Pull Request Merge Success Rate indicates the percentage of pull requests that were successfully merged. A higher percentage generally suggests a smoother collaboration and review process. Typically, a rate of 90% or above is considered good, though this can vary based on factors like project type, size, and review processes."
             >
                 <div className="text-xl">{mergedPr}%</div>
             </Tooltip>
