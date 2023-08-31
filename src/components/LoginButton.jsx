@@ -11,6 +11,7 @@ import { resetRepos, resetCurrRepo } from "../redux/slices/repoSlice";
 import { setUsername } from "../redux/slices/userSlice";
 
 import { BsGithub } from "react-icons/bs";
+import { useMediaQuery } from "@mui/material";
 
 //BsGithub
 
@@ -19,6 +20,7 @@ const LoginButton = () => {
   //   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.username);
+  const isTabletScreen = useMediaQuery("(max-width: 770px)");
 
   const handleLogoutUser = () => {
     console.log("logging out");
@@ -64,7 +66,9 @@ const LoginButton = () => {
     <div className="flex justify-center items-center">
       {username ? (
         <button
-          className=" w-48 flex justify-center items-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded focus:outline-none font-sans-serif font-medium"
+          className={`${
+            isTabletScreen ? "w-24" : "w-48"
+          } flex justify-center items-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded focus:outline-none font-sans-serif font-medium`}
           type="button"
           onClick={handleLogoutUser}
         >
