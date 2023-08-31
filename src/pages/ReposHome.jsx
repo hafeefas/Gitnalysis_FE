@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import gitnalsyisBackground from "../assets/gitnalysis_coder.png";
 import MetricsIcon from "../icons/MetricsIcon";
@@ -19,7 +19,7 @@ const ReposHome = () => {
 
   return isMobileScreen ? (
     <div
-      className="w-full h-screen bg-gray-200 overflow-scroll text-white"
+      className="w-full fixed h-screen bg-gray-200 overflow-scroll text-white"
       style={{ backgroundColor: "#111526ff" }}
     >
       <div className="grid w-3/4 translate-x-3 mt-12 grid-cols-2 h-5/6 grid-rows-0 row-span-8 text-center z-10 justify-center mx-auto">
@@ -160,7 +160,7 @@ const ReposHome = () => {
     </div>
   ) : isTabletScreen ? (
     <div
-      className="w-full h-screen ml-8 bg-gray-200 overflow-scroll text-white"
+      className="w-full fixed h-screen ml-8 bg-gray-200 overflow-scroll text-white"
       style={{ backgroundColor: "#111526ff" }}
     >
       <div className="grid w-3/4 mt-12 grid-cols-2 h-5/6 grid-rows-0 row-span-8 text-center z-10 justify-center mx-auto">
@@ -301,7 +301,7 @@ const ReposHome = () => {
     </div>
   ) : (
     <div
-      className="flex w-full h-screen bg-gray-200 overflow-scroll text-white mt-6"
+      className="flex fixed w-full h-screen bg-gray-200 overflow-scroll text-white mt-6"
       style={{ backgroundColor: "#111526ff" }}
     >
       <div
@@ -406,7 +406,7 @@ const ReposHome = () => {
           </div>
           <NavLink to="/ownedRepos">
             <div
-              className="flex col-start-2 border-white border-2 border-dotted row-start-1 col-span-1 rounded-md h-4/5 shadow-3xl m-2 items-center justify-center font-bold text-white hover:bg-gradient-to-br hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
+              className="flex col-start-2 border-white border-2 border-dotted row-start-1 col-span-1 rounded-md h-4/5 shadow-3xl m-2 items-center justify-center font-bold text-white hover:bg-gradient-to-br  from-lime-400 to-green-500 hover:text-black"
               style={{ backgroundColor: "#171C2Eff" }}
             >
               <div className="mr-4">
@@ -456,9 +456,7 @@ const ReposHome = () => {
                 style={{ color: "#cb9ac4ff", fontSize: "24px" }}
               />
             </div>
-            <Link to="/contributedrepos">
-              Other Repos
-            </Link>
+            <Link to="/contributedrepos">Other Repos</Link>
             <div className="ml-4">
               <VscGitPullRequest
                 style={{ color: "#cb9ac4ff", fontSize: "24px" }}
