@@ -16,8 +16,8 @@ function Navbar() {
 
   if (currRepo) {
     const repoParts = currRepo.split("/");
-    const userName = repoParts[0];
-    const repo = repoParts[1];
+    userName = repoParts[0];
+    repo = repoParts[1];
   }
 
   useEffect(() => {
