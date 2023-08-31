@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { darkScrollbar, useMediaQuery } from "@mui/material";
 import * as d3 from "d3";
 import { ResponsiveLine } from "@nivo/line";
+import { Tooltip } from '@mui/material';
 
 const LeadTimeChart = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
@@ -22,6 +23,7 @@ const LeadTimeChart = () => {
   //     },
   //   ];
   // };
+
 
   const monthsInSecs = 30 * 24 * 3600;
   const weeksInSecs = 24 * 3600 * 7;
@@ -200,7 +202,10 @@ const LeadTimeChart = () => {
   }, []);
 
   return (
+    <Tooltip title={<div className="bg-white text-black px-4 py-2"> The lead time metric shows how long on average it takes to merge a PR. It indicates how long senior team members take to review a PR. A longer lead time can mean the senior members are complacent in reviewing the code. This metric may vary depending on the team structure.</div>} arrow 
+    placement="top">
     <div className="flex w-full justify-center items-center h-56">
+            
       {repoInfo ? (
         <>
           <ResponsiveLine
@@ -361,6 +366,7 @@ const LeadTimeChart = () => {
         </div>
       )}
     </div>
+  </Tooltip>
   );
 };
 

@@ -97,18 +97,17 @@ const StarredRepos = () => {
   }
 
   return (
-      
-
-
-      <div className="mt-12 flex-col flex justify-center items-center p-4">
-      <div className="mt-8 duration-300 w-96 border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex-col justify-center items-center"
-            style={{ backgroundColor: "#171C2Eff" }}>
+    <div className="mt-12 flex-col flex justify-center items-center p-4">
+      <div
+        className="mt-8 duration-300 w-96 border shadow-xl rounded-md p-4 py-6 px-4 my-2 mb-2 border-black flex-col justify-center items-center"
+        style={{ backgroundColor: "#171C2Eff" }}
+      >
         <div className="flex h-fit text-4xl text-white font-serif p-4 justify-center rounded-lg shadow-lg  items-center border-black">
-              <h1>Starred Repos</h1>
-              <div className="ml-4">
-              <BsStars style={{ color: "yellow" }} />
-              </div>
+          <h1>Starred Repos</h1>
+          <div className="ml-4">
+            <BsStars style={{ color: "yellow" }} />
           </div>
+        </div>
         <div
           className="grid justify-items-center"
           style={{ backgroundColor: "#171C2Eff" }}
@@ -123,26 +122,26 @@ const StarredRepos = () => {
           />
           {showDropdown && (
             <motion.ul
-            variants={{
-              hidden: {opacity: 0, x: -80},
-              visible: {opacity: 1, x: 0},
-            }}
-            initial="hidden"
-            animate="visible"
-            transition={{duration: 0.8, delay: 0.25}}
-            className="h-fit w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              variants={{
+                hidden: { opacity: 0, x: -80 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="h-fit w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               style={{ backgroundColor: "#171C2Eff" }}
             >
               {filterStarred.length > 0 ? (
                 filterStarred.map((repoName) => (
                   <motion.li
-                  variants={{
-                    hidden: {opacity: 0, x: 80},
-                    visible: {opacity: 1, x: 0},
-                  }}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{duration: 0.8, delay: 0.50}}
+                    variants={{
+                      hidden: { opacity: 0, x: 80 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ duration: 0.8, delay: 0.5 }}
                     key={repoName.full_name}
                     onClick={() => handleDropdownItemClick(repoName.full_name)}
                     className="w-48 rounded-lg py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-teal-300 hover:to-sky-500 hover:text-black"
@@ -157,19 +156,19 @@ const StarredRepos = () => {
               )}
             </motion.ul>
           )}
-
-          
-        </div>  
+        </div>
       </div>
       <motion.div
-      variants={{
-        hidden: {opacity: 0, x: -80},
-        visible: {opacity: 1, x: 0},
-      }}
-      initial="hidden"
-      animate="visible"
-      transition={{duration: 0.8, delay: 0.75}}
-       className="mt-10" style={{ backgroundColor: "#171C2Eff" }}>
+        variants={{
+          hidden: { opacity: 0, x: -80 },
+          visible: { opacity: 1, x: 0 },
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.8, delay: 0.75 }}
+        className="mt-10"
+        style={{ backgroundColor: "#171C2Eff" }}
+      >
         <ul
           className="h-fit ml-5 mr-5 w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white "
           style={{ backgroundColor: "#171C2Eff" }}
@@ -178,7 +177,7 @@ const StarredRepos = () => {
             <li
               key={repo.full_name}
               onClick={() => handleClickRepo(repo.full_name)}
-              className="w-full rounded-lg py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-teal-300 hover:to-sky-500 hover:text-black"
+              className="w-full rounded-lg py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-pink-500 hover:to-yellow-500 hover:text-black"
             >
               {repo.name}
             </li>

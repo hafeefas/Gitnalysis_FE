@@ -11,7 +11,7 @@ function CategoriesDropdown() {
     REPO = 'Gitnalysis_FE'
 
     useEffect(() => {
-        async function getCategories() {
+        async function getCategories(OWNER, REPO) {
             try {
                 if (OWNER.length > 0 && REPO.length > 0) {
                     const language = await axios.get(`https://api.github.com/repos/${OWNER}/${REPO}/languages`)

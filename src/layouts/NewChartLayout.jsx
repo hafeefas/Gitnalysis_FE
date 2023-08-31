@@ -21,11 +21,12 @@ import IssuesTimeline from "../components/IssuesTimeline";
 import MergeSuccessRatePie from "../components/MergeSuccessRatePie";
 import WebsiteUsersCounter from "../components/WebsiteUsersCounter";
 import LeadTimeMetric from "../components/LeadTimeMetric";
+import CFR from "../components/ChangeFailureRate";
 
 const NewChartLayout = () => {
   const currRepo = useSelector((state) => state.repo.currRepo);
 
-  return (
+  return (  
     <div className="w-screen h-full overflow-scroll p-10 pb-24 pr-0">
       <div className="grid grid-cols-9 grid-rows-13 gap-4 pr-4 text-center ">
         <div className="flex col-span-2 h-32 p-2 iflex w-full justify-center items-center bg-gradient-to-br from-teal-300 to-sky-500 hover:from-pink-500 hover:to-yellow-500 rounded-xl font-bold text-white shadow-2xl">
@@ -125,7 +126,7 @@ const NewChartLayout = () => {
           className="col-span-4 row-span-3 col-start-1 row-start-8 p-2 h-96 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white"
           style={{ backgroundColor: "#171C2Eff" }}
         >
-          Change Failure Rate (CFR)
+         <CFR />
         </div>
         <div
           className="col-span-4 row-span-6 col-start-5 row-start-8 p-2 h-192 text-center justify-center items-center font-bold rounded-xl shadow-3xl text-white"
