@@ -208,8 +208,8 @@ const RepoList = () => {
           {/* had to replace the below commented code with this for search to work */}
           {filteredRepos.map((repo) => (
             <li
-              key={repo.full_name}
-              onClick={() => handleClickRepo(repo.full_name)}
+              key={repo.fullName}
+              onClick={() => handleClickRepo(repo.fullName)}
               className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
             >
               {repo.name}
@@ -249,8 +249,8 @@ const RepoList = () => {
         >
           {filterStarred?.map((repoName) => (
             <li
-              key={repoName.full_name}
-              onClick={() => handleClickRepo(repoName.full_name)}
+              key={repoName.fullName}
+              onClick={() => handleClickRepo(repoName.fullName)}
               className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-pink-500 hover:to-yellow-500 hover:text-black"
             >
               <div className="flex items-center">
@@ -287,8 +287,8 @@ const RepoList = () => {
         >
           {filterForked?.map((repoName) => (
             <li
-              key={repoName.full_name}
-              onClick={() => handleClickRepo(repoName.full_name)}
+              key={repoName.fullName}
+              onClick={() => handleClickRepo(repoName.fullName)}
               className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-teal-300
               hover:to-sky-500 hover:text-black"
             >
@@ -326,8 +326,8 @@ const RepoList = () => {
         >
           {sortedContributedReposSearch.map((repoName) => (
             <li
-              key={repoName.full_name}
-              onClick={() => handleClickRepo(repoName.full_name)}
+              key={repoName.fullName}
+              onClick={() => handleClickRepo(repoName.fullName)}
               className="w-1/3 py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-pink-500 hover:to-purple-500 hover:text-black"
             >
               <div className="flex items-center">
