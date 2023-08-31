@@ -97,13 +97,8 @@ Jonathan Shabatayev
 
 Hafeefa Sultan
 
-[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](GITHUB LINK)
-[![[LinkedIn Badge](https://www.linkedin.com/in/hafeefa-sultan-1a3785227/)](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](LINKEDIN LINK)
-
-NAME
-
-[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)]([GITHUB LINK](https://github.com/hafeefas))
-[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)]([LINKEDIN LINK](https://www.linkedin.com/in/hafeefa-sultan-1a3785227/))
+[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/hafeefas)
+[![[LinkedIn Badge](https://www.linkedin.com/in/hafeefa-sultan-1a3785227/)](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hafeefa-sultan-1a3785227)
 
 NAME
 
