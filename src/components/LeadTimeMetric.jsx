@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 const LeadTimeMetric = () => {
@@ -33,7 +33,9 @@ const LeadTimeMetric = () => {
   return (
     <div className="flex flex-col justify-center h-full">
       <>
-        <div style={{ color: "lightpink" }}>The Average Lead Time for Change</div>
+        <div style={{ color: "lightpink" }}>
+          The Average Lead Time for Change
+        </div>
         {leadTime !== null && <div className="text-xl">{leadTime}</div>}
       </>
     </div>

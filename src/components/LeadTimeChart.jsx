@@ -25,12 +25,17 @@ const LeadTimeChart = () => {
   //   ];
   // };
 
-  const repoParts = currRepo.split("/");
-  const username = repoParts[0];
-  const repo = repoParts[1];
+  let userName = [];
+  let repo = [];
+
+  if (currRepo) {
+    const repoParts = currRepo.split("/");
+    userName = repoParts[0];
+    repo = repoParts[1];
+  }
 
   const handleRepoLinkClick = () => {
-    window.open(`https://github.com/${username}/${repo}`, "_blank");
+    window.open(`https://github.com/${userName}/${repo}`, "_blank");
   };
 
   const monthsInSecs = 30 * 24 * 3600;

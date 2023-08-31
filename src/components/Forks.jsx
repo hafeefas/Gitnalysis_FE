@@ -7,6 +7,15 @@ const Forks = ({ fullRepo }) => {
   const [isHovered, setIsHovered] = useState(false);
   const currRepo = useSelector((state) => state.repo.currRepo);
 
+  let userName = [];
+  let repo = [];
+
+  if (currRepo) {
+    const repoParts = currRepo.split("/");
+    userName = repoParts[0];
+    repo = repoParts[1];
+  }
+
   useEffect(() => {
     async function getForks() {
       try {
@@ -14,12 +23,9 @@ const Forks = ({ fullRepo }) => {
           console.error("fullRepo should be a string");
           return;
         }
-        const repoParts = currRepo.split("/");
-        const username = repoParts[0];
-        const repo = repoParts[1];
 
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/forks/${username}/${repo}/personalized`
+          `${process.env.REACT_APP_BACKEND_URL}/api/forks/${userName}/${repo}/personalized`
         );
         const forksResponse = response.data.forks;
         setForks(forksResponse);
