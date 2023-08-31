@@ -9,6 +9,8 @@ import { BsGithub, BsFolder } from "react-icons/bs";
 import { ImStatsBars } from "react-icons/im";
 import { AiOutlineMail, AiOutlineFile } from "react-icons/ai";
 import { useMediaQuery } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 
 //AiOutlineMail
 
@@ -16,6 +18,17 @@ function ToolbarLayout() {
   const [open, setOpen] = useState(false);
   const activeMenu = true;
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
+
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
 
   return (
     <div className="flex h-full text-white border-r pb-10">
@@ -46,87 +59,77 @@ function ToolbarLayout() {
             GITNALYSIS
           </h1>
         </div>
+        <BootstrapTooltip title="Repositories" placement="right-start">
+          <div
+            className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
+              !open ? "px-1" : "px-4"
+            }`}
+            onClick={() => setOpen(!open)}
+          >
+            <Link to="/repos" className="flex items-center">
+              <BsFolder
+                className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+              />
+              <h1
+                className={` font-medium font-sans-serif text-2xl ${
+                  !open && "hidden"
+                }`}
+              >
+                Repositories
+              </h1>
+            </Link>
+          </div>
+        </BootstrapTooltip>
+        <BootstrapTooltip title="Statistics & Metrics" placement="right-start">
+          <div
+            className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
+              !open ? "px-1" : "px-4"
+            }`}
+            onClick={() => setOpen(!open)}
+          >
+            <Link to="/" className="flex items-center">
+              <ImStatsBars
+                className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+              />
 
-        <div
-          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
-            !open ? "px-1" : "px-4"
-          }`}
-          onClick={() => setOpen(!open)}
-        >
-          <Link to="/repos" className="flex items-center">
-            <BsFolder
-              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
-            />
-            <h1
-              className={` font-medium font-sans-serif text-2xl ${
-                !open && "hidden"
-              }`}
-            >
-              Repository
-            </h1>
-          </Link>
-        </div>
+              <h1
+                className={` font-medium font-sans-serif text-2xl ${
+                  !open && "hidden"
+                }`}
+              >
+                Statistics
+              </h1>
+            </Link>
+          </div>
+        </BootstrapTooltip>
+        <BootstrapTooltip title="Notifications" placement="right-start">
+          <div
+            className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
+              !open ? "px-1" : "px-4"
+            }`}
+            onClick={() => setOpen(!open)}
+          >
+            <Link to="/notifications" className={` flex items-center`}>
+              <AiOutlineMail
+                className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
+              />
+              <h1
+                className={` font-medium font-sans-serif text-2xl ${
+                  !open && "hidden"
+                }`}
+              >
+                Notifications
+              </h1>
+            </Link>
+          </div>
 
-        <div
-          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
-            !open ? "px-1" : "px-4"
-          }`}
-          onClick={() => setOpen(!open)}
-        >
-          <Link to="/" className="flex items-center">
-            <ImStatsBars
-              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
-            />
-
-            <h1
-              className={` font-medium font-sans-serif text-2xl ${
-                !open && "hidden"
-              }`}
-            >
-              Statistics
-            </h1>
-          </Link>
-        </div>
-
-        <div
-          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
-            !open ? "px-1" : "px-4"
-          }`}
-          onClick={() => setOpen(!open)}
-        >
-          <Link to="/notifications" className={` flex items-center`}>
-            <AiOutlineMail
-              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
-            />
-            <h1
-              className={` font-medium font-sans-serif text-2xl ${
-                !open && "hidden"
-              }`}
-            >
-              Notifications
-            </h1>
-          </Link>
-        </div>
-
-        <div
-          className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
-            !open ? "px-1" : "px-4"
-          }`}
-          onClick={() => setOpen(!open)}
-        >
-          <Link to="" className={`flex items-center `}>
-            <AiOutlineFile
-              className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
-            />
-            <h1
-              className={` font-medium font-sans-serif text-2xl ${
-                !open && "hidden"
-              }`}
-            >
-              Files
-            </h1>
-          </Link>
-        </div>
+          <div
+            className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
+              !open ? "px-1" : "px-4"
+            }`}
+            onClick={() => setOpen(!open)}
+          ></div>
+        </BootstrapTooltip>
       </div>
     </div>
   );
