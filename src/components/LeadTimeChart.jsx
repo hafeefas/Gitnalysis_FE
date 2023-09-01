@@ -378,7 +378,7 @@ const LeadTimeChart = () => {
                   anchor: "bottom-right",
                   direction: "column",
                   justify: false,
-                  translateX: -35,
+                  translateX: -125,
                   translateY: -120,
                   itemsSpacing: 0,
                   itemDirection: "left-to-right",
