@@ -47,37 +47,41 @@ const CFR = () => {
   ];
 
   return (
-    <div style={{ height: 400, width: 400, marginLeft: "100px" }}>
-      <Tooltip
-        title="The Change Failure Rate (CFR) is the percentage of deployments that result in failure. A common guideline is to aim for a CFR below 15% to ensure a stable and reliable software release process."
-        arrow
-        placement="top"
-      >
-        <div>Change Failure Rate</div>
-      </Tooltip>
-      <ResponsivePie
-        data={data}
-        isInteractive={false}
-        margin={{ top: 80, right: 80, bottom: 80, left: 80 }}
-        innerRadius={0.5}
-        padAngle={0.7}
-        cornerRadius={3}
-        activeOuterRadiusOffset={8}
-        borderWidth={1}
-        colors={["#fec7d7", "#fffffe"]}
-        borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
-        arcLinkLabelsSkipAngle={10}
-        arcLinkLabelsTextColor="white"
-        arcLinkLabelsThickness={2}
-        arcLinkLabelsColor={{ from: "color" }}
-        arcLabelsSkipAngle={10}
-        arcLabelsTextColor={{
-          from: "color",
-          modifiers: [["darker", 2]],
-        }}
-        radialLabel="id"
-        radialLabelsTextColor="white"
-      />
+    <div className="flex justify-center items-center">
+      <div style={{ height: 400, width: 400 }}>
+        <Tooltip
+          title="The Change Failure Rate (CFR) is the percentage of deployments that result in failure. A common guideline is to aim for a CFR below 15% to ensure a stable and reliable software release process."
+          arrow
+          placement="top"
+        >
+          <div className="flex justify-center items-center">
+            Change Failure Rate
+          </div>
+        </Tooltip>
+        <ResponsivePie
+          data={data}
+          isInteractive={false}
+          margin={{ top: 0, right: 80, bottom: 80, left: 80 }}
+          innerRadius={0.5}
+          padAngle={0.7}
+          cornerRadius={3}
+          activeOuterRadiusOffset={8}
+          borderWidth={1}
+          colors={["#fec7d7", "#fffffe"]}
+          borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
+          arcLinkLabelsSkipAngle={10}
+          arcLinkLabelsTextColor="white"
+          arcLinkLabelsThickness={2}
+          arcLinkLabelsColor={{ from: "color" }}
+          arcLabelsSkipAngle={10}
+          arcLabelsTextColor={{
+            from: "color",
+            modifiers: [["darker", 2]],
+          }}
+          radialLabel="id"
+          radialLabelsTextColor="white"
+        />
+      </div>
     </div>
   );
 };

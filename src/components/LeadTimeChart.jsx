@@ -117,10 +117,6 @@ const LeadTimeChart = () => {
     return uniqueDaysAverages;
   };
 
-  if (currRepo) {
-    console.log(currRepo, " cURRENT FORKED REPO");
-  }
-
   useEffect(() => {
     async function fetchRepoMetrics() {
       try {
@@ -357,7 +353,7 @@ const LeadTimeChart = () => {
               curve="natural"
               enableSlices="x"
               enableArea={true}
-              areaBaselineValue={5} // Set the baseline value for the gradient
+              areaBaselineValue={0} // Set the baseline value for the gradient
               areaOpacity={0.2} // Set the opacity of the gradient
               enableAreaGradient={true} // Enable gradient for areas
               areaGradientColors={["#22E0E3ff", "rgba(34, 224, 227, 0)"]} // Gradient colors
