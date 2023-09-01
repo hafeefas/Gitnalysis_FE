@@ -77,8 +77,8 @@ function ContributedRepos() {
   if (allRepos) {
     console.log(allRepos);
   }
-  if (contributedRepos) {
-    console.log(contributedRepos, "contributed repos");
+  if (sortedContributedRepos) {
+    console.log(sortedContributedRepos, "contributed repos");
   }
 
   useEffect(() => {
@@ -182,30 +182,30 @@ function ContributedRepos() {
             style={{ backgroundColor: "#171C2Eff" }}
           >
             {sortedContributedRepos?.map((repo, index) => {
-              if (index % 2 !== 0) {
-                return (
-                  <li
-                    key={repo.full_name}
-                    onClick={() => handleClickRepo(repo.full_name)}
-                    className="w-full rounded-lg py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
-                  >
-                    <div className="flex">
-                      <img
-                        src={repo.owner.avatar_url}
-                        className="h-8 w-8"
-                        alt="Avatar"
-                      />
-                      <div className="">
-                        <div className="flex flex-col ml-4">{repo.name}</div>
-                        <div className="flex flex-col ml-4">
-                          Owner: {repo.owner?.login}
-                        </div>
+              {
+                /* if (index % 2 !== 0) { */
+              }
+              return (
+                <li
+                  key={repo.full_name}
+                  onClick={() => handleClickRepo(repo.full_name)}
+                  className="w-full rounded-lg py-2 pl-4 border-b border-gray-200 dark:border-gray-600 inline-block items-center text-white hover:bg-gradient-to-br from-lime-400 to-green-500 hover:text-black"
+                >
+                  <div className="flex">
+                    <img
+                      src={repo.owner.avatar_url}
+                      className="h-8 w-8"
+                      alt="Avatar"
+                    />
+                    <div className="">
+                      <div className="flex flex-col ml-4">{repo.name}</div>
+                      <div className="flex flex-col ml-4">
+                        Owner: {repo.owner?.login}
                       </div>
                     </div>
-                  </li>
-                );
-              }
-              return null;
+                  </div>
+                </li>
+              );
             })}
           </ul>
         </motion.div>
