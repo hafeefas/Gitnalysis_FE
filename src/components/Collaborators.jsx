@@ -30,8 +30,8 @@ const Collaborators = () => {
       }
     }
 
-        fetchCollaborators();
-    }, [currRepo]);
+    fetchCollaborators();
+  }, [currRepo]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -61,14 +61,14 @@ const Collaborators = () => {
         {currRepo !== null ? collaborators.length : "N/A"} Collaborators
       </span>
       {console.log("coll" + JSON.stringify(collaborators[0]))}
-      {showDropdown && currRepo !== null ?(
+      {showDropdown && currRepo !== null ? (
         <div
-          className="absolute top-1 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto"
+          className="absolute top-1 mt-20 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto"
           style={{ backgroundColor: "#171C2Eff" }}
           ref={dropdownRef}
           onClick={(e) => e.stopPropagation()}
         >
-          <ul className="rounded-lg">
+          <ul className="rounded-lg ">
             {collaborators.map((collaborator) => (
               <li key={collaborator.login} className="border-b p-2 text-white">
                 <img
