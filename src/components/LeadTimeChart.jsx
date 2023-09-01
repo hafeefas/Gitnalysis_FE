@@ -147,7 +147,7 @@ const LeadTimeChart = () => {
           let weeks = 0;
           let months = 0;
 
-          metrics.data.forEach((d) => {
+          metrics.data.forEach((d) => {   
             const average = convertAverageTimeInSeconds(d.average);
             console.log(average);
             if (average < 60) {
