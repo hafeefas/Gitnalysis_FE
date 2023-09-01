@@ -15,6 +15,7 @@ const CustomTooltip = ({ id, value, indexValue }) => (
 
 const BarChart = ({ fullRepo }) => {
   const [commitsData, setCommitsData] = useState([]);
+  const [commitCount, setCommitCount] = useState(undefined)
   const [timeRange, setTimeRange] = useState("pastWeek");
 
   useEffect(() => {
@@ -40,6 +41,12 @@ const BarChart = ({ fullRepo }) => {
         );
         console.log(dataArray);
         setCommitsData(dataArray);
+
+        const commits = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/commits/count/${username}/${repo}`
+        );
+
+        setCommitCount(commits.data.commits)
       } catch (error) {
         console.log(error);
       }
@@ -50,6 +57,10 @@ const BarChart = ({ fullRepo }) => {
 
   return (
     <div style={{ height: "35vh", width: "100%" }}>
+     <div>
+    <span style={{ color: "lightblue" }}>Total Commits: </span> 
+    {commitCount}
+  </div>
       <div className="flex gap-8 items-center justify-center">
         <div>Commits Timeline</div>
         <FormControl variant="outlined" style={{ marginBottom: "20px" }}>
