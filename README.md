@@ -72,7 +72,7 @@ As a group of eight, we developed a dynamic web app that enhances a developer's 
 <!-- Check Notifications -->
 <h2 id="check-notifications"> 🔔: Check Notifications</h2>
 <div class="placeholder-container">
-  <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/andreatranchina/fuse-video/assets/91578619/aefa5cab-2fb9-4646-875e-048b0851be3d">
+  <img width="1422" alt="Screen Shot 2023-07-31 at 6 23 44 AM" src="https://github.com/hafeefas/Gitnalysis_FE/blob/main/src/icons/notifications2.png">
 </div>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
