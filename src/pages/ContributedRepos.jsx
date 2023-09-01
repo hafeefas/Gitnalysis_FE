@@ -117,7 +117,7 @@ function ContributedRepos() {
           >
             <input
               type="text"
-              placeholder="Search for forked repos..."
+              placeholder="Search for other repos..."
               className="mb-4 mt-8 py-2 px-4 border border-black rounded-md text-gray-900 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg"
               style={{ width: "300px" }}
               value={searchQuery}
