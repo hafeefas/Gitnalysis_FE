@@ -95,7 +95,11 @@ function ContributedRepos() {
 
   // Check if loggedInUser is available
   if (!loggedInUser) {
-    return <div>Please log in to view the repos that you own!</div>; // or render some loading indicator
+    return (
+      <div className="flex justify-center items-center text-white text-2xl">
+        Please log in to view the repos that you own!
+      </div>
+    ); // or render some loading indicator
   }
 
   return (

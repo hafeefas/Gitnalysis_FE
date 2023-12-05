@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import axios from "axios";
+import { BsXCircle } from "react-icons/bs";
 
 const RepoSearch = ({ link }) => {
   const [githubLink, setGithubLink] = useState({});
@@ -17,13 +18,19 @@ const RepoSearch = ({ link }) => {
     }
   };
 
-  console.log("ownerrepo for later", ownerRepo);
+  if (owner) {
+    console.log(owner, "owner");
+  }
+
+  if (repo) {
+    console.log(repo, "repo");
+  }
 
   /// https://github.com/segfal/karaoke-backend Are we passing this link?
   /// how do we split this url?
 
   useEffect(() => {
-    async function getRepoSearch(ownerRepo) {
+    async function getRepoSearch() {
       try {
         if (owner.length > 0 && repo.length > 0) {
           const res = axios.get(
