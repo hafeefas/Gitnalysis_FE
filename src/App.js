@@ -74,21 +74,21 @@ function App() {
 
           {/* Set up routes */}
           <Routes>
+            <Route path="/" element={<ReposHome />} />
             {/* Dashboard */}
             {/* <Route path="/" element={<ChartLayout username={username} currRepo={currRepo} />} /> */}
             {/* IF WE HAVE A SMALLER SCREEN INTO MOBILE, CHANGE TO A MOBILE READY pmLAYOUT */}
             {isTabletScreen ? (
               <Route
-                path="/"
+                path="/dashboard"
                 element={
                   <TabletChartLayout username={username} currRepo={currRepo} />
                 }
               />
             ) : (
-              <Route path="/" element={<NewChartLayout />} />
+              <Route path="/dashboard" element={<NewChartLayout />} />
             )}
             {/* <Route path="/login" element={<Login />} /> */}
-            <Route path="/repos" element={<ReposHome />} />
             <Route path="/ownedRepos" element={<OwnedRepos />} />
             <Route path="/starredRepos" element={<StarredRepos />} />
             <Route path="/reposlist" element={<Repos />} />

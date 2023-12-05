@@ -68,7 +68,7 @@ function ToolbarLayout() {
               }`}
               onClick={() => setOpen(!open)}
             >
-              <Link to="/repos" className="flex items-center">
+              <Link to="/" className="flex items-center">
                 <BsFolder
                   className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
                 />
@@ -92,7 +92,7 @@ function ToolbarLayout() {
               }`}
               onClick={() => setOpen(!open)}
             >
-              <Link to="/" className="flex items-center">
+              <Link to="/dashboard" className="flex items-center">
                 <ImStatsBars
                   className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
                 />

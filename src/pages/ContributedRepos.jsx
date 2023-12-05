@@ -72,7 +72,7 @@ function ContributedRepos() {
     // setCurrRepo(repoName);
     dispatch(setCurrentRepo(repoName));
     // console.log(repoName, "clicked repo");
-    navigate("/");
+    navigate("/dashboard");
   };
   if (allRepos) {
     console.log(allRepos);

@@ -44,7 +44,7 @@ const StarredRepos = () => {
     dispatch(setCurrentRepo(repoName));
     console.log(repoName, "STARRED REPO NAME");
     // console.log(repoName, "clicked repo");
-    navigate("/");
+    navigate("/dashboard");
   };
 
   let sortedStarredRepos = [];

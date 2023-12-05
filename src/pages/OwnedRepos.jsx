@@ -58,7 +58,7 @@ const OwnedRepos = () => {
     // setCurrRepo(repoName);
     dispatch(setCurrentRepo(repoName));
     // console.log(repoName, "clicked repo");
-    navigate("/");
+    navigate("/dashboard");
   };
 
   useEffect(() => {
