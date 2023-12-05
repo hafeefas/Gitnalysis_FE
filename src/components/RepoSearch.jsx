@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import axios from "axios";
 import { BsXCircle } from "react-icons/bs";
+import { setCurrentRepo } from "../redux/slices/repoSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const RepoSearch = ({ link }) => {
   const [githubLink, setGithubLink] = useState({});
@@ -10,6 +13,9 @@ const RepoSearch = ({ link }) => {
   const [repo, setRepo] = useState("");
   const isMobileScreen = useMediaQuery("(max-width: 420px)");
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
+  const currRepo = useSelector((state) => state.repo.currRepo);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const ownerRepo = () => {
     if (link !== undefined || link !== "") {
@@ -18,33 +24,73 @@ const RepoSearch = ({ link }) => {
     }
   };
 
-  if (owner) {
-    console.log(owner, "owner");
-  }
+  const handleLinkChange = (e) => {
+    e.preventDefault();
+    setGithubLink(e.target.value);
+  };
 
-  if (repo) {
-    console.log(repo, "repo");
-  }
+  // if (owner) {
+  //   console.log(owner, "owner");
+  // }
 
+  // if (repo) {
+  //   console.log(repo, "repo");
+  // }
+
+  if (currRepo) {
+    console.log(currRepo, "from the repo search");
+  }
   /// https://github.com/segfal/karaoke-backend Are we passing this link?
   /// how do we split this url?
 
-  useEffect(() => {
-    async function getRepoSearch() {
-      try {
-        if (owner.length > 0 && repo.length > 0) {
-          const res = axios.get(
-            `https://api.github.com/repos/${owner}/${repo}`
-          ); ///HELLO
-          console.log(res, "res for search bar link");
-          setGithubLink(res.data);
-        }
-      } catch (error) {
-        console.log(error, "error from getting repository");
+  // useEffect(() => {
+  //   async function getRepoSearch() {
+  //     try {
+  //       if (owner.length > 0 && repo.length > 0) {
+  //         const res = axios.get(
+  //           `https://api.github.com/repos/${owner}/${repo}`
+  //         ); ///HELLO
+  //         console.log(res, "res for search bar link");
+  //         setGithubLink(res.data);
+  //       }
+  //     } catch (error) {
+  //       console.log(error, "error from getting repository");
+  //     }
+  //   }
+  //   getRepoSearch();
+  // }, [currRepo]);
+
+  const extractRepoOwnerAndName = (githubUrl) => {
+    try {
+      const url = new URL(githubUrl);
+      const pathParts = url.pathname.split("/");
+
+      // Filter out empty strings and take the owner and repository name from the path
+      const owner = pathParts[1];
+      const repoName = pathParts[2];
+
+      console.log(`${owner}/${repoName}`, "extracting repo owner and name");
+      if (owner && repoName) {
+        return `${owner}/${repoName}`;
+      } else {
+        throw new Error("Invalid GitHub URL");
       }
+    } catch (error) {
+      console.error("Invalid URL:", githubUrl);
+      return null;
     }
-    getRepoSearch();
-  }, []);
+  };
+
+  const handleClickRepo = () => {
+    // setCurrRepo(repoName);
+    console.log(githubLink, "this will be extracted from");
+    console.log("HELLO");
+    const repoInfo = extractRepoOwnerAndName(githubLink);
+    console.log(repoInfo, "sending via dispatch to set current repo");
+    dispatch(setCurrentRepo(repoInfo));
+    // console.log(repoName, "clicked repo");
+    navigate("/dashboard");
+  };
 
   return (
     <div className={isMobileScreen ? "w-72" : "w-4/5"}>
@@ -74,6 +120,7 @@ const RepoSearch = ({ link }) => {
                       : "Input your repo link here..."
                   }
                   required
+                  onChange={handleLinkChange}
                 />
               </div>
             </div>
@@ -81,6 +128,7 @@ const RepoSearch = ({ link }) => {
               <button
                 type="submit"
                 className="text-white w-72 border justify-center border-pink-500 hover:bg-orange-600 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 flex items-center justify-center"
+                onClick={handleClickRepo}
               >
                 <div className="text-bold w-fit">Search</div>
               </button>
@@ -124,12 +172,14 @@ const RepoSearch = ({ link }) => {
                     : "Input your repo link here..."
                 }
                 required
+                onChange={handleLinkChange}
               />
               <Link to="/dashboard">
                 <button
                   type="submit"
                   className="text-white absolute border border-pink-500 hover:bg-orange-600 right-2.5 bottom-2.5 bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-4 py-2 ease-linear
                   transition-all duration-150 flex items-center justify-center"
+                  onClick={handleClickRepo}
                 >
                   {/* className="text-white w-72 border justify-center
                   border-pink-500 hover:bg-orange-600 hover:text-white
