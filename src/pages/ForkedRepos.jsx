@@ -87,7 +87,7 @@ const ForkedRepos = () =>{
         // setCurrRepo(repoName);
         dispatch(setCurrentRepo(repoName));
         // console.log(repoName, "clicked repo");
-        navigate("/");
+        navigate("/dashboard");
     };
     console.log(forkedRepos, "FORKEDD")
 

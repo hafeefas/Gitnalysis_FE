@@ -46,7 +46,7 @@ function MobileToolbarLayout() {
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4 rounded-lg ${
             !open ? "px-1" : "px-4"
           }`} onClick={() => setOpen(!open)}>
-            <Link to="/repos" className='flex items-center'>
+            <Link to="/" className='flex items-center'>
               
               <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"
@@ -58,7 +58,7 @@ function MobileToolbarLayout() {
           <div className={`hover:text-purple-500 hover:scale-110 duration-300 flex justify-start p-4  ${
             !open ? "px-1" : "px-4"
           }`} onClick={() => setOpen(!open)}>
-            <Link to="/"  className='flex items-center'>
+            <Link to="/dashboard"  className='flex items-center'>
 
               <h1 className={` font-medium font-sans-serif text-2xl ${
               !open && "hidden"

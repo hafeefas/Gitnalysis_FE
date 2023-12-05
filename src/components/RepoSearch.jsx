@@ -77,7 +77,7 @@ const RepoSearch = ({ link }) => {
                 />
               </div>
             </div>
-            <Link to="/">
+            <Link to="/dashboard">
               <button
                 type="submit"
                 className="text-white w-72 border justify-center border-pink-500 hover:bg-orange-600 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 flex items-center justify-center"
@@ -125,7 +125,7 @@ const RepoSearch = ({ link }) => {
                 }
                 required
               />
-              <Link to="/">
+              <Link to="/dashboard">
                 <button
                   type="submit"
                   className="text-white absolute border border-pink-500 hover:bg-orange-600 right-2.5 bottom-2.5 bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-4 py-2 ease-linear

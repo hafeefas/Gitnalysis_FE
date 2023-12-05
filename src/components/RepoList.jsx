@@ -161,7 +161,7 @@ const RepoList = () => {
     // setCurrRepo(repoName);
     dispatch(setCurrentRepo(repoName));
     // console.log(repoName, "clicked repo");
-    navigate("/");
+    navigate("/dashboard");
   };
 
   //open a new tab with the github repo
