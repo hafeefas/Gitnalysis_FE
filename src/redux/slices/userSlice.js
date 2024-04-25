@@ -12,7 +12,7 @@ export const authLogIn = createAsyncThunk(
       );
       dispatch(toggleLoggedIn());
     } catch (error) {
-      console.error("Error fetching authenticating user");
+      console.error("Error fetching authenticating user in authLogIn redux");
     }
   }
 );
@@ -23,14 +23,16 @@ export const getLoggedInUser = createAsyncThunk(
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
-        {},
-        { withCredentials: true }
+        {
+          withCredentials: true // Move withCredentials inside the request configuration object
+        }
       );
       const userData = res.data;
       console.log(userData, "USER DATA REDUX");
       return userData;
     } catch (error) {
-      console.error("Error fetching authenticating user");
+      console.error("Error fetching authenticating user in getLoggedInUser redux");
+      throw error; // Re-throw the error to be handled by the calling code
     }
   }
 );
