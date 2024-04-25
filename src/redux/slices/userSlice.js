@@ -3,31 +3,33 @@ import axios from "axios";
 
 export const authLogIn = createAsyncThunk(
   "user/authLogIn",
-  async (_, { dispatch }) => {
+  async (_, thunkAPI) => {
+    const { dispatch } = thunkAPI;
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
         {
-          withCredentials: true, // Move withCredentials inside the request configuration object
+          withCredentials: true,
         }
       );
       dispatch(toggleLoggedIn());
     } catch (error) {
       console.error("Error fetching authenticating user in authLogIn redux");
       dispatch(setError(error.message));
-      throw error; // Re-throw the error to be handled by the calling code
+      throw error;
     }
   }
 );
 
 export const getLoggedInUser = createAsyncThunk(
   "user/loggedInUser",
-  async () => {
+  async (_, thunkAPI) => {
+    const { dispatch } = thunkAPI;
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
         {
-          withCredentials: true, // Move withCredentials inside the request configuration object
+          withCredentials: true,
         }
       );
       const userData = res.data;
@@ -38,7 +40,7 @@ export const getLoggedInUser = createAsyncThunk(
         "Error fetching authenticating user in getLoggedInUser redux"
       );
       dispatch(setError(error.message));
-      throw error; // Re-throw the error to be handled by the calling code
+      throw error;
     }
   }
 );
@@ -84,6 +86,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUsername, toggleLoggedIn, setAuthenticated } =
+export const { setUsername, toggleLoggedIn, setAuthenticated, setError } =
   userSlice.actions;
 export default userSlice.reducer;
