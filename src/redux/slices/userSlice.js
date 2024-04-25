@@ -14,6 +14,7 @@ export const authLogIn = createAsyncThunk(
       dispatch(toggleLoggedIn());
     } catch (error) {
       console.error("Error fetching authenticating user in authLogIn redux");
+      dispatch(setError(error.message));
       throw error; // Re-throw the error to be handled by the calling code
     }
   }
@@ -36,6 +37,7 @@ export const getLoggedInUser = createAsyncThunk(
       console.error(
         "Error fetching authenticating user in getLoggedInUser redux"
       );
+      dispatch(setError(error.message));
       throw error; // Re-throw the error to be handled by the calling code
     }
   }
@@ -43,7 +45,7 @@ export const getLoggedInUser = createAsyncThunk(
 
 const initialState = {
   username: null,
-  loggedInUser: [],
+  loggedInUser: null,
   isLoggedIn: false,
   isAuthenticated: false,
   error: null,
