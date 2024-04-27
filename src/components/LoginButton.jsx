@@ -4,6 +4,7 @@ import GitHubLogo from "../icons/github-logo.png";
 import { logoutGitHubUser } from "../services/githubLogin";
 import {
   authLogIn,
+  getLoggedInUser,
   setAuthenticated,
   toggleLoggedIn,
 } from "../redux/slices/userSlice";
@@ -38,7 +39,7 @@ const LoginButton = () => {
       await dispatch(authLogIn()); // Dispatch the authLogIn action and wait for it to complete
       openGitHubAuthenticationWindow();
     } catch (error) {
-      setAuthenticated(false);
+      // setAuthenticated(false);
       console.error("Error dispatching authLogIn:", error);
     }
   };
@@ -59,7 +60,7 @@ const LoginButton = () => {
   };
 
   const updateReduxOnAuthentication = () => {
-    dispatch(setAuthenticated(true));
+    dispatch(getLoggedInUser());
   };
 
   return (
