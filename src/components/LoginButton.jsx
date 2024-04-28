@@ -56,12 +56,12 @@ const LoginButton = () => {
         clearInterval(checkWindowClosed); // Clear the interval when the window is closed
         updateReduxOnAuthentication(); // Update Redux store when authentication is complete
       }
-    }, 1000); // Check every second
+    }, 5000); // Check every 5 seconds
   };
 
   const updateReduxOnAuthentication = async () => {
-    await dispatch(authLogIn());
-    dispatch(getLoggedInUser());
+    // await dispatch(authLogIn());
+    await dispatch(getLoggedInUser());
   };
 
   return (
