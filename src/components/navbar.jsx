@@ -179,7 +179,7 @@ function Navbar() {
               className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-4 pb-4 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400 cursor-pointer"
               onClick={handleRepoLinkClick}
             >
-              {username ? (
+              {userName ? (
                 <img
                   class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
                   src={user?.avatar_url}
