@@ -24,7 +24,7 @@ function Navbar() {
     async function fetchUsers() {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/users/me/`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
           {},
           {
             withCredentials: true, // Move withCredentials inside the request configuration object
