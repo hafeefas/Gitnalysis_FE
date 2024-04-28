@@ -36,12 +36,14 @@ export const getLoggedInUser = createAsyncThunk(
       );
       const userData = res.data;
       console.log(userData, "USER DATA REDUX");
+      dispatch(setAuthenticated(true));
       dispatch(toggleLoggedIn());
       return userData;
     } catch (error) {
       console.error(
         "Error fetching authenticating user in getLoggedInUser redux"
       );
+      dispatch(setAuthenticated(false));
       dispatch(setError(error.message));
       throw error;
     }

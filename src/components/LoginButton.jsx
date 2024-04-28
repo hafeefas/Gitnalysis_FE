@@ -62,10 +62,8 @@ const LoginButton = () => {
   };
 
   const updateReduxOnAuthentication = async () => {
-    // await dispatch(authLogIn());
-    await dispatch(getLoggedInUser());
-    console.log(loggedInUser.username + " logged in user username");
-    console.log(loggedInUser + " logged in user object");
+    await dispatch(authLogIn());
+    // await dispatch(getLoggedInUser());
     console.log(allRepos + " all repos");
   };
 
