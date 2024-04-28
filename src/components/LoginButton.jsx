@@ -36,7 +36,7 @@ const LoginButton = () => {
 
   const handleLoginWithGitHubClick = async () => {
     try {
-      await dispatch(authLogIn()); // Dispatch the authLogIn action and wait for it to complete
+      // Dispatch the authLogIn action and wait for it to complete
       openGitHubAuthenticationWindow();
     } catch (error) {
       // setAuthenticated(false);
@@ -59,7 +59,8 @@ const LoginButton = () => {
     }, 1000); // Check every second
   };
 
-  const updateReduxOnAuthentication = () => {
+  const updateReduxOnAuthentication = async () => {
+    await dispatch(authLogIn());
     dispatch(getLoggedInUser());
   };
 
