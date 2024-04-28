@@ -8,6 +8,7 @@ export const authLogIn = createAsyncThunk(
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
+        {},
         {
           withCredentials: true,
         }
@@ -28,12 +29,14 @@ export const getLoggedInUser = createAsyncThunk(
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
+        {},
         {
           withCredentials: true,
         }
       );
       const userData = res.data;
       console.log(userData, "USER DATA REDUX");
+      dispatch(toggleLoggedIn());
       return userData;
     } catch (error) {
       console.error(

@@ -21,23 +21,24 @@ function Navbar() {
   }
 
   useEffect(() => {
-  async function fetchUsers() {
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/users/me/`,
-        {
-          withCredentials: true // Move withCredentials inside the request configuration object
-        }
-      );
-      setUser(response.data);
-      console.log(response, "NAVBAR REPO LOG");
-    } catch (error) {
-      console.error("Error fetching collaborators:", error);
+    async function fetchUsers() {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/users/me/`,
+          {},
+          {
+            withCredentials: true, // Move withCredentials inside the request configuration object
+          }
+        );
+        setUser(response.data);
+        console.log(response, "NAVBAR REPO LOG");
+      } catch (error) {
+        console.error("Error fetching collaborators:", error);
+      }
     }
-  }
 
-  fetchUsers();
-}, [currRepo]);
+    fetchUsers();
+  }, [currRepo]);
 
   const handleRepoLinkClick = () => {
     if (currRepo) {
