@@ -13,14 +13,14 @@ function Navbar() {
   let userName = [];
   let repo = [];
 
-  if (currRepo) {
+  if (currRepo && currRepo.length > 0) {
     const repoParts = currRepo.split("/");
     userName = repoParts[0];
     repo = repoParts[1];
   }
 
   //NEED TO PUT THIS BACK IF DOESN'T WORK
-  
+
   // useEffect(() => {
   //   async function fetchUsers() {
   //     try {
