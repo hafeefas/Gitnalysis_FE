@@ -19,26 +19,24 @@ function Navbar() {
     repo = repoParts[1];
   }
 
-  //NEED TO PUT THIS BACK IF DOESN'T WORK
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
+          {},
+          {
+            withCredentials: true, // Move withCredentials inside the request configuration object
+          }
+        );
+        console.log(response, "NAVBAR REPO LOG");
+      } catch (error) {
+        console.error("Error fetching collaborators:", error);
+      }
+    }
 
-  // useEffect(() => {
-  //   async function fetchUsers() {
-  //     try {
-  //       const response = await axios.get(
-  //         `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
-  //         {},
-  //         {
-  //           withCredentials: true, // Move withCredentials inside the request configuration object
-  //         }
-  //       );
-  //       console.log(response, "NAVBAR REPO LOG");
-  //     } catch (error) {
-  //       console.error("Error fetching collaborators:", error);
-  //     }
-  //   }
-
-  //   fetchUsers();
-  // }, [currRepo]);
+    fetchUsers();
+  }, [currRepo]);
 
   const handleRepoLinkClick = () => {
     if (currRepo) {

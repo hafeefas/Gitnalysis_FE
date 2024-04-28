@@ -22,6 +22,8 @@ const LoginButton = () => {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.username);
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  const allRepos = useSelector((state) => state.repo.allRepos);
 
   const handleLogoutUser = () => {
     console.log("logging out");
@@ -62,6 +64,9 @@ const LoginButton = () => {
   const updateReduxOnAuthentication = async () => {
     // await dispatch(authLogIn());
     await dispatch(getLoggedInUser());
+    console.log(loggedInUser.username + " logged in user username");
+    console.log(loggedInUser + " logged in user object");
+    console.log(allRepos + " all repos");
   };
 
   return (
