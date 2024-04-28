@@ -6,9 +6,8 @@ import { RxAvatar } from "react-icons/rx";
 import { useMediaQuery } from "@mui/material";
 
 function Navbar() {
-  const currRepo = useSelector((state) => state.repo.currRepo);
-  const username = useSelector((state) => state.user.username);
-  const [user, setUser] = useState();
+  const currRepo = useSelector((state) => state.repo?.currRepo);
+  const user = useSelector((state) => state.user?.loggedInUser);
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
   const isMobileScreen = useMediaQuery("(max-width: 470px)");
   let userName = [];
@@ -30,7 +29,6 @@ function Navbar() {
             withCredentials: true, // Move withCredentials inside the request configuration object
           }
         );
-        setUser(response.data);
         console.log(response, "NAVBAR REPO LOG");
       } catch (error) {
         console.error("Error fetching collaborators:", error);
@@ -79,11 +77,11 @@ function Navbar() {
               className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-1 pb-1 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400 cursor-pointer"
               onClick={handleRepoLinkClick}
             >
-              {username ? (
+              {user ? (
                 <img
                   class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
                   src={user?.avatar_url}
-                  alt={user?.name + " avatar"}
+                  alt={user?.username + " avatar"}
                 />
               ) : (
                 <div className="flex gap-2 items-center">
@@ -132,7 +130,7 @@ function Navbar() {
               className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-4 pb-4 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400 cursor-pointer"
               onClick={handleRepoLinkClick}
             >
-              {username ? (
+              {userName ? (
                 <img
                   class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
                   src={user?.avatar_url}
