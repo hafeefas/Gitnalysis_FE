@@ -66,10 +66,6 @@ const LeadTimeChart = () => {
     return totalSeconds;
   };
 
-  if (currRepo) {
-    console.log(currRepo);
-  }
-
   const findUniqueDaysAverages = (metrics, timeUnit) => {
     let uniqueDaysAverages = [];
     //new map to place the unique dates
@@ -134,7 +130,7 @@ const LeadTimeChart = () => {
             convertAverageTimeInSeconds(item.average)
           );
 
-          console.log(averageInSecondsArray, "avg in seconds");
+          // console.log(averageInSecondsArray, "avg in seconds");
 
           //for y-axis, need the max value
           const maxAverageInSeconds = Math.max(...averageInSecondsArray);
@@ -149,7 +145,7 @@ const LeadTimeChart = () => {
 
           metrics.data.forEach((d) => {
             const average = convertAverageTimeInSeconds(d.average);
-            console.log(average);
+            // console.log(average);
             if (average < 60) {
               seconds++;
             } else if (average >= 60) {
@@ -174,7 +170,7 @@ const LeadTimeChart = () => {
             { months: months },
           ];
 
-          console.log(timePrevelanceArray);
+          // console.log(timePrevelanceArray);
 
           timePrevelanceArray.sort((a, b) => {
             const valA = Object.values(a)[0];
@@ -189,7 +185,7 @@ const LeadTimeChart = () => {
           //set to display on y-axis legend
           setUnitsToDisplay(unitOfTimeDisplay);
 
-          console.log(unitOfTimeDisplay, "UNITS TO DISPLAY");
+          // console.log(unitOfTimeDisplay, "UNITS TO DISPLAY");
 
           //initialize empty array to hold the average time for each unique date
           let uniqueDaysAverages = findUniqueDaysAverages(
@@ -208,7 +204,7 @@ const LeadTimeChart = () => {
               data: uniqueDaysAverages,
             },
           ];
-          console.log(fixedChartData);
+          // console.log(fixedChartData);
           setRepoInfo(fixedChartData);
           setIsLoading(false);
         }

@@ -4,7 +4,7 @@ import axios from "axios";
 export const authLogIn = createAsyncThunk(
   "user/authLogIn",
   async (_, { dispatch }) => {
-    console.log("hit auth login redux");
+    // console.log("hit auth login redux");
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
@@ -12,7 +12,7 @@ export const authLogIn = createAsyncThunk(
           withCredentials: true,
         }
       );
-      console.log("User authenticated successfully:", res.data);
+      // console.log("User authenticated successfully:", res.data);
       dispatch(toggleLoggedIn());
     } catch (error) {
       console.error("Error fetching authenticating user:", error.message);

@@ -29,7 +29,7 @@ const Activity = () => {
 
         const rawChartData = response.data.activitiesTimelineChartObject;
         if (rawChartData) {
-          console.log(rawChartData + JSON.stringify(rawChartData));
+          // console.log(rawChartData + JSON.stringify(rawChartData));
           const fixedChartData = [
             {
               id: "Activity Count",
@@ -49,7 +49,7 @@ const Activity = () => {
               y: rawChartData[dateKey],
             });
           }
-          console.log("fixed chart" + JSON.stringify(fixedChartData));
+          // console.log("fixed chart" + JSON.stringify(fixedChartData));
           setChartData(fixedChartData);
         }
       } catch (error) {

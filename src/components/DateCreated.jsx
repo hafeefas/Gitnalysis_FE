@@ -14,10 +14,10 @@ const DateCreated = () => {
           console.error("currRepo should be a string");
           return;
         }
-        console.log("repoInfo,", currRepo);
+        // console.log("repoInfo,", currRepo);
         const repoParts = currRepo.split("/");
         const username = repoParts[0];
-        console.log(username);
+        // console.log(username);
         const repo = repoParts[1];
 
         const response = await axios.get(

@@ -15,7 +15,7 @@ function CategoriesDropdown() {
             try {
                 if (OWNER.length > 0 && REPO.length > 0) {
                     const language = await axios.get(`https://api.github.com/repos/${OWNER}/${REPO}/languages`)
-                    console.log(Object.keys(language.data), "language data in dropdown")
+                    // console.log(Object.keys(language.data), "language data in dropdown")
                     setCategories(Object.keys(language.data))
                 }
             } catch (error) {

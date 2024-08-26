@@ -60,7 +60,7 @@ const Collaborators = () => {
       <span className="font-bold text-white">
         {currRepo !== null ? collaborators.length : "N/A"} Collaborators
       </span>
-      {console.log("coll" + JSON.stringify(collaborators[0]))}
+      {/* {console.log("coll" + JSON.stringify(collaborators[0]))} */}
       {showDropdown && currRepo !== null ? (
         <div
           className="absolute top-1 mt-20 w-64 max-h-96 rounded-lg shadow-lg text-black z-10 border-2 border-white overflow-y-auto"

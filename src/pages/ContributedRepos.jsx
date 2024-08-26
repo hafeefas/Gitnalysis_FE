@@ -65,8 +65,6 @@ function ContributedRepos() {
     repo.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  console.log("hello");
-
   //show dashboard for a particular repo
   const handleClickRepo = (repoName) => {
     // setCurrRepo(repoName);
@@ -74,16 +72,16 @@ function ContributedRepos() {
     // console.log(repoName, "clicked repo");
     navigate("/dashboard");
   };
-  if (allRepos) {
-    console.log(allRepos);
-  }
-  if (sortedContributedRepos) {
-    console.log(sortedContributedRepos, "contributed repos");
-  }
+  // if (allRepos) {
+  //   console.log(allRepos);
+  // }
+  // if (sortedContributedRepos) {
+  //   console.log(sortedContributedRepos, "contributed repos");
+  // }
 
   useEffect(() => {
     const fetchUserRepos = async () => {
-      console.log("getting user repos");
+      // console.log("getting user repos");
       try {
         await dispatch(getUserRepos());
       } catch (error) {

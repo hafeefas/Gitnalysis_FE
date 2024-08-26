@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 const OpenPullRequests = () => {
@@ -15,10 +15,10 @@ const OpenPullRequests = () => {
           console.error("currRepo should be a string");
           return;
         }
-        console.log("repoInfo,", currRepo);
+        // console.log("repoInfo,", currRepo);
         const repoParts = currRepo.split("/");
         const username = repoParts[0];
-        console.log(username);
+        // console.log(username);
         const repo = repoParts[1];
 
         const response = await axios.get(
@@ -39,23 +39,22 @@ const OpenPullRequests = () => {
 
   return (
     <div
-    className="flex flex-col justify-center h-full"
-    onMouseEnter={() => setIsHovered(true)}
-    onMouseLeave={() => setIsHovered(false)}
-  >
-    {isHovered ? (
-      <>
-        <div style={{ color: "lightgreen" }}>Total PRs</div>
-        {totalPRs !== null && <div className="text-xl">{totalPRs}</div>}
-      </>
-    ) : (
-      <>
-        <div style={{ color: "lightgreen" }}>Open PRs</div>
-        {openPRs !== null && <div className="text-xl">{openPRs}</div>}
-      </>
-    )}
-  </div>
-  
+      className="flex flex-col justify-center h-full"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {isHovered ? (
+        <>
+          <div style={{ color: "lightgreen" }}>Total PRs</div>
+          {totalPRs !== null && <div className="text-xl">{totalPRs}</div>}
+        </>
+      ) : (
+        <>
+          <div style={{ color: "lightgreen" }}>Open PRs</div>
+          {openPRs !== null && <div className="text-xl">{openPRs}</div>}
+        </>
+      )}
+    </div>
   );
 };
 

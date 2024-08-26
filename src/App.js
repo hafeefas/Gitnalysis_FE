@@ -54,9 +54,9 @@ function App() {
     // fetchRepos();
   }, []);
 
-  useEffect(() => {
-    console.log(currRepo, "is the current repo view");
-  }, [currRepo]);
+  // useEffect(() => {
+  //   console.log(currRepo, "is the current repo view");
+  // }, [currRepo]);
 
   return (
     <div

@@ -30,7 +30,7 @@ const OwnedRepos = () => {
     handleClickRepo(repoName); // Trigger the action when an item is clicked
   };
 
-  console.log(loggedInUser?.data.login, "from owned repos page");
+  // console.log(loggedInUser?.data.login, "from owned repos page");
   //find all repos owned by the user
   const ownerRepos = nonForkedRepos?.filter(
     (repo) => repo.owner.login === loggedInUser.data.login

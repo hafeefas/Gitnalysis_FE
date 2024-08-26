@@ -22,7 +22,7 @@ export const getUserRepos = createAsyncThunk("repo/getUserRepos", async () => {
     );
 
     const repos = res.data;
-    console.log(repos, "all repos");
+    // console.log(repos, "all repos");
     return repos;
   } catch (error) {
     console.log(error.message);
@@ -84,9 +84,9 @@ export const getNonForkedRepos = createAsyncThunk(
       );
 
       const allRepos = res.data;
-      console.log(allRepos);
+      // console.log(allRepos);
       const nonForkedRepos = allRepos?.filter((repo) => repo.fork === false);
-      console.log(nonForkedRepos);
+      // console.log(nonForkedRepos);
       return nonForkedRepos;
     } catch (error) {
       console.log(error.message);
@@ -99,8 +99,8 @@ const repoSlice = createSlice({
   initialState,
   reducers: {
     setCurrentRepo: (state, action) => {
-      console.log(action);
-      console.log(state);
+      // console.log(action);
+      // console.log(state);
       state.currRepo = action.payload;
     },
     setOwnerRepos: (state, action) => {

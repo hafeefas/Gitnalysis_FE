@@ -37,9 +37,6 @@ const RepoSearch = ({ link }) => {
   //   console.log(repo, "repo");
   // }
 
-  if (currRepo) {
-    console.log(currRepo, "from the repo search");
-  }
   /// https://github.com/segfal/karaoke-backend Are we passing this link?
   /// how do we split this url?
 
@@ -69,7 +66,7 @@ const RepoSearch = ({ link }) => {
       const owner = pathParts[1];
       const repoName = pathParts[2];
 
-      console.log(`${owner}/${repoName}`, "extracting repo owner and name");
+      // console.log(`${owner}/${repoName}`, "extracting repo owner and name");
       if (owner && repoName) {
         return `${owner}/${repoName}`;
       } else {
@@ -83,10 +80,9 @@ const RepoSearch = ({ link }) => {
 
   const handleClickRepo = () => {
     // setCurrRepo(repoName);
-    console.log(githubLink, "this will be extracted from");
-    console.log("HELLO");
+    // console.log(githubLink, "this will be extracted from");
     const repoInfo = extractRepoOwnerAndName(githubLink);
-    console.log(repoInfo, "sending via dispatch to set current repo");
+    // console.log(repoInfo, "sending via dispatch to set current repo");
     dispatch(setCurrentRepo(repoInfo));
     // console.log(repoName, "clicked repo");
     navigate("/dashboard");

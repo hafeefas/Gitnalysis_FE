@@ -24,7 +24,7 @@ const LoginButton = () => {
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
 
   const handleLogoutUser = () => {
-    console.log("logging out");
+    // console.log("logging out");
     logoutGitHubUser();
     navigate("/");
     //clear the repos, the current repo, reset everything -> this isn't working yet tho
@@ -39,7 +39,7 @@ const LoginButton = () => {
   const handleLoginWithGitHubClick = async () => {
     try {
       await dispatch(authLogIn()); // Dispatch the authLogIn action and wait for it to complete
-      console.log("hi the auth worked");
+      // console.log("hi the auth worked");
       openGitHubAuthenticationWindow();
     } catch (error) {
       setAuthenticated(false);

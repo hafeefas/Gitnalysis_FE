@@ -26,7 +26,7 @@ const RepoList = () => {
   const ownerRepos = nonForkedRepos?.filter(
     (repo) => repo.owner.login === loggedInUser.data.login
   );
-  console.log(ownerRepos, "is owner repios null ");
+  // console.log(ownerRepos, "is owner repios null ");
 
   // Check if loggedInUser is available
   if (!loggedInUser) {
@@ -77,10 +77,6 @@ const RepoList = () => {
       contributedRepos.splice(repoIndex, 1);
     }
   }
-
-  console.log("hello");
-
-  console.log(contributedRepos);
 
   //sort the forked repos
   const sortedForkedRepos = forkedRepos?.slice().sort((repo1, repo2) => {

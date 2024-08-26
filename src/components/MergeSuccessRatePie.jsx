@@ -15,7 +15,7 @@ const MergeSuccessRatePie = () => {
           console.error("fullRepo should be a string");
           return;
         }
-        console.log("repoINfo,", currRepo);
+        // console.log("repoINfo,", currRepo);
         const repoParts = currRepo.split("/");
         const username = repoParts[0];
         const repo = repoParts[1];

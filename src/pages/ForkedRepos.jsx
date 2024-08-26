@@ -31,9 +31,9 @@ const ForkedRepos = () => {
   const filteredRepos = ownerRepos.filter((repo) =>
     repo.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  console.log(filteredRepos);
+  // console.log(filteredRepos);
 
-  console.log("console logging the forked repos", forkedRepos);
+  // console.log("console logging the forked repos", forkedRepos);
 
   // for search, filter through the forked repos
   const filterForked = forkedRepos.filter((repo) =>
@@ -50,14 +50,14 @@ const ForkedRepos = () => {
     const inputValue = event.target.value;
     setSearchQuery(inputValue);
     setShowDropdown(inputValue !== ""); // Set showDropdown to true only when input is not empty
-    console.log(inputValue, "FORKEDREPOS INPUT SEARCH");
+    // console.log(inputValue, "FORKEDREPOS INPUT SEARCH");
   };
 
   const handleDropdownItemClick = (repoName) => {
     setSearchQuery(repoName);
     setShowDropdown(false); // Hide the dropdown after selecting an item
     handleClickRepo(repoName); // Trigger the action when an item is clicked
-    console.log(repoName, "FORKEDREPOS DROPDOWN REPO NAME");
+    // console.log(repoName, "FORKEDREPOS DROPDOWN REPO NAME");
   };
 
   let sortedForkedRepos = [];

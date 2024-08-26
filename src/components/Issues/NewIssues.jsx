@@ -23,8 +23,8 @@ const NewIssues = () => {
           `${process.env.REACT_APP_BACKEND_URL}/api/issues/${username}/${repo}/count/getNum`
         );
 
-        console.log(response.data);
-        console.log(response.data.issues.numAll);
+        // console.log(response.data);
+        // console.log(response.data.issues.numAll);
 
         setNewIssues(response.data.issues.numOpen);
         setTotalIssues(response.data.issues.numAll);

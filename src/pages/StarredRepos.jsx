@@ -19,30 +19,30 @@ const StarredRepos = () => {
   const [githubLink, setGithubLink] = useState("");
   const [showDropdown, setShowDropdown] = useState(false); // Track the visibility of the dropdown
 
-  if (starredRepos) {
-    console.log(starredRepos, "STARRED REPOS FIXING");
-  }
+  // if (starredRepos) {
+  //   console.log(starredRepos, "STARRED REPOS FIXING");
+  // }
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setSearchQuery(inputValue);
     setShowDropdown(inputValue !== ""); // Set showDropdown to true only when input is not empty
-    console.log(inputValue, "STARRED INPUT SEARCH");
+    // console.log(inputValue, "STARRED INPUT SEARCH");
   };
 
   const handleDropdownItemClick = (repoName) => {
     setSearchQuery(repoName);
     setShowDropdown(false); // Hide the dropdown after selecting an item
     handleClickRepo(repoName); // Trigger the action when an item is clicked
-    console.log(repoName, "STARRED DROPDOWN REPO NAME");
+    // console.log(repoName, "STARRED DROPDOWN REPO NAME");
   };
 
   //show dashboard for a particular repo
   const handleClickRepo = (repoName) => {
-    console.log(repoName, "handling click repo");
+    // console.log(repoName, "handling click repo");
     // setCurrRepo(repoName);
     dispatch(setCurrentRepo(repoName));
-    console.log(repoName, "STARRED REPO NAME");
+    // console.log(repoName, "STARRED REPO NAME");
     // console.log(repoName, "clicked repo");
     navigate("/dashboard");
   };
@@ -50,11 +50,11 @@ const StarredRepos = () => {
   let sortedStarredRepos = [];
   // console.log(starredRepos, "STARRED");
   // sort the starred repos
+  // if (starredRepos) {
+  //   console.log(starredRepos, "IF STARRED");
+  // }
   if (starredRepos) {
-    console.log(starredRepos, "IF STARRED");
-  }
-  if (starredRepos) {
-    console.log("sorting the starred!");
+    // console.log("sorting the starred!");
     sortedStarredRepos = [...starredRepos]?.sort((repo1, repo2) => {
       const name1 = repo1.name.toLowerCase();
       const name2 = repo2.name.toLowerCase();
@@ -69,23 +69,23 @@ const StarredRepos = () => {
     });
   }
 
-  console.log(sortedStarredRepos, "checking for starred repos");
+  // console.log(sortedStarredRepos, "checking for starred repos");
   //   for search, filter through the starred repos
   const filterStarred = sortedStarredRepos?.filter((repo) =>
     repo.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (filterStarred) {
-    console.log(filterStarred);
-  }
+  // if (filterStarred) {
+  //   console.log(filterStarred);
+  // }
 
   useEffect(() => {
-    console.log("use effect is happening");
+    // console.log("use effect is happening");
     const fetchStarredRepos = async () => {
-      console.log("hit fetch repos in starred repos");
+      // console.log("hit fetch repos in starred repos");
       try {
         await dispatch(getStarredRepos());
-        console.log("getting the starred repos");
+        // console.log("getting the starred repos");
       } catch (error) {
         console.error("Error fetching repos:", error);
       }
@@ -93,9 +93,9 @@ const StarredRepos = () => {
     fetchStarredRepos();
   }, []);
 
-  if (starredRepos) {
-    console.log(starredRepos);
-  }
+  // if (starredRepos) {
+  //   console.log(starredRepos);
+  // }
 
   // Check if loggedInUser is available
   if (!loggedInUser) {

@@ -23,7 +23,7 @@ const CFR = () => {
           `${process.env.REACT_APP_BACKEND_URL}/api/deployments/${username}/${repo}/cfr`,
           { withCredentials: true }
         );
-        console.log("cfr", response.data);
+        // console.log("cfr", response.data);
         setCfr(response.data);
       } catch (error) {
         console.log(error);

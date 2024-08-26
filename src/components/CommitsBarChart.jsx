@@ -25,21 +25,21 @@ const BarChart = ({ fullRepo }) => {
           console.error("fullRepo should be a string");
           return;
         }
-        console.log("repoINfo,", fullRepo);
+        // console.log("repoINfo,", fullRepo);
         const repoParts = fullRepo.split("/");
         const username = repoParts[0];
-        console.log(username);
+        // console.log(username);
         const repo = repoParts[1];
         const response = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/api/commits/timeline/${username}/${repo}/${timeRange}`,
           { withCredentials: true }
         );
         // const response = await axios.get(`http://localhost:8080/api/commits/timeline/${username}/${repo}`,{withCredentials:true});
-        console.log(response.data);
+        // console.log(response.data);
         const dataArray = Object.entries(response.data).map(
           ([date, commits]) => ({ date, commits })
         );
-        console.log(dataArray);
+        // console.log(dataArray);
         setCommitsData(dataArray);
 
         const commits = await axios.get(

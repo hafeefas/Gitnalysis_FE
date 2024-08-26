@@ -8,7 +8,7 @@ export const getLeadTimeMetrics = async (username, repo) => {
       // `http://localhost:8080/api/lead_time/running_average/${username}/${repo}`, {},
       { withCredentials: true }
     );
-    console.log(response);
+    // console.log(response);
     return response;
   } catch (error) {
     console.error("Error fetching authenticated user:", error);

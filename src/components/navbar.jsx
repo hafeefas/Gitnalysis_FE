@@ -22,17 +22,17 @@ function Navbar() {
   const [repo, setRepo] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
 
-  console.log(username, " from navbar");
+  // console.log(username, " from navbar");
 
-  console.log(userRedux, "loggin in user from navbar");
+  // console.log(userRedux, "loggin in user from navbar");
 
   useEffect(() => {
     if (currRepo && currRepo.includes("/")) {
       const repoParts = currRepo.split("/");
       setUserName(repoParts[0]);
       setRepo(repoParts[1]);
-      console.log(userRedux, " user redux");
-      console.log(user);
+      // console.log(userRedux, " user redux");
+      // console.log(user);
     }
   }, [currRepo, username, userRedux, isLoggedIn]);
 
@@ -45,8 +45,8 @@ function Navbar() {
         );
         setUser(response.data.data);
         // console.log(userRedux, "logged in user");
-        console.log(response.data.data.login);
-        console.log(response, "NAVBAR REPO LOG");
+        // console.log(response.data.data.login);
+        // console.log(response, "NAVBAR REPO LOG");
       } catch (error) {
         console.error("Error fetching collaborators:", error);
       }
@@ -54,7 +54,7 @@ function Navbar() {
 
     if (currRepo) {
       fetchUsers();
-      console.log(userProfilePhoto, "avatar url");
+      // console.log(userProfilePhoto, "avatar url");
     }
   }, [currRepo, username, isLoggedIn, userRedux]);
 

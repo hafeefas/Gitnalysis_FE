@@ -24,7 +24,7 @@ const MTTR = () => {
                 {},
                 { withCredentials: true })
 
-                console.log(response.data.mttr)
+                // console.log(response.data.mttr)
                 setMttr(response.data.mttr)
                 
             } catch (error) {

@@ -33,7 +33,7 @@ function ToolbarLayout() {
   }));
 
   const clearCurrRepo = () => {
-    console.log("clearing");
+    // console.log("clearing");
     dispatch(resetCurrRepo());
   };
 
