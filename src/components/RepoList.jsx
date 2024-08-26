@@ -24,7 +24,7 @@ const RepoList = () => {
 
   //find all repos owned by the user
   const ownerRepos = nonForkedRepos?.filter(
-    (repo) => repo.owner.login === loggedInUser.login
+    (repo) => repo.owner.login === loggedInUser.data.login
   );
   console.log(ownerRepos, "is owner repios null ");
 
@@ -60,7 +60,7 @@ const RepoList = () => {
 
   //find repos not owned by logge in user that they contributed to
   const contributedRepos = allRepos?.filter(
-    (repo) => repo.owner.login !== loggedInUser.login
+    (repo) => repo.owner.login !== loggedInUser.data.login
   );
 
   // contributedRepos search
@@ -206,7 +206,7 @@ const RepoList = () => {
           style={{ backgroundColor: "#171C2Eff" }}
         >
           {/* had to replace the below commented code with this for search to work */}
-          {filteredRepos.map((repo) => (
+          {filteredRepos?.map((repo) => (
             <li
               key={repo.fullName}
               onClick={() => handleClickRepo(repo.fullName)}

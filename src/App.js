@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUsername } from "./redux/slices/userSlice";
 import { getLoggedInUser } from "./redux/slices/userSlice";
 import Repos from "./pages/Repos";
@@ -27,48 +27,32 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Dispatch action to fetch logged-in user data
-    dispatch(getLoggedInUser())
-      .then(() => {
-        // After user data is fetched, set the username from query parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const userName = urlParams.get("username");
-        if (userName !== null) {
-          dispatch(setUsername(userName));
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching logged-in user data:", error);
-      });
-  }, [dispatch]);
+    // console.log(process.env.REACT_APP_BACKEND_URL);
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get("username");
+    const userId = urlParams.get("userId");
+    // console.log("Username:", userName);
+    // console.log("UserId:", userId);
+    if (userName !== null) {
+      dispatch(getLoggedInUser());
+      dispatch(setUsername(userName));
+    }
+    setUserName(userName);
+    setUserId(userId);
+    // getAuthenticatedUser();
+    // console.log(currRepo, "is the current Repo");
+    // const fetchRepos = async () => {
+    //   try {
+    //     const reposFromAuth = await getUserRepos(); // Await the Promise here
+    //     console.log(reposFromAuth);
+    //     setRepos(reposFromAuth); // Set the state with the resolved data
+    //   } catch (error) {
+    //     console.error("Error fetching repos:", error);
+    //   }
+    // };
 
-  // useEffect(() => {
-  //   // console.log(process.env.REACT_APP_BACKEND_URL);
-  //   const urlParams = new URLSearchParams(window.location.search);
-  //   const userName = urlParams.get("username");
-  //   const userId = urlParams.get("userId");
-  //   // console.log("Username:", userName);
-  //   // console.log("UserId:", userId);
-  //   if (userName !== null) {
-  //     dispatch(setUsername(userName));
-  //   }
-  //   setUserName(userName);
-  //   setUserId(userId);
-  //   dispatch(getLoggedInUser());
-  //   // getAuthenticatedUser();
-  //   // console.log(currRepo, "is the current Repo");
-  //   // const fetchRepos = async () => {
-  //   //   try {
-  //   //     const reposFromAuth = await getUserRepos(); // Await the Promise here
-  //   //     console.log(reposFromAuth);
-  //   //     setRepos(reposFromAuth); // Set the state with the resolved data
-  //   //   } catch (error) {
-  //   //     console.error("Error fetching repos:", error);
-  //   //   }
-  //   // };
-
-  //   // fetchRepos();
-  // }, []);
+    // fetchRepos();
+  }, []);
 
   useEffect(() => {
     console.log(currRepo, "is the current repo view");

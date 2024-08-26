@@ -18,7 +18,6 @@ export const getUserRepos = createAsyncThunk("repo/getUserRepos", async () => {
   try {
     const res = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/api/users/me/repos`,
-      {},
       { withCredentials: true }
     );
 

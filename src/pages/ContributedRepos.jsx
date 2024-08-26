@@ -31,7 +31,7 @@ function ContributedRepos() {
   };
 
   const contributedRepos = allRepos?.filter(
-    (repo) => repo.owner.login !== loggedInUser.login
+    (repo) => repo.owner.login !== loggedInUser.data.login
   );
 
   //remove all starred repoes from contributed repos

@@ -10,7 +10,9 @@ import { ImStatsBars } from "react-icons/im";
 import { AiOutlineMail, AiOutlineFile } from "react-icons/ai";
 import { useMediaQuery } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useDispatch } from "react-redux";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { resetCurrRepo } from "../redux/slices/repoSlice";
 
 //AiOutlineMail
 
@@ -18,7 +20,7 @@ function ToolbarLayout() {
   const [open, setOpen] = useState(false);
   const activeMenu = true;
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
-
+  const dispatch = useDispatch();
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -29,6 +31,11 @@ function ToolbarLayout() {
       backgroundColor: theme.palette.common.black,
     },
   }));
+
+  const clearCurrRepo = () => {
+    console.log("clearing");
+    dispatch(resetCurrRepo());
+  };
 
   return (
     <div className="flex h-full text-white border-r">
@@ -68,7 +75,11 @@ function ToolbarLayout() {
               }`}
               onClick={() => setOpen(!open)}
             >
-              <Link to="/" className="flex items-center">
+              <Link
+                to="/"
+                className="flex items-center"
+                onClick={clearCurrRepo}
+              >
                 <BsFolder
                   className={` rounded cursor-pointer block text-2xl float-left mr-2 duration-300 `}
                 />

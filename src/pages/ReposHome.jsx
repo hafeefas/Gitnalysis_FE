@@ -372,7 +372,7 @@ const ReposHome = () => {
                       <MetricsIcon />
                     </div>
                     <div className="text-base text-left ml-4 w-5/6 mb-4 text-[1.5vw] md:text-[1.25vw] sm:text-[1vw]">
-                      View metrics for owned and starred repos
+                      Link to your forked repos and others you've contributed to
                     </div>
                   </li>
                 )}

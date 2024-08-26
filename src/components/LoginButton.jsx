@@ -9,39 +9,40 @@ import {
   toggleLoggedIn,
 } from "../redux/slices/userSlice";
 import { resetRepos, resetCurrRepo } from "../redux/slices/repoSlice";
-import { setUsername } from "../redux/slices/userSlice";
+import { setUsername, resetUser } from "../redux/slices/userSlice";
 
 import { BsGithub } from "react-icons/bs";
 import { useMediaQuery } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 //BsGithub
 
 const LoginButton = () => {
-  //   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  //   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const username = useSelector((state) => state.user.username);
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  const allRepos = useSelector((state) => state.repo.allRepos);
 
   const handleLogoutUser = () => {
     console.log("logging out");
     logoutGitHubUser();
+    navigate("/");
     //clear the repos, the current repo, reset everything -> this isn't working yet tho
     dispatch(resetRepos());
     dispatch(resetCurrRepo());
     dispatch(toggleLoggedIn());
     dispatch(setAuthenticated(false));
     dispatch(setUsername(null));
+    dispatch(resetUser());
   };
 
   const handleLoginWithGitHubClick = async () => {
     try {
-      // Dispatch the authLogIn action and wait for it to complete
+      await dispatch(authLogIn()); // Dispatch the authLogIn action and wait for it to complete
+      console.log("hi the auth worked");
       openGitHubAuthenticationWindow();
     } catch (error) {
-      // setAuthenticated(false);
+      setAuthenticated(false);
       console.error("Error dispatching authLogIn:", error);
     }
   };
@@ -58,13 +59,11 @@ const LoginButton = () => {
         clearInterval(checkWindowClosed); // Clear the interval when the window is closed
         updateReduxOnAuthentication(); // Update Redux store when authentication is complete
       }
-    }, 5000); // Check every 5 seconds
+    }, 1000); // Check every second
   };
 
-  const updateReduxOnAuthentication = async () => {
-    await dispatch(authLogIn());
-    // await dispatch(getLoggedInUser());
-    console.log(allRepos + " all repos");
+  const updateReduxOnAuthentication = () => {
+    dispatch(setAuthenticated(true));
   };
 
   return (

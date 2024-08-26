@@ -3,56 +3,43 @@ import axios from "axios";
 
 export const authLogIn = createAsyncThunk(
   "user/authLogIn",
-  async (_, thunkAPI) => {
-    const { dispatch } = thunkAPI;
+  async (_, { dispatch }) => {
+    console.log("hit auth login redux");
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
-        {},
         {
           withCredentials: true,
         }
       );
+      console.log("User authenticated successfully:", res.data);
       dispatch(toggleLoggedIn());
     } catch (error) {
-      console.error("Error fetching authenticating user in authLogIn redux");
-      dispatch(setError(error.message));
-      throw error;
+      console.error("Error fetching authenticating user:", error.message);
     }
   }
 );
 
 export const getLoggedInUser = createAsyncThunk(
   "user/loggedInUser",
-  async (_, thunkAPI) => {
-    const { dispatch } = thunkAPI;
+  async () => {
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
-        {},
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
       const userData = res.data;
       console.log(userData, "USER DATA REDUX");
-      dispatch(setAuthenticated(true));
-      dispatch(toggleLoggedIn());
       return userData;
     } catch (error) {
-      console.error(
-        "Error fetching authenticating user in getLoggedInUser redux"
-      );
-      dispatch(setAuthenticated(false));
-      dispatch(setError(error.message));
-      throw error;
+      console.error("Error fetching authenticating user");
     }
   }
 );
 
 const initialState = {
   username: null,
-  loggedInUser: null,
+  loggedInUser: [],
   isLoggedIn: false,
   isAuthenticated: false,
   error: null,
@@ -64,6 +51,9 @@ const userSlice = createSlice({
   reducers: {
     setUsername: (state, action) => {
       state.username = action.payload;
+    },
+    resetUser: (state) => {
+      state.loggedInUser = [];
     },
     toggleLoggedIn: (state) => {
       state.isLoggedIn = !state.isLoggedIn;
@@ -91,6 +81,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUsername, toggleLoggedIn, setAuthenticated, setError } =
+export const { setUsername, toggleLoggedIn, setAuthenticated, resetUser } =
   userSlice.actions;
 export default userSlice.reducer;

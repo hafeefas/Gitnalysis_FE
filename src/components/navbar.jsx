@@ -6,37 +6,57 @@ import { RxAvatar } from "react-icons/rx";
 import { useMediaQuery } from "@mui/material";
 
 function Navbar() {
-  const currRepo = useSelector((state) => state.repo?.currRepo);
-  const user = useSelector((state) => state.user?.loggedInUser);
+  const currRepo = useSelector((state) => state.repo.currRepo);
+  const username = useSelector((state) => state.user.username);
+  const userRedux = useSelector(
+    (state) => state.user.loggedInUser?.data?.login
+  );
+  const userProfilePhoto = useSelector(
+    (state) => state.user.loggedInUser?.data?.avatar_url
+  );
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [user, setUser] = useState();
   const isTabletScreen = useMediaQuery("(max-width: 770px)");
   const isMobileScreen = useMediaQuery("(max-width: 470px)");
-  let userName = [];
-  let repo = [];
+  const [userName, setUserName] = useState("");
+  const [repo, setRepo] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
 
-  if (currRepo && currRepo.length > 0) {
-    const repoParts = currRepo.split("/");
-    userName = repoParts[0];
-    repo = repoParts[1];
-  }
+  console.log(username, " from navbar");
+
+  console.log(userRedux, "loggin in user from navbar");
+
+  useEffect(() => {
+    if (currRepo && currRepo.includes("/")) {
+      const repoParts = currRepo.split("/");
+      setUserName(repoParts[0]);
+      setRepo(repoParts[1]);
+      console.log(userRedux, " user redux");
+      console.log(user);
+    }
+  }, [currRepo, username, userRedux, isLoggedIn]);
 
   useEffect(() => {
     async function fetchUsers() {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/users/me`,
-          {},
-          {
-            withCredentials: true, // Move withCredentials inside the request configuration object
-          }
+          `${process.env.REACT_APP_BACKEND_URL}/api/users/me/`,
+          { withCredentials: true }
         );
+        setUser(response.data.data);
+        // console.log(userRedux, "logged in user");
+        console.log(response.data.data.login);
         console.log(response, "NAVBAR REPO LOG");
       } catch (error) {
         console.error("Error fetching collaborators:", error);
       }
     }
 
-    fetchUsers();
-  }, [currRepo]);
+    if (currRepo) {
+      fetchUsers();
+      console.log(userProfilePhoto, "avatar url");
+    }
+  }, [currRepo, username, isLoggedIn, userRedux]);
 
   const handleRepoLinkClick = () => {
     if (currRepo) {
@@ -77,11 +97,11 @@ function Navbar() {
               className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-1 pb-1 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400 cursor-pointer"
               onClick={handleRepoLinkClick}
             >
-              {user ? (
+              {username ? (
                 <img
-                  class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
-                  src={user?.avatar_url}
-                  alt={user?.username + " avatar"}
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
+                  src={userProfilePhoto}
+                  alt={user?.name + " avatar"}
                 />
               ) : (
                 <div className="flex gap-2 items-center">
@@ -104,6 +124,20 @@ function Navbar() {
                   <div className="lg:text-xl md:text-sm font-sans-serif hover:text-white ">
                     {repo}
                   </div>
+                </div>
+              ) : user?.name ? (
+                <div
+                  className="lg:text-xl md:text-sm font-sans-serif hover:text-white "
+                  style={{ cursor: "default" }}
+                >
+                  {user?.name}
+                </div>
+              ) : userRedux ? (
+                <div
+                  className="lg:text-xl md:text-sm font-sans-serif hover:text-white "
+                  style={{ cursor: "default" }}
+                >
+                  {userRedux}
                 </div>
               ) : (
                 <div className="p-2 text-xl"></div>
@@ -130,10 +164,10 @@ function Navbar() {
               className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-4 pb-4 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400 cursor-pointer"
               onClick={handleRepoLinkClick}
             >
-              {userName && userName.length > 0 ? (
+              {username ? (
                 <img
-                  class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
-                  src={user?.avatar_url}
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
+                  src={userProfilePhoto}
                   alt={user?.name + " avatar"}
                 />
               ) : (
@@ -152,6 +186,20 @@ function Navbar() {
               {currRepo ? (
                 <div className="lg:text-xl md:text-sm font-sans-serif hover:text-white ">
                   {currRepo}
+                </div>
+              ) : user?.name ? (
+                <div
+                  className="lg:text-xl md:text-sm font-sans-serif hover:text-white "
+                  style={{ cursor: "default" }}
+                >
+                  {user?.name}
+                </div>
+              ) : userRedux ? (
+                <div
+                  className="lg:text-xl md:text-sm font-sans-serif hover:text-white "
+                  style={{ cursor: "default" }}
+                >
+                  {userRedux}
                 </div>
               ) : (
                 <div className="p-2 text-xl"></div>
@@ -177,10 +225,10 @@ function Navbar() {
               className="flex items-center fixed md:static bg-main-bg navbar w-full text-left border-b border-gray-300 pt-4 pb-4 pl-3 bg-gradient-to-br from-indigo-100 to-indigo-400 cursor-pointer"
               onClick={handleRepoLinkClick}
             >
-              {userName && userName.length > 0 ? (
+              {username ? (
                 <img
-                  class="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
-                  src={user?.avatar_url}
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-white mr-4"
+                  src={userProfilePhoto}
                   alt={user?.name + " avatar"}
                 />
               ) : (
@@ -200,6 +248,20 @@ function Navbar() {
                 <h1 className="font-medium font-sans-serif text-xl hover:text-white ">
                   {currRepo}
                 </h1>
+              ) : userRedux?.name ? (
+                <div
+                  className="font-medium font-sans-serif text-xl hover:text-white "
+                  style={{ cursor: "default" }}
+                >
+                  {user?.name}
+                </div>
+              ) : userRedux ? (
+                <div
+                  className="font-medium font-sans-serif text-xl hover:text-white "
+                  style={{ cursor: "default" }}
+                >
+                  {userRedux}
+                </div>
               ) : (
                 <div className="p-2 text-xl"></div>
               )}
