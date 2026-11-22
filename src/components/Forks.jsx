@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Forks = ({ fullRepo }) => {
   const [forks, setForks] = useState(null);
+  const [count, setCount] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const currRepo = useSelector((state) => state.repo.currRepo);
 
@@ -29,6 +30,7 @@ const Forks = ({ fullRepo }) => {
         );
         const forksResponse = response.data.forks;
         setForks(forksResponse);
+        setCount(response.data.count ?? forksResponse.length);
       } catch (error) {
         console.log(error);
       }
@@ -47,7 +49,7 @@ const Forks = ({ fullRepo }) => {
         <div className="text-xl">Forks</div>
         {<div className="overflow-scroll h-52">
             {forks.map(fork => (
-               <div className="border-b p-2"> 
+               <div className="border-b p-2" key={fork.forkedFullRepoName}> 
                 <img className="rounded-3xl m-2 inline-block" src={fork.forkerAvatar} alt="forker avatar" height="40px" width="40px"/>
                 <span className="text-sm m-2 inline-block">{fork.forkedTimeAgo}</span>
                 <div className="text-base text-sm">{fork.forkedFullRepoName}</div>
@@ -59,7 +61,7 @@ const Forks = ({ fullRepo }) => {
     ) : (
       <>
         <div>Forks</div>
-        {forks!==null && currRepo!==null ? <div className="text-xl">{forks.length}</div> : <div className="text-xl">N/A</div>}
+        {forks!==null && currRepo!==null ? <div className="text-xl">{(count ?? forks.length).toLocaleString()}</div> : <div className="text-xl">N/A</div>}
       </>
     )}
   </div>

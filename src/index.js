@@ -6,6 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { persistor, store } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux'
+import axios from 'axios';
+
+// send the session cookie to the backend on every request
+axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
