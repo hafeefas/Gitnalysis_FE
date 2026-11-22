@@ -5,7 +5,7 @@ import { Tooltip } from '@mui/material';
 import {Typography} from '@mui/material';
 
 const MTTR = () => {
-    const [mttr, setMttr] = useState(0)
+    const [mttr, setMttr] = useState(null)
     const currRepo = useSelector((state) => state.repo.currRepo);
 
     let userName = [];
@@ -20,12 +20,13 @@ const MTTR = () => {
     useEffect(()=> {
         async function getMTTR (){
             try {
+                if (!currRepo) return;
+                setMttr(null)
                 const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/deployments/${userName}/${repo}/mttr`,
-                {},
                 { withCredentials: true })
 
                 // console.log(response.data.mttr)
-                setMttr(response.data.mttr)
+                setMttr(response.data.mttr ?? null)
                 
             } catch (error) {
                 console.log(error)

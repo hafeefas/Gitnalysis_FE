@@ -5,7 +5,7 @@ import axios from "axios";
 import { Tooltip } from "@mui/material";
 
 const CFR = () => {
-  const [cfr, setCfr] = useState(0);
+  const [cfr, setCfr] = useState(undefined);
   const currRepo = useSelector((state) => state.repo.currRepo);
 
   useEffect(() => {
@@ -31,18 +31,28 @@ const CFR = () => {
     }
     getCFR();
   }, [currRepo]);
-  if (cfr === null) return <div>Loading...</div>;
+  if (cfr === undefined) return <div>Loading...</div>;
+  if (cfr === null || isNaN(Number(cfr))) {
+    return (
+      <div className="flex flex-col justify-center items-center h-full">
+        <div>Change Failure Rate</div>
+        <div className="text-sm opacity-70 mt-2">
+          No GitHub deployments for this repo
+        </div>
+      </div>
+    );
+  }
 
   const data = [
     {
       id: "CFR",
       label: "Change Failure Rate",
-      value: cfr,
+      value: Number(cfr),
     },
     {
       id: "Success",
       label: "Sucessful Deployments",
-      value: 100 - cfr,
+      value: 100 - Number(cfr),
     },
   ];
 
