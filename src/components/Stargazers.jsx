@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Stargazers = () => {
     const [stargazers, setStargazers] = useState(null);
+    const [count, setCount] = useState(null);
     const [isHovered, setIsHovered] = useState(false);
     const currRepo = useSelector((state) => state.repo.currRepo);
   
@@ -23,6 +24,7 @@ const Stargazers = () => {
           );
   
           setStargazers(response.data.stargazers);
+          setCount(response.data.count ?? response.data.stargazers.length);
         } catch (error) {
           console.log(error);
         }
@@ -58,7 +60,7 @@ const Stargazers = () => {
         <>
           <div >Stargazers</div>
           {stargazers !== null && currRepo !== null 
-          ? <div className="text-xl">{stargazers.length}</div> 
+          ? <div className="text-xl">{(count ?? stargazers.length).toLocaleString()}</div> 
           : <div className="text-xl">N/A</div> }
         </>
       )}
