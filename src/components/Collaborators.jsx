@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Collaborators = () => {
   const [collaborators, setCollaborators] = useState([]);
+  const [source, setSource] = useState("collaborators");
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const triggerRef = useRef(null);
@@ -24,7 +25,8 @@ const Collaborators = () => {
           {},
           { withCredentials: true }
         );
-        setCollaborators(response.data.collaborators);
+        setCollaborators(response.data.collaborators || []);
+        setSource(response.data.source || "collaborators");
       } catch (error) {
         console.error("Error fetching collaborators:", error);
       }
@@ -58,7 +60,8 @@ const Collaborators = () => {
       onMouseOver={() => (triggerRef.current.style.cursor = "pointer")}
     >
       <span className="font-bold text-white">
-        {currRepo !== null ? collaborators.length : "N/A"} Collaborators
+        {currRepo !== null ? collaborators.length : "N/A"}{" "}
+        {source === "contributors" ? "Contributors" : "Collaborators"}
       </span>
       {/* {console.log("coll" + JSON.stringify(collaborators[0]))} */}
       {showDropdown && currRepo !== null ? (
